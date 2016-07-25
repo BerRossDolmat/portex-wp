@@ -16,13 +16,14 @@ function send_mail() {
     } else {
       $callback = 'Нет';
     }
-    $letter = '<div><h1>Сообщение с сайта Portex-NDA из формы "' . $type . '"</h1>';
-    // $letter += '<p><b>Имя клиента:</b> ' . $name . '<br>';
-    // $letter += '<b>Электронная почта:</b> ' . $email . '<br>';
-    // $letter += '<b>Сообщение:</b><br>' . $message . '<br>';
-    // $letter += '<b>Телефон:</b> ' . $tel . '<br>';
-    // $letter += '<b>Перезвонить:</b> ' . $callback;
-    // $letter += '</p></div>';
+    $letter = '<div><h1>Сообщение с сайта Portex-NDA из формы "' . $type . '"</h1>'
+            . '<p><b>Имя клиента:</b> ' . $name . '<br>'
+            . '<b>Электронная почта:</b> ' . $email . '<br>'
+            . '<b>Сообщение:</b><br>' . $message . '<br>'
+            . '<b>Телефон:</b> ' . $tel . '<br>'
+            . '<b>Перезвонить:</b> ' . $callback
+            . '</p></div>';
+
     wp_mail( 'portex.nda@gmail.com', 'Call-us-form', $letter);
     return true;
   }
