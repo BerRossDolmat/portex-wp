@@ -22,6 +22,7 @@ function send_mail() {
     $letter += '<b>Сообщение:</b><br>' . $message . '<br>';
     $letter += '<b>Телефон:</b> ' . $tel . '<br>';
     $letter += '<b>Перезвонить:</b> ' . $callback;
+    $letter += '</p></div>';
     wp_mail( 'portex.nda@gmail.com', 'Call-us-form', $letter);
     return true;
   }
