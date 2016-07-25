@@ -30,6 +30,10 @@ add_action( 'rest_api_init', function () {
     );
 } );
 
+add_filter( 'wp_mail_content_type', function( $content_type ) {
+	return 'text/html';
+});
+
 // Shortcodes
 
 ?>
