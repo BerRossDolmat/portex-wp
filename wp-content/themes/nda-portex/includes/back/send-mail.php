@@ -13,7 +13,7 @@ function send_mail() {
       $callback = 'Нет';
     }
 
-    //wp_mail( $to, $subject, $message, $headers, $attachments );
+    wp_mail( 'portex.nda@gmail.com', $_POST['name'], $_POST);
     return true;
   }
 
@@ -28,7 +28,7 @@ function send_mail() {
         $callback = 'Нет';
       }
 
-      //wp_mail( $to, $subject, $message, $headers, $attachments );
+      wp_mail( 'portex.nda@gmail.com', $_POST['name'], $_POST);
       return true;
     }
 
