@@ -2,6 +2,10 @@
 
 function send_mail() {
 
+  if ( $_POST['type'] === 'write-us-letter') {
+    $type = 'Напишите нам'
+  }
+
   if ($_POST['type'] === 'write-us-letter') {
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -12,8 +16,13 @@ function send_mail() {
     } else {
       $callback = 'Нет';
     }
-
-    wp_mail( 'portex.nda@gmail.com', $_POST['name'], $_POST);
+    $letter = '<div><h1>Сообщение с сайта Portex-NDA из формы "' . $type . '"</h1>';
+    $letter += '<p><b>Имя клиента:</b> ' . $name . '<br>';
+    $letter += '<b>Электронная почта:</b> ' . $email . '<br>';
+    $letter += '<b>Сообщение:</b><br>' . $message . '<br>';
+    $letter += '<b>Телефон:</b> ' . $tel . '<br>';
+    $letter += '<b>Перезвонить:</b> ' . $callback;
+    wp_mail( 'portex.nda@gmail.com', 'Call-us-form', $letter);
     return true;
   }
 
