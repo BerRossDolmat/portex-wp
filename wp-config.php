@@ -18,7 +18,7 @@
  * @package WordPress
  */
 //define('WP_HOME', 'localhost' );
-define('WP_SITEURL', 'http://portex.local');
+define('WP_SITEURL', 'http://portex.braum.work/');
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', 'portex-nda');
@@ -27,7 +27,7 @@ define('DB_NAME', 'portex-nda');
 define('DB_USER', 'DRudnev');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'pbxiatra');
+define('DB_PASSWORD', 'DRudnev');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
