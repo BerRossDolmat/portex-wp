@@ -3,7 +3,7 @@
 function send_mail() {
 
   if ( $_POST['type'] === 'write-us-letter') {
-    $type = 'Напишите нам'
+    $type = 'Напишите нам';
   }
 
   if ($_POST['type'] === 'write-us-letter') {
