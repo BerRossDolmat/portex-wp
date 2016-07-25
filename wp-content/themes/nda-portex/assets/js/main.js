@@ -90,7 +90,7 @@ function sendLetter() {
   $( '#callback-bottom' ).val('');
 
   $.ajax({
-    url: 'wp-json/mail/send',
+    url: '/wp-json/mail/send',
     type: 'POST',
     data: mail,
     success: function(){
@@ -141,7 +141,7 @@ function contactUs() {
   $( '#callback' ).val('');
 
   $.ajax({
-    url: 'wp-json/mail/send',
+    url: '/wp-json/mail/send',
     type: 'POST',
     data: mail,
     success: function(){
