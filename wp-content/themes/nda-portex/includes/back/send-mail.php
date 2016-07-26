@@ -11,7 +11,8 @@ function send_mail() {
     $email = $_POST['email'];
     $message = $_POST['message'];
     $tel = $_POST['tel'];
-    if ( $_POST['callback'] === true) {
+
+    if ( $_POST['callback'] === 'true') {
       $callback = 'Да';
     } else {
       $callback = 'Нет';
