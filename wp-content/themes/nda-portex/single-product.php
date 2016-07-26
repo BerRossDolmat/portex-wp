@@ -3,9 +3,10 @@
 get_header();
 
 $thisCat = get_the_category();
-// print_r($thisCat[0]->cat_ID);
-// die();
+
 $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
+
+$product_data = get_post_meta( get_the_ID(), 'product_data', true );
 
 ?>
 
@@ -70,7 +71,7 @@ $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
               <div class="row">
                 <div class="col s1 m1 l2">
                   <div class="download-ru-container">
-                    <a href="#">
+                    <a href="<?php echo home_url() . '/wp-content/uploads/certificates/' . $product_data['certificate']; ?>" download>
                       <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
                       <div class="inline-block download-ru-text">Скачать РУ</div>
                     </a>
