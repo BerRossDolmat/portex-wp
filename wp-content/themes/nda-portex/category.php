@@ -79,12 +79,12 @@
         ?>
           <div class="width-20p animate-fadein">
             <a href="<?php echo get_category_link( $category->term_id ); ?>">
-              <div class="card hoverable category-card">
+              <div class="card hoverable category-card" title="<?php echo $category->category_description;?>">
                 <?php
                   if ($image) {
                     ?>
                     <div class="card-image image-padding">
-                      <img class="responsive-img" src="<?php echo $image; ?>">
+                      <img class="responsive-img img-border" src="<?php echo $image; ?>">
                     </div>
                     <?php
                   }
@@ -116,7 +116,7 @@
               if ( has_post_thumbnail() ) {
                 ?>
                 <div class="card-image image-padding">
-                  <img class="responsive-img" src="<?php the_post_thumbnail_url(); ?>">
+                  <img class="responsive-img img-border" src="<?php the_post_thumbnail_url(); ?>">
                 </div>
                 <?php
               }

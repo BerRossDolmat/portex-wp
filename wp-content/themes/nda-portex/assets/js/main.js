@@ -22,11 +22,11 @@ $( document ).ready(function(){
 
   // Product Slider
 
-  // $('#slideshow').desoSlide({
-  //   thumbs: $('#slideshow-thumbs li > a'),
-  //   overlay: "none",
-  //   thumbEvent: 'mouseover',
-  // });
+  $('#slideshow').desoSlide({
+    thumbs: $('#slideshow-thumbs li > a'),
+    overlay: "none",
+    thumbEvent: 'mouseover',
+  });
 });
 
 // Scroll Reveal

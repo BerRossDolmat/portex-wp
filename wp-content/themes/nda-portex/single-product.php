@@ -5,9 +5,10 @@ get_header();
 $thisCat = get_the_category();
 
 $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
-
 $product_data = get_post_meta( get_the_ID(), 'product_data', true );
-
+$product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls']);
+// print_r($product_data);
+// die();
 ?>
 
 <div class="container">
@@ -20,6 +21,7 @@ $product_data = get_post_meta( get_the_ID(), 'product_data', true );
             if( $ancestors ) {
               $ancestors = array_reverse($ancestors);
               foreach( $ancestors as $ancestor ) {
+
                 $ancestorTitle = get_cat_name( $ancestor );
                 if (mb_strlen($ancestorTitle) > 10) {
                   $ancestorTitle = mb_substr($ancestorTitle, 0, 20) . '...';
@@ -30,8 +32,13 @@ $product_data = get_post_meta( get_the_ID(), 'product_data', true );
               }
 
             }
+            // check for main category that has not to be shown in breadcrumbs
+            if ($thisCat[0]->cat_ID !== 1) {
+              ?>
+              <a href="<?php echo get_category_link( $thisCat[0]->cat_ID ); ?>" class="breadcrumb"><?php echo $thisCat[0]->cat_name; ?></a>
+              <?php
+            }
           ?>
-          <a href="<?php echo get_category_link( $thisCat[0]->cat_ID ); ?>" class="breadcrumb"><?php echo $thisCat[0]->cat_name; ?></a>
           <a href="#" class="breadcrumb breadcrumb-active"><?php echo the_title(); ?></a>
         </div>
       </div>
@@ -48,10 +55,54 @@ $product_data = get_post_meta( get_the_ID(), 'product_data', true );
             <span>_______________</span>
           </div>
           <?php
-            if ( has_post_thumbnail() ) {
+            if ( (has_post_thumbnail() && $product_data['img_option'] === 'standard') || (has_post_thumbnail() && $product_data['img_option'] === undefined) ) {
               ?>
               <div class="card-image col s4 offset-s4">
-                <img src="<?php the_post_thumbnail_url(); ?>" class="responsive-img"></img>
+                <img src="<?php the_post_thumbnail_url('large'); ?>" class="responsive-img"></img>
+              </div>
+              <?php
+            }
+            if ($product_data['img_option'] === 'different') {
+              ?>
+              <div class="card-image col s4 offset-s4">
+                <img src="<?php echo $product_data['different_img_url']; ?>" class="responsive-img"></img>
+              </div>
+              <?php
+            }
+            if ($product_data['img_option'] === 'slider') {
+              ?>
+              <div class="card-image col s6 offset-s3" id="slideshow">
+                <ul class="thumbs">
+                  <?php
+                    foreach ($product_data['slider_img_urls'] as $url) {
+                      ?>
+                      <li>
+                        <a href="<?php echo $url;?>">
+                          <img src="<?php echo $url;?>">
+                        </a>
+                      </li>
+                      <?php
+                    }
+                      ?>
+                </ul>
+              </div>
+
+              <div class="col s6 offset-s3">
+                <ul id="slideshow-thumbs" class="slider-thumbs-horizontal">
+                  <?php
+                  foreach ($product_data['slider_img_urls'] as $url) {
+                    $i = 0;
+                    ?>
+                    <li>
+                      <a href="<?php echo $url; ?>" data-desoslide-index="<?php echo $i; ?>">
+                        <img src="<?php echo $url; ?>">
+                      </a>
+                    </li>
+                    <?php
+                    $i++;
+                  }
+                  ?>
+                </ul>
               </div>
               <?php
             }
@@ -69,17 +120,30 @@ $product_data = get_post_meta( get_the_ID(), 'product_data', true );
             </div>
             <div class="col s10 offset-s1">
               <div class="row">
-                <div class="col s1 m1 l2">
-                  <div class="download-ru-container">
-                    <a href="<?php echo home_url() . '/wp-content/uploads/certificates/' . $product_data['certificate']; ?>" download>
-                      <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
-                      <div class="inline-block download-ru-text">Скачать РУ</div>
-                    </a>
+                <?php
+
+                if($product_data['certificate'] !== ''){
+                  ?>
+                  <div class="col s1 m1 l2">
+                    <div class="download-ru-container">
+                      <a href="<?php echo home_url() . '/wp-content/uploads/certificates/' . $product_data['certificate']; ?>" download>
+                        <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
+                        <div class="inline-block download-ru-text">Скачать РУ</div>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div class="col s7 offset-s4 m5 offset-m6 l3 offset-l7">
+                  <div class="col s7 offset-s4 m5 offset-m6 l3 offset-l7">
+                    <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
+                  </div>
+                <?php
+              } else {
+                ?>
+                <div class="col s7 offset-s5 m5 offset-m7 l3 offset-l9">
                   <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
                 </div>
+                <?php
+              }
+              ?>
               </div>
             </div>
 

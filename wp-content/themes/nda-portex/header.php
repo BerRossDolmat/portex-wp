@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+  // Check for user being admin
   if(!is_admin()) {
     echo '<html>';
   } else {
@@ -11,10 +12,39 @@
     <meta charset="utf-8" />
     <title>Portex</title>
     <!--Import styles, fonts and icons-->
+
     <?php wp_head(); ?>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+    <?php
+    // Meta information for product
+      if( is_single() ){
+        $product_data = get_post_meta( get_the_ID(), 'product_data', true );
+
+        ?>
+
+          <meta name="title" content="<?php echo $product_data['meta_title']; ?>">
+          <meta name="description" content="<?php echo $product_data['meta_description']; ?>">
+          <meta name="keywords" content="<?php echo $product_data['meta_keywords']; ?>">
+
+        <?php
+      }
+
+      if( is_category() ) {
+        $thisCat = get_category( get_query_var( 'cat' ) );
+        $cat_id = $thisCat->term_id;
+        $category_data = get_option( "taxonomy_$cat_id" );
+      ?>
+
+      <meta name="title" content="<?php echo $category_data['meta_title']; ?>">
+      <meta name="description" content="<?php echo $category_data['meta_description']; ?>">
+      <meta name="keywords" content="<?php echo $category_data['meta_keywords']; ?>">
+
+      <?php
+      }
+
+    ?>
   </head>
 
   <body class="grey lighten-5">
