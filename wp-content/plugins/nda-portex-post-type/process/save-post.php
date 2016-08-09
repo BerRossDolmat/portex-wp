@@ -6,7 +6,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   }
 
   $product_data = array();
-  $product_data['certificate'] = sanitize_text_field( $_POST['nda_product_certificate']);
+  $product_data['certificate_title'] = sanitize_text_field( $_POST['nda_product_certificate_title']);
+  $product_data['certificate_url'] = sanitize_text_field( $_POST['nda_product_certificate_url']);
   $product_data['meta_title'] = sanitize_text_field( $_POST['nda_product_meta_title']);
   $product_data['meta_description'] = sanitize_text_field( $_POST['nda_product_meta_description']);
   $product_data['meta_keywords'] = sanitize_text_field( $_POST['nda_product_meta_keywords']);

@@ -16,6 +16,39 @@ $(document).ready(function() {
    });
 });
 
+// Uploading certificate
+var file_frame;
+  jQuery('#choose_certificate').live('click', function( event ){
+    event.preventDefault();
+    // If the media frame already exists, reopen it.
+    if ( file_frame ) {
+      file_frame.open();
+      return;
+    }
+    // Create the media frame.
+    file_frame = wp.media.frames.file_frame = wp.media({
+      title: jQuery( this ).data( 'uploader_title' ),
+      button: {
+        text: jQuery( this ).data( 'uploader_button_text' ),
+      },
+      multiple: false
+      // Set to true to allow multiple files to be selected
+    });
+    // When an image is selected, run a callback.
+    file_frame.on( 'select', function() {
+      // We set multiple to false so only get one image from the uploader
+      attachment = file_frame.state().get('selection').first().toJSON();
+      // Do something with attachment.id and/or attachment.url here
+      $('#certificate_title').val(attachment.title);
+      $('#certificate_title_hidden').val(attachment.title);
+      $('#certificate-url').val(attachment.url);
+      console.log(attachment);
+
+    });
+    // Finally, open the modal
+    file_frame.open();
+  });
+
 // Uploading file
 var file_frame;
   jQuery('#different-image-button').live('click', function( event ){
@@ -50,7 +83,6 @@ var file_frame;
   });
 
   // Upload files
-
 
   jQuery('#slider-button').live('click', function( event ){
     event.preventDefault();

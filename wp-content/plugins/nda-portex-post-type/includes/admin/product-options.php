@@ -5,7 +5,8 @@ function np_product_options_mb( $post ) {
   // print_r($product_data);
   // die();
   if( !$product_data ) {
-    $product_data['certificate'] = '';
+    $product_data['certificate_title'] = '';
+    $product_data['certificate_url'] = '';
     $product_data['meta_title'] = '';
     $product_data['meta_description'] = '';
     $product_data['meta_keywords'] = '';
@@ -16,10 +17,13 @@ function np_product_options_mb( $post ) {
 
   ?>
   <h4>Сертификат</h4>
-  <div class="form-group">
-    <label>Введите имя файла сертификата РУ</label>
-    <input class="form-control" type="text" name="nda_product_certificate" value="<?php echo $product_data['certificate']; ?>">
+  <div class="form-group" id="choose_certificate">
+    <button>Выберите Сертификат</button>
+    <input type="text" value="<?php echo $product_data['certificate_title'] ?>" disabled id="certificate_title">
+    <input type="hidden" value="<?php echo $product_data['certificate_title']; ?>" id="certificate_title_hidden" name="nda_product_certificate_title">
+    <input type="hidden" value="<?php echo $product_data['certificate_url']; ?>" id="certificate-url" name="nda_product_certificate_url">
   </div>
+
   <h4>Метаданные</h4>
   <div class="form-group">
     <label>Meta Title</label>
