@@ -20,6 +20,7 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     $product_data['slider_img_urls'] = sanitize_text_field( $_POST['nda_slider_img_urls']);
     $product_data['slider_img_titles'] = sanitize_text_field( $_POST['nda_slider_img_titles']);
   }
+  $product_data['priority'] = sanitize_text_field( $_POST['nda_product_priority']);
 
 
   update_post_meta( $post_id, 'product_data', $product_data );

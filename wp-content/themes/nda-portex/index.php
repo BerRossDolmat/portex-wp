@@ -1,6 +1,16 @@
-<?php get_header(); ?>
+<?php get_header();
 
-<?php $slider_imgs = json_decode(get_option('main_slider_urls')); ?>
+$slider_imgs = json_decode(get_option('main_slider_urls'));
+
+function compare($elm1, $elm2) {
+  if ($elm1->priority === $elm2->priority) {
+       return 0;
+  }
+
+  return ($elm1->priority < $elm2->priority) ? -1 : 1;
+}
+
+?>
 
 <!-- Top Slider -->
 
@@ -48,6 +58,13 @@
 
     $categories=get_categories($args);
     foreach ($categories as $category) {
+      $priority = get_option( "taxonomy_$category->term_id" );
+      $category->priority = $priority['priority'];
+    }
+
+    usort($categories, compare);
+
+    foreach ($categories as $category) {
 
       $term_id = $category->term_id;
       $image   = category_image_src( array('term_id'=>$term_id) , false );
@@ -78,29 +95,40 @@
   <?php
 
   $args = array( 'post_type' => 'product', 'cat' => 1);
-    $loop = new WP_Query( $args );
-    while ( $loop->have_posts() ) : $loop->the_post();
-    ?>
-    <div class="width-20p animate-fadein">
-      <a href="<?php echo get_permalink(); ?>">
-        <div class="card hoverable category-card">
-          <?php
-            if ( has_post_thumbnail() ) {
-              ?>
-              <div class="card-image image-padding">
-                <img class="responsive-img img-border" src="<?php the_post_thumbnail_url(); ?>">
-              </div>
-              <?php
-            }
-          ?>
-          <div class="card-content text-align-center card-content-text-container">
-            <p class="card-content-text"><?php echo the_title(); ?></p>
+
+  $posts = get_posts($args);
+
+  foreach ($posts as $post) {
+    $priority = get_post_meta( get_the_ID(), 'product_data', true );
+    $post->priority = $priority['priority'];
+  }
+
+  usort($posts, compare);
+
+    foreach($posts as $post) {
+      ?>
+      <div class="width-20p animate-fadein">
+        <a href="<?php echo get_permalink(); ?>">
+          <div class="card hoverable category-card">
+            <?php
+              if ( has_post_thumbnail() ) {
+                ?>
+                <div class="card-image image-padding">
+                  <img class="responsive-img img-border" src="<?php the_post_thumbnail_url(); ?>">
+                </div>
+                <?php
+              }
+            ?>
+            <div class="card-content text-align-center card-content-text-container">
+              <p class="card-content-text"><?php echo the_title(); ?></p>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-    <?php
-    endwhile;
+        </a>
+      </div>
+
+      <?php
+    }
+
     ?>
 
     </div>
