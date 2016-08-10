@@ -14,6 +14,9 @@ function np_product_options_mb( $post ) {
     $product_data['different_img_title'] = '';
     $product_data['different_img_url'] = '';
   }
+  if( !$product_data['priority'] ) {
+    $product_data['priority'] = 10;
+  }
 
   ?>
   <h4>Сертификат</h4>
@@ -24,6 +27,11 @@ function np_product_options_mb( $post ) {
     <input type="hidden" value="<?php echo $product_data['certificate_url']; ?>" id="certificate-url" name="nda_product_certificate_url">
   </div>
 
+  <h4>Приоритет</h4>
+  <div class="form-group">
+    <label>Приоритет</label>
+    <input class="form-control" type="number" name="nda_product_priority" value="<?php echo $product_data['priority']; ?>">
+  </div>
   <h4>Метаданные</h4>
   <div class="form-group">
     <label>Meta Title</label>

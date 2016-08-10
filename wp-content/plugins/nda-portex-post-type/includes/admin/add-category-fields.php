@@ -11,6 +11,9 @@ function nda_category_add_new_meta_field($term) {
     $category_data['meta_description'] = '';
     $category_data['meta_keywords'] = '';
   }
+  if(!$category_data['priority']) {
+    $category_data['priority'] = 10;
+  }
 
   ?>
 
@@ -26,6 +29,10 @@ function nda_category_add_new_meta_field($term) {
   <div class="form-group">
     <label>Meta Keywords</label>
     <input class="form-control" type="text" name="nda_category_meta_keywords" value="<?php echo $category_data['meta_keywords']; ?>">
+  </div>
+  <div class="form-group">
+    <label>Приоритет</label>
+    <input class="form-control" type="number" name="nda_category_priority" value="<?php echo $category_data['priority']; ?>">
   </div>
   <?php
 }

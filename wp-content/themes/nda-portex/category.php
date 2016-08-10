@@ -4,6 +4,14 @@
 
   $thisCat = get_category( get_query_var( 'cat' ) );
 
+  function compare($elm1, $elm2) {
+    if ($elm1->priority === $elm2->priority) {
+         return 0;
+    }
+
+    return ($elm1->priority < $elm2->priority) ? -1 : 1;
+  }
+
   $args = array(
     'orderby' => 'name',
     'child_of' => $thisCat->cat_ID,
@@ -61,6 +69,12 @@
 
     $categories = get_categories( $args );
 
+    foreach ($categories as $category) {
+      $priority = get_option( "taxonomy_$category->term_id" );
+      $category->priority = $priority['priority'];
+    }
+
+    usort($categories, compare);
 
     ?>
 
@@ -97,17 +111,19 @@
           </div>
         <?php
       }
-    ?>
-
-  </div>
-
-  <div class="row">
-
-    <?php
 
     $args = array( 'post_type' => 'product', 'category__in' => $thisCat->term_id, 'posts_per_page' => 10 );
-      $loop = new WP_Query( $args );
-      while ( $loop->have_posts() ) : $loop->the_post();
+
+    $posts = get_posts($args);
+
+    foreach ($posts as $post) {
+      $priority = get_post_meta( get_the_ID(), 'product_data', true );
+      $post->priority = $priority['priority'];
+    }
+
+    usort($posts, compare);
+
+      foreach($posts as $post) {
       ?>
       <div class="width-20p animate-fadein">
         <a href="<?php echo get_permalink(); ?>">
@@ -128,7 +144,7 @@
         </a>
       </div>
       <?php
-      endwhile;
+    }
       ?>
 
   </div>
