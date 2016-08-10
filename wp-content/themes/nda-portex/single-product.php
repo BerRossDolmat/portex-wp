@@ -121,12 +121,11 @@ $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls'])
             <div class="col s10 offset-s1">
               <div class="row">
                 <?php
-
-                if($product_data['certificate'] !== ''){
+                if(!empty($product_data['certificate_url'])){
                   ?>
                   <div class="col s1 m1 l2">
                     <div class="download-ru-container">
-                      <a href="<?php echo home_url() . '/wp-content/uploads/certificates/' . $product_data['certificate']; ?>" download>
+                      <a href="<?php echo $product_data['certificate_url']; ?>" download>
                         <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
                         <div class="inline-block download-ru-text">Скачать РУ</div>
                       </a>
@@ -153,120 +152,6 @@ $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls'])
     </div>
   </div>
 </div>
-
-<!-- <div id="modal-add-order" class="modal modal-order">
-  <div class="modal-content">
-    <form class="row" onsubmit="newOrderShowMessage();return false;">
-      <h5>Оформление заказа</h5>
-      <div class="col s12">
-        <table class="bordered">
-          <thead>
-            <tr>
-              <th>Заказать</th>
-              <th class="width-15p" data-field="code">Код</th>
-              <th class="width-85p" data-field="description">Описание</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td colspan="3" class="text-align-center">Набор для чрескожной трахеостомии UltraPerc</td>
-            </tr>
-            <tr>
-              <td class="width-120">
-                <a href="#" class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped" data-position="top" data-delay="150" data-tooltip="Уменьшить количество товара">-</a>
-                <input type="text" class="order-input" placeholder="0">
-                <a href="#" class="order-number-btn-plus waves-effect waves-blue blue tooltipped" data-position="top" data-delay="150" data-tooltip="Увеличить количество товара">+</a>
-              </td>
-              <td>100/561/070</td>
-              <td>Набор для чрескожной трахеостомии UltraPerc с трахеостомической трубкой Blue Line Ultra (7 мм) и интродьюсером.</td>
-            </tr>
-            <tr>
-              <td class="width-120">
-                <a href="#" class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped" data-position="top" data-delay="150" data-tooltip="Уменьшить количество товара">-</a>
-                <input type="text" class="order-input" placeholder="0">
-                <a href="#" class="order-number-btn-plus waves-effect waves-blue blue tooltipped" data-position="top" data-delay="150" data-tooltip="Увеличить количество товара">+</a>
-              </td>
-              <td>100/561/080</td>
-              <td>Набор для чрескожной трахеостомии UltraPerc с трахеостомической трубкой Blue Line Ultra (8 мм) и интродьюсером.</td>
-            </tr>
-            <tr>
-              <td class="width-120">
-                <a href="#" class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped" data-position="top" data-delay="150" data-tooltip="Уменьшить количество товара">-</a>
-                <input type="text" class="order-input" placeholder="0">
-                <a href="#" class="order-number-btn-plus waves-effect waves-blue blue tooltipped" data-position="top" data-delay="150" data-tooltip="Увеличить количество товара">+</a>
-              </td>
-              <td>100/561/090</td>
-              <td>Набор для чрескожной трахеостомии UltraPerc с трахеостомической трубкой Blue Line Ultra (9 мм) и интродьюсером.</td>
-            </tr>
-            <tr>
-              <td colspan="3" class="text-align-center">Набор для чрескожной трахеостомии UltraPerc и трахеостомической трубкой Suctionaid - каналом для санации надманжеточного пространства.</td>
-            </tr>
-              <td class="width-120">
-                <a href="#" class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped" data-position="top" data-delay="150" data-tooltip="Уменьшить количество товара">-</a>
-                <input type="text" class="order-input" placeholder="0">
-                <a href="#" class="order-number-btn-plus waves-effect waves-blue blue tooltipped" data-position="top" data-delay="150" data-tooltip="Увеличить количество товара">+</a>
-              </td>
-              <td>100/563/070</td>
-              <td>Набор для чрескожной трахеостомии UltraPerc с трахеостомической трубкой Blue Line Ultra Suctionaid с санацией надманжеточного пространства (7 мм) и интродьюсером.</td>
-            </tr>
-            <tr>
-              <td class="width-120">
-                <a href="#" class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped" data-position="top" data-delay="150" data-tooltip="Уменьшить количество товара">-</a>
-                <input type="text" class="order-input" placeholder="0">
-                <a href="#" class="order-number-btn-plus waves-effect waves-blue blue tooltipped" data-position="top" data-delay="150" data-tooltip="Увеличить количество товара">+</a>
-              </td>
-              <td>100/563/080</td>
-              <td>	Набор для чрескожной трахеостомии UltraPerc с трахеостомической трубкой Blue Line Ultra Suctionaid с санацией надманжеточного пространства (8 мм) и интродьюсером.</td>
-            </tr>
-            <tr>
-              <td class="width-120">
-                <a href="#" class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped" data-position="top" data-delay="150" data-tooltip="Уменьшить количество товара">-</a>
-                <input type="text" class="order-input" placeholder="0">
-                <a href="#" class="order-number-btn-plus waves-effect waves-blue blue tooltipped" data-position="top" data-delay="150" data-tooltip="Увеличить количество товара">+</a>
-              </td>
-              <td>100/563/090</td>
-              <td>Набор для чрескожной трахеостомии UltraPerc с трахеостомической трубкой Blue Line Ultra Suctionaid с санацией надманжеточного пространства (9 мм) и интродьюсером.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col s12 m6">
-        <div class="input-field col s12">
-          <input id="name-order" type="text" required class="validate"
-            oninvalid="this.setCustomValidity('Представьтесь пожалуйста')"
-            oninput="setCustomValidity('')">
-          <label for="name-bottom">Представьтесь пожалуйста</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="email-order" type="email" required class="validate"
-            oninvalid="this.setCustomValidity('Введите Ваш email')"
-            oninput="setCustomValidity('')">
-          <label for="email-order">Ваш Email</label>
-        </div>
-        <div class="input-field col s12">
-          <input id="tel-order" type="tel" class="validate" placeholder="+7 XXX XXX-XX-XX">
-          <label for="tel-order" class="active">Ваш номер телефона</label>
-        </div>
-      </div>
-      <div class="col s12 m6">
-        <div class="input-field col s12">
-          <textarea id="message-order" class="materialize-textarea" rows=25></textarea>
-          <label for="message-order">Текст сообщения</label>
-        </div>
-      </div>
-      <div class="input-field col s12">
-        <button type="submit" class="btn waves-effect waves-light right contacts-submit-btn blue">Подтвердить заказ
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
-  </div>
-</div> -->
-
 
 <?php get_footer(); ?>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/product.js"></script>
