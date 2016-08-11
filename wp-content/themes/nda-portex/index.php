@@ -91,6 +91,7 @@ function compare($elm1, $elm2) {
       <?php
     }
   ?>
+
   <!-- Products loop -->
   <?php
 

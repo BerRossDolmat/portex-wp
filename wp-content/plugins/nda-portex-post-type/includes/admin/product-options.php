@@ -1,9 +1,13 @@
 <?php
 
 function np_product_options_mb( $post ) {
+
+  // Get post meta for current post
+
   $product_data = get_post_meta( $post->ID, 'product_data', true );
-  // print_r($product_data);
-  // die();
+
+  // Post meta existence checks
+
   if( !$product_data ) {
     $product_data['certificate_title'] = '';
     $product_data['certificate_url'] = '';
@@ -18,7 +22,13 @@ function np_product_options_mb( $post ) {
     $product_data['priority'] = 10;
   }
 
+  // print_r($product_data['slider_img_urls']);
+  // die();
+
   ?>
+
+  <!-- Metabox template -->
+
   <h4>Сертификат</h4>
   <div class="form-group" id="choose_certificate">
     <button>Выберите Сертификат</button>
@@ -68,7 +78,7 @@ function np_product_options_mb( $post ) {
     <div class="radio">
       <label>
         <input type="radio" name="nda_img_radio_option" id="optionsRadios3" value="slider" style="margin-top: 0px;" <?php if($product_data['img_option'] === 'slider') echo 'checked'; ?>>
-        Слайдер (Выберите изображения, из которых должен быть сформирован слйдер)
+        Слайдер (Выберите изображения, из которых должен быть сформирован слайдер)
       </label>
       <div id="slider-button" hidden style="width: 20%;">
         <button>Выберите изображения для слайдера</button>
@@ -85,8 +95,8 @@ function np_product_options_mb( $post ) {
             ?>
           </ul>
         </div>
-        <input type="hidden" name="nda_slider_img_urls" id="slider_img_urls">
-        <input type="hidden" name="nda_slider_img_titles" id="slider_img_titles">
+        <input type="hidden" name="nda_slider_img_urls" id="slider_img_urls" value=<?php echo $product_data['slider_img_urls']; ?>>
+        <input type="hidden" name="nda_slider_img_titles" id="slider_img_titles" value=<?php echo $product_data['slider_img_titles']; ?>>
       </div>
     </div>
   </div>

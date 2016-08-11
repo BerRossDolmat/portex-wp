@@ -1,5 +1,7 @@
 <?php
 
+  // Save function for saving category meta through options API
+
 function save_category_custom_meta( $term_id ) {
 
   $category_data = array();
