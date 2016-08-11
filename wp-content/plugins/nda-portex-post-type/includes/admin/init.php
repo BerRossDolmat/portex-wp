@@ -1,11 +1,17 @@
 <?php
 
+  // Admin initiation function
+
 function product_admin_init() {
+
+  // Includes
 
   include( 'create-metaboxes.php' );
   include( 'product-options.php' );
   include( 'enqueue.php' );
   include( 'add-category-fields.php' );
+
+  // Hooks
 
   add_action( 'add_meta_boxes_product', 'np_create_metaboxes' );
   add_action( 'admin_enqueue_scripts', 'nda_admin_enqueue' );

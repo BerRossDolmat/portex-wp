@@ -32,7 +32,7 @@ $args = array(
   'hierarchical'       => false,
   'menu_position'      => 20,
   'supports'           => array( 'title', 'editor', 'thumbnail' ),
-  'taxonomies'         => array( 'category', 'post_tag' )
+  'taxonomies'         => array( 'category' )
 );
 
 register_post_type( 'product', $args );
