@@ -77,7 +77,9 @@ $( document ).ready(function(){
 
   $( '.increaseValue' ).on( 'click', function(event) {
     event.preventDefault();
-    $( this ).siblings( "input" ).val(+($( this ).siblings( "input" ).val()) + 1);
+    var oldValue = +($( this ).siblings( "input" ).val());
+    var newValue = oldValue + 1;
+    $( this ).siblings( "input" ).attr('value', newValue);
   });
 
   $( '.decreaseValue' ).on( 'click', function(event) {
@@ -85,7 +87,9 @@ $( document ).ready(function(){
     if ( $( this ).siblings( "input" ).val() === '' || $( this ).siblings( "input" ).val() <= 0 ) {
       return false;
     } else {
-      $( this ).siblings( "input" ).val(+($( this ).siblings( "input" ).val()) - 1);
+      var oldValue = +($( this ).siblings( "input" ).val());
+      var newValue = oldValue - 1;
+      $( this ).siblings( "input" ).attr('value', newValue);
     }
   });
 
@@ -108,7 +112,7 @@ function getControls() {
     >
       -
     </button>
-    <input type="text" class="order-input">
+    <input type="text" class="order-input" placeholder="0">
     <button
       class="order-number-btn-plus waves-effect waves-blue blue tooltipped increaseValue"
       data-position="top"
