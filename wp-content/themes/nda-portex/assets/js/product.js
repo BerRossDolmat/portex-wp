@@ -139,9 +139,10 @@ function newOrder(event) {
     if ($( this ).children( 'td' ).children( 'input' ).val() > 0) {
       var newTdValue = $(this).children('td').children('input').val();
       var newTd = '<td>' + newTdValue + '</td>';
-      $(this).children('td').first().replaceWith(newTd);
-      $(this).children('td').attr('style', 'border: 1px solid black; text-align: center');
-      chosenProducts.push(this.outerHTML);
+      var newThis = $(this).clone();
+      $(newThis).children('td').first().replaceWith(newTd);
+      $(newThis).children('td').attr('style', 'border: 1px solid black; text-align: center');
+      chosenProducts.push(newThis.outerHTML);
     }
   });
 
