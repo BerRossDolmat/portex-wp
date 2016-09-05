@@ -159,19 +159,20 @@ function newOrder(event) {
 
   order.title = $('.product_title').html();
   order.body = JSON.stringify(chosenProducts);
+  console.log(order);
 
-  $.ajax({
-    url: '/wp-json/mail/send',
-    type: 'POST',
-    data: order,
-    success: function(){
-      $('#modal-add-order').closeModal();
-      Materialize.toast(newOrderMessageSuccess, 20000, 'toast-style grey lighten-5');
-    },
-    error: function(){
-      $('#modal-add-order').closeModal();
-      Materialize.toast(newOrderMessageError, 20000, 'toast-style grey lighten-5');
-    }
-  });
+  // $.ajax({
+  //   url: '/wp-json/mail/send',
+  //   type: 'POST',
+  //   data: order,
+  //   success: function(){
+  //     $('#modal-add-order').closeModal();
+  //     Materialize.toast(newOrderMessageSuccess, 20000, 'toast-style grey lighten-5');
+  //   },
+  //   error: function(){
+  //     $('#modal-add-order').closeModal();
+  //     Materialize.toast(newOrderMessageError, 20000, 'toast-style grey lighten-5');
+  //   }
+  // });
 
 };
