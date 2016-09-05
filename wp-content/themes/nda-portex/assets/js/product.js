@@ -140,7 +140,7 @@ function newOrder(event) {
       var newTdValue = $(this).children('td').children('input').val();
       var newTd = '<td>' + newTdValue + '</td>';
       $(this).children('td').first().replaceWith(newTd);
-      $(this).children('td').attr('style', 'border: 1px solid black;');
+      $(this).children('td').attr('style', 'border: 1px solid black; text-align: center');
       chosenProducts.push(this.outerHTML);
     }
   });
