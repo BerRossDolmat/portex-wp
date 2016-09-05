@@ -69,7 +69,7 @@ function send_mail() {
 
     foreach($body as $key => $value)
     {
-      $tables .= '<table style="border: 1px solid black; width: 100%">' . $value . '</table>';
+      $tables .= '<table style="border: 1px solid black; width: 100%; height: 150px; border-collapse: collapse">' . $value . '</table>';
     }
 
     // Create letter
@@ -78,6 +78,7 @@ function send_mail() {
             . '<b>Электронная почта:</b> ' . $email . '<br>'
             . '<b>Сообщение:</b><br>' . $message . '<br>'
             . '<b>Телефон:</b> ' . $tel . '<br>'
+            . '<b>Имя товара:</b> ' . $_POST['title'] . '<br>'
             . '</p></div>'
             . '<div>' . $tables . '</div>';
 
