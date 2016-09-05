@@ -15,15 +15,16 @@ function np_product_options_mb( $post ) {
     $product_data['meta_description'] = '';
     $product_data['meta_keywords'] = '';
     $product_data['img_option'] = 'standard';
-    $product_data['different_img_title'] = '';
-    $product_data['different_img_url'] = '';
   }
   if( !$product_data['priority'] ) {
     $product_data['priority'] = 10;
   }
-
-  // print_r($product_data['slider_img_urls']);
-  // die();
+  if( !isset($product_data['different_img_title'])) {
+    $product_data['different_img_title'] = '';
+  }
+  if(!isset($product_data['different_img_url'])) {
+    $product_data['different_img_url'] = '';
+  }
 
   ?>
 
@@ -82,10 +83,13 @@ function np_product_options_mb( $post ) {
       </label>
       <div id="slider-button" hidden style="width: 20%;">
         <button>Выберите изображения для слайдера</button>
-        <div id="imgTitlesBlock" <?php if(!$product_data['slider_img_titles']) echo 'hidden'; ?>>
+        <div id="imgTitlesBlock" <?php if(!isset($product_data['slider_img_titles'])) echo 'hidden'; ?>>
           <h4>Выбранные файлы</h4>
           <ul class="list-group" id="imgTitles">
             <?php
+
+            // Create list of chosen img titles
+
             if ($product_data['slider_img_titles']) {
               $titles = json_decode($product_data['slider_img_titles']);
               foreach($titles as $title) {
@@ -95,8 +99,8 @@ function np_product_options_mb( $post ) {
             ?>
           </ul>
         </div>
-        <input type="hidden" name="nda_slider_img_urls" id="slider_img_urls" value=<?php echo $product_data['slider_img_urls']; ?>>
-        <input type="hidden" name="nda_slider_img_titles" id="slider_img_titles" value=<?php echo $product_data['slider_img_titles']; ?>>
+        <input type="hidden" name="nda_slider_img_urls" id="slider_img_urls" value=<?php if ( isset( $product_data['slider_img_urls'] )) { echo $product_data['slider_img_urls'];} ?>>
+        <input type="hidden" name="nda_slider_img_titles" id="slider_img_titles" value=<?php if ( isset( $product_data['slider_img_titles'] )){ echo $product_data['slider_img_titles'];} ?>>
       </div>
     </div>
   </div>

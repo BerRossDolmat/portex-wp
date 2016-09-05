@@ -19,6 +19,8 @@ include ( get_template_directory() . '/includes/back/send-mail.php' );
 // Actions & Hooks
 
 add_action( 'wp_enqueue_scripts', 'nda_enqueue' );
+
+// Add rest route for mailing
 add_action( 'rest_api_init', function () {
     register_rest_route(
         'mail',
@@ -30,6 +32,7 @@ add_action( 'rest_api_init', function () {
     );
 } );
 
+// Define content type of emails
 add_filter( 'wp_mail_content_type', function( $content_type ) {
 	return 'text/html';
 });

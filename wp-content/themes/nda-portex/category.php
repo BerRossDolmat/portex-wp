@@ -2,8 +2,10 @@
 
   get_header();
 
+  // Get current category object
   $thisCat = get_category( get_query_var( 'cat' ) );
 
+  // Comparison function for array filtering
   function compare($elm1, $elm2) {
     if ($elm1->priority === $elm2->priority) {
          return 0;
@@ -12,6 +14,7 @@
     return ($elm1->priority < $elm2->priority) ? -1 : 1;
   }
 
+  // Arguements for category query
   $args = array(
     'orderby' => 'name',
     'child_of' => $thisCat->cat_ID,
@@ -27,6 +30,9 @@
 ?>
 
 <div class="container">
+
+  <!-- Breadcrumbs generation -->
+
   <nav class="breadcrumbs-wrapper">
     <div class="nav-wrapper">
       <div class="row">
@@ -71,10 +77,12 @@
 
     foreach ($categories as $category) {
       $priority = get_option( "taxonomy_$category->term_id" );
-      $category->priority = $priority['priority'];
+      if(isset($priority['priority'])) {
+        $category->priority = $priority['priority'];
+      }
     }
 
-    usort($categories, compare);
+    usort($categories, 'compare');
 
     ?>
 
@@ -118,10 +126,12 @@
 
     foreach ($posts as $post) {
       $priority = get_post_meta( get_the_ID(), 'product_data', true );
-      $post->priority = $priority['priority'];
+      if(isset($priority['priority'])) {
+        $post->priority = $priority['priority'];
+      }
     }
 
-    usort($posts, compare);
+    usort($posts, 'compare');
 
       foreach($posts as $post) {
       ?>
