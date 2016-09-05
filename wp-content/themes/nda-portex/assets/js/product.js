@@ -108,7 +108,7 @@ function getControls() {
     >
       -
     </button>
-    <input type="text" class="order-input" placeholder="0">
+    <input type="text" class="order-input" value="0">
     <button
       class="order-number-btn-plus waves-effect waves-blue blue tooltipped increaseValue"
       data-position="top"
