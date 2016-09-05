@@ -80,7 +80,6 @@ function send_mail() {
             . '<b>Телефон:</b> ' . $tel . '<br>'
             . '</p></div>'
             . '<div>' . $tables . '</div>';
-    return $letter;
 
     // Send letter
     wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
