@@ -142,7 +142,7 @@ function newOrder(event) {
       var newThis = $(this).clone();
       $(newThis).children('td').first().replaceWith(newTd);
       $(newThis).children('td').attr('style', 'border: 1px solid black; text-align: center');
-      chosenProducts.push(newThis.outerHTML);
+      chosenProducts.push(newThis.outerHTML());
     }
   });
 
@@ -168,7 +168,6 @@ function newOrder(event) {
 
   order.title = $('.product_title').html();
   order.body = JSON.stringify(chosenProducts);
-  console.log(order);
 
   $.ajax({
     url: '/wp-json/mail/send',
