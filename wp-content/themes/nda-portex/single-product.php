@@ -2,13 +2,17 @@
 
 get_header();
 
+// Get current product parent category
 $thisCat = get_the_category();
 
+// Get ancestors of parent category
 $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
+
+// Get product data
 $product_data = get_post_meta( get_the_ID(), 'product_data', true );
-$product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls']);
-// print_r($product_data);
-// die();
+if (isset($product_data['slider_img_urls'])) {
+  $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls']);
+}
 ?>
 
 <div class="container">
@@ -51,11 +55,11 @@ $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls'])
       <div class="card product">
         <div class="row">
           <div class="text-align-center devider">
-            <h1 class="h1-for-groups-index"><?php echo the_title(); ?></h1>
+            <h1 class="h1-for-groups-index product_title"><?php echo the_title(); ?></h1>
             <span>_______________</span>
           </div>
           <?php
-            if ( (has_post_thumbnail() && $product_data['img_option'] === 'standard') || (has_post_thumbnail() && $product_data['img_option'] === undefined) ) {
+            if ( (has_post_thumbnail() && $product_data['img_option'] === 'standard') || (has_post_thumbnail() && $product_data['img_option'] === 'undefined') ) {
               ?>
               <div class="card-image col s4 offset-s4">
                 <img src="<?php the_post_thumbnail_url('large'); ?>" class="responsive-img"></img>
@@ -121,6 +125,8 @@ $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls'])
             <div class="col s10 offset-s1">
               <div class="row">
                 <?php
+
+                // Check if certificate exists
                 if(!empty($product_data['certificate_url'])){
                   ?>
                   <div class="col s1 m1 l2">
@@ -152,6 +158,47 @@ $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls'])
     </div>
   </div>
 </div>
+<div id="modal-add-order" class="modal modal-order">
+  <div class="modal-content">
+    <form class="row" onsubmit="newOrder(event)">
+      <h5>Оформление заказа</h5>
+      <div class="col s12" id="modalPlaceForTables">
 
+      </div>
+      <div class="col s12 m6">
+        <div class="input-field col s12">
+          <input id="name-order" type="text" required class="validate"
+            oninvalid="this.setCustomValidity('Представьтесь пожалуйста')"
+            oninput="setCustomValidity('')">
+          <label for="name-bottom">Представьтесь пожалуйста</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="email-order" type="email" required class="validate"
+            oninvalid="this.setCustomValidity('Введите Ваш email')"
+            oninput="setCustomValidity('')">
+          <label for="email-order">Ваш Email</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="tel-order" type="tel" class="validate" placeholder="+7 XXX XXX-XX-XX">
+          <label for="tel-order" class="active">Ваш номер телефона</label>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="input-field col s12">
+          <textarea id="message-order" class="materialize-textarea" rows=25></textarea>
+          <label for="message-order">Текст сообщения</label>
+        </div>
+      </div>
+      <div class="input-field col s12">
+        <button type="submit" class="btn waves-effect waves-light right contacts-submit-btn blue">Подтвердить заказ
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
+  </div>
+</div>
 <?php get_footer(); ?>
 <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/product.js"></script>

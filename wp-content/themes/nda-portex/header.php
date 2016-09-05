@@ -18,6 +18,7 @@
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
     <?php
+
     // Meta information for product
       if( is_single() ){
         $product_data = get_post_meta( get_the_ID(), 'product_data', true );
@@ -30,7 +31,7 @@
 
         <?php
       }
-
+    // Meta information for categories
       if( is_category() ) {
         $thisCat = get_category( get_query_var( 'cat' ) );
         $cat_id = $thisCat->term_id;
@@ -112,7 +113,6 @@
                   <li class="show-on-phone"><a href="#contactsModal" class="modal-trigger contacts-container">Контакты</a>
                 </ul>
               </div>
-
             </div>
           </div>
         </div>

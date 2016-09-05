@@ -1,4 +1,4 @@
-<!-- Footer -->
+  <!-- Footer -->
 
   <footer class="footer-style">
     <div class="container">
