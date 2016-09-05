@@ -69,7 +69,7 @@ function send_mail() {
 
     foreach($body as $key => $value)
     {
-      $tables .= '<table style="border: 1px solid black">' . $value . '</table>';
+      $tables .= '<table style="border: 1px solid black; width: 100%">' . $value . '</table>';
     }
 
     // Create letter
