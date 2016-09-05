@@ -137,6 +137,9 @@ function newOrder(event) {
   var chosenProducts = [];
   $( allModalProducts ).each(function() {
     if ($( this ).children( 'td' ).children( 'input' ).val() > 0) {
+      var newTdValue = $(this).children('td').children('input').val();
+      var newTd = '<td>' + newTdValue + '</td>';
+      $(this).children('td').first().replaceWith(newTd);
       chosenProducts.push(this.outerHTML);
     }
   });
