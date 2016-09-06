@@ -131,24 +131,33 @@ function closeToast() {
   $( ".toast-style" ).hide();
 }
 
+// function newOrder(event) {
+//   event.preventDefault();
+//   var allModalProducts = $( "#modalPlaceForTables > table > tbody > tr" );
+//   var chosenProducts = [];
+//   $( allModalProducts ).each(function() {
+//     if ($( this ).children( 'td' ).children( 'input' ).val() > 0) {
+//       var newTdValue = $(this).children('td').children('input').val();
+//       var newTd = '<td>' + newTdValue + '</td>';
+//       var newThis = $(this).clone();
+//       $(newThis).children('td').first().replaceWith(newTd);
+//       $(newThis).children('td').attr('style', 'border: 1px solid black; text-align: center');
+//       chosenProducts.push(newThis.outerHTML());
+//     }
+//   });
+
 function newOrder(event) {
   event.preventDefault();
-  var allModalProducts = $( "#modalPlaceForTables > table > tbody > tr" );
-  var chosenProducts = [];
-  $( allModalProducts ).each(function() {
-    if ($( this ).children( 'td' ).children( 'input' ).val() > 0) {
-      var newTdValue = $(this).children('td').children('input').val();
-      var newTd = '<td>' + newTdValue + '</td>';
-      var newThis = $(this).clone();
-      $(newThis).children('td').first().replaceWith(newTd);
-      $(newThis).children('td').attr('style', 'border: 1px solid black; text-align: center');
-      chosenProducts.push(newThis.outerHTML());
+  var allModalTables = $( "#modalPlaceForTables > table" );
+  var newAllModalTables = $(allModalTables).clone();
+  $(newAllModalTables).children('tbody').children('tr').each(function() {
+    if ($(this).find('input').val() == 0) {
+      $(this).remove();
     }
   });
-
-  if (chosenProducts.length === 0) {
-    return false;
-  }
+  // if (chosenProducts.length === 0) {
+  //   return false;
+  // }
 
   var order = new Object;
 
@@ -167,7 +176,7 @@ function newOrder(event) {
   $( '#tel-order' ).val('');
 
   order.title = $('.product_title').html();
-  order.body = JSON.stringify(chosenProducts);
+  order.body = JSON.stringify(newAllModalTables);
 
   $.ajax({
     url: '/wp-json/mail/send',
