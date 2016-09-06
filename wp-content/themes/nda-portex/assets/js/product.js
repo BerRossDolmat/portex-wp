@@ -158,7 +158,11 @@ function newOrder(event) {
   // if (chosenProducts.length === 0) {
   //   return false;
   // }
-  var tables = $(newAllModalTables).outerHTML();
+  var tables = [];
+  $(newAllModalTables).each(function() {
+    tables.push($(this).outerHTML());
+  });
+
   var order = new Object;
 
   order.type = "new-order";
