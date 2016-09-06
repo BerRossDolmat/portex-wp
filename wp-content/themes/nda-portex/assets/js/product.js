@@ -158,7 +158,7 @@ function newOrder(event) {
   // if (chosenProducts.length === 0) {
   //   return false;
   // }
-
+  var tables = $(newAllModalTables).html();
   var order = new Object;
 
   order.type = "new-order";
@@ -176,7 +176,7 @@ function newOrder(event) {
   $( '#tel-order' ).val('');
 
   order.title = $('.product_title').html();
-  order.body = JSON.stringify(newAllModalTables);
+  order.body = JSON.stringify(tables);
 
   $.ajax({
     url: '/wp-json/mail/send',
