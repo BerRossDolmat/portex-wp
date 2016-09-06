@@ -155,8 +155,8 @@ function newOrder(event) {
       $(this).remove();
     }
     var newTd = $(this).find('input').val();
-    var newThis = $(this).clone();
-    $(newThis).children('td').first().replaceWith(newTd);
+    $(this).find('button').remove();
+    $(this).find('input').replaceWith(newTd);
   });
   // if (chosenProducts.length === 0) {
   //   return false;
