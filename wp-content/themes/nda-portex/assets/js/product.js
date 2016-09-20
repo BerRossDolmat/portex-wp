@@ -30,13 +30,37 @@ $( document ).ready(function(){
     }
   });
 
-  // Style headers
+  // Create headers
+
+  $(initialTables).each(function() {
+    var trLength = 100;
+    $(this).find('tr').each(function() {
+      if ( $(this).children('td').length < trLength && $(this).children('td').length != 0 ) {
+        trLength = $(this).children('td').length;
+      }
+    });
+    $(this).find('tr').each(function() {
+      if ( $(this).children('td').length > trLength && $(this).children('td').length != 0 ) {
+        var length = $(this).children('td').length;
+        for ( var i = 0; i < length -1 ; i++) {
+          $(this).children('td').last().remove();
+        }
+        $(this).children('td').first().attr('colspan', trLength);
+        $(this).children('td').first().attr('style', 'font-weight: 500; text-align: center');
+        $(this).children('td').first().attr('colspanned', 1);
+      }
+    });
+  });
 
   // $(initialTables).find("tr").each(function(){
-  //   if ($(this).children('td').length === 1) {
-  //     $(this).children('td').attr('colspan', 2);
-  //     $(this).attr('style', 'font-weight: 500');
-  //   }
+  //   var length = 0;
+  //   $(this).children('td').each(function() {
+  //     if($(this).html() == '<span>&nbsp;</span>') {
+  //       length++;
+  //     }
+  //   });
+  //   $(this).children('td').attr('colspan', length);
+  //   $(this).attr('style', 'font-weight: 500');
   // });
 
   // var modaltr = $('#product-content > table > thead tr');
@@ -62,7 +86,16 @@ $( document ).ready(function(){
 
   $(modalTables).each(function(index){
     $(this).children("thead").children("tr").prepend("<th>Количество</th>");
-    $(this).children("tbody").children("tr").prepend("<td>" + getControls() + "</td>");
+    $(this).children("tbody").children("tr").each(function() {
+      if( $(this).children('td').attr('colspanned') == 1) {
+        var newColspan = $(this).children('td').first().attr('colspan');
+        $(this).children('td').first().attr('colspan', +newColspan + +1);
+      } else if ( $(this).children('td').first().html() == '<span>&nbsp;</span>' && $(this).children('td').last().html() == '<span>&nbsp;</span>' ) {
+        $(this).prepend("<td><span>&nbsp;</span></td>");
+      } else {
+        $(this).prepend("<td>" + getControls() + "</td>");    
+      }
+    });
   });
 
   // Show ready content

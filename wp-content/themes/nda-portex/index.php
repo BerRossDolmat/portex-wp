@@ -71,7 +71,7 @@ function compare($elm1, $elm2) {
     foreach ($categories as $category) {
 
       $term_id = $category->term_id;
-      $image   = category_image_src( array('term_id'=>$term_id) , false );
+      $image   = category_image_src( array('term_id'=>$term_id, 'size'=>'thumbnail') , false );
 
       ?>
         <div class="width-20p animate-fadein">
@@ -121,7 +121,7 @@ function compare($elm1, $elm2) {
               if ( has_post_thumbnail() ) {
                 ?>
                 <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php the_post_thumbnail_url(); ?>">
+                  <img class="responsive-img img-border" src="<?php the_post_thumbnail_url('thumbnail'); ?>">
                 </div>
                 <?php
               }
