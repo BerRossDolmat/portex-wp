@@ -115,7 +115,7 @@ if (isset($product_data['slider_img_urls'])) {
         <div class="card-content">
           <div class="row">
             <div class="text-align-center devider">
-              <h1 class="h1-for-groups-index">Описание продукта</h1>
+              <h2 class="h1-for-groups-index">Описание продукта</h2>
               <span>_______________</span>
             </div>
 
@@ -159,6 +159,7 @@ if (isset($product_data['slider_img_urls'])) {
   </div>
 </div>
 <div id="modal-add-order" class="modal modal-order">
+  <div class="close-symbol modal-action modal-close">&#10006;</div>
   <div class="modal-content">
     <form class="row" onsubmit="newOrder(event)">
       <h5>Оформление заказа</h5>

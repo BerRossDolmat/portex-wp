@@ -23,6 +23,7 @@
 
   <!-- Send Letter Modal -->
   <div id="send-letter-modal" class="modal">
+    <div class="close-symbol modal-action modal-close">&#10006;</div>
     <div class="modal-content">
       <form class="row" onsubmit="sendLetter();return false;">
         <div class="input-field col s12 m12">
@@ -61,13 +62,14 @@
       </form>
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
     </div>
   </div>
 
   <!-- Contact Us Top Modal -->
 
   <div id="contactsModal" class="modal">
+    <div class="close-symbol modal-action modal-close">&#10006;</div>
     <div class="modal-content">
       <h4>Контакты</h4>
       <div class="row">
@@ -135,7 +137,7 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
     </div>
   </div>
 
