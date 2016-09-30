@@ -99,7 +99,7 @@
         $image   = category_image_src( array( 'term_id'=>$term_id, 'size'=>'thumbnail' ) , false );
 
         ?>
-          <div class="width-20p animate-fadein">
+          <div class="width-thumbnail-5-in-row animate-fadein">
             <a href="<?php echo get_category_link( $category->term_id ); ?>">
               <div class="card hoverable category-card" title="<?php echo $category->category_description;?>">
                 <?php
@@ -135,7 +135,7 @@
 
       foreach($posts as $post) {
       ?>
-      <div class="width-20p animate-fadein">
+      <div class="width-thumbnail-5-in-row animate-fadein">
         <a href="<?php echo get_permalink(); ?>">
           <div class="card hoverable category-card">
             <?php

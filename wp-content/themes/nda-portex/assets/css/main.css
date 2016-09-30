@@ -497,7 +497,7 @@ div.aligncenter {
 
 
 
-.width-20p {
+.width-thumbnail-5-in-row {
   margin:auto;
   padding: 10px;
   width: 19.7%;
@@ -764,7 +764,7 @@ and (max-width: 1380px) {
 @media screen
 and (min-width: 1130px)
 and (max-width: 1280px) {
-
+ /* breakpoint for 4 products */
   .hide-on-desktop {
     display: none;
   }
@@ -794,7 +794,7 @@ and (max-width: 1280px) {
     width: 95%;
   }
 
-  .width-20p {
+  .width-thumbnail-5-in-row {
     width: 24.7%;
   }
 
@@ -808,7 +808,7 @@ and (max-width: 1280px) {
 @media screen
 and (min-width: 992px)
 and (max-width: 1130px) {
-
+ /* breakpoint for 4 products */
   .modal {
     width: 80%;
   }
@@ -833,7 +833,7 @@ and (max-width: 1130px) {
     width: 95%;
   }
 
-  .width-20p {
+  .width-thumbnail-5-in-row {
     width: 24.7%;
   }
 }
@@ -841,7 +841,7 @@ and (max-width: 1130px) {
 @media screen
 and (min-width: 880px)
 and (max-width: 992px) {
-
+ /* breakpoint for 4 products */
   .modal {
     min-width: 80%;
   }
@@ -862,7 +862,7 @@ and (max-width: 992px) {
     width: 95%;
   }
 
-  .width-20p {
+  .width-thumbnail-5-in-row {
     width: 24.5%;
   }
 }
@@ -880,7 +880,7 @@ and (max-width: 670px) {
 @media screen
 and (min-width: 670px)
 and (max-width: 880px) {
-
+ /* breakpoint for 3 products */
   .modal {
     min-width: 80%;
   }
@@ -909,7 +909,7 @@ and (max-width: 880px) {
     display: none;
   }
 
-  .width-20p {
+  .width-thumbnail-5-in-row {
     width: 32.5%;
   }
 }
@@ -917,7 +917,7 @@ and (max-width: 880px) {
 @media screen
 and (min-width: 600px)
 and (max-width: 670px) {
-
+/* breakpoint for 2 products */
   .modal {
     min-width: 90%;
   }
@@ -950,7 +950,7 @@ and (max-width: 670px) {
     display: block;
   }
 
-  .width-20p {
+  .width-thumbnail-5-in-row {
     width: 49%;
   }
 }
@@ -1008,7 +1008,7 @@ and (max-width: 600px) {
     display: block !important;
   }
 
-  .width-20p {
+  .width-thumbnail-5-in-row {
     width: 80%;
     margin-left: 10%;
   }
