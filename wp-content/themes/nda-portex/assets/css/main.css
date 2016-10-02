@@ -168,8 +168,9 @@ div.aligncenter {
 }
 
 .menu-items li a {
-    font-size: 1.20em;
+    font-size: 1.40em;
     font-family: costumfont;
+    padding-top: 2px;
     padding-left: 25px;
     padding-right: 25px;
     font-weight: 500;
@@ -392,6 +393,18 @@ div.aligncenter {
 }
 
 
+/* Add shipping */
+
+.forgot-pass {
+    font-style: italic;
+    padding-top: 10px;
+}
+
+.log-in-btn {
+    margin-top: 0;
+}
+
+
 /* Contacts */
 
 .close-symbol {
@@ -405,6 +418,8 @@ div.aligncenter {
 }
 
 #name:focus,
+#inn:focus,
+#password:focus,
 #name-bottom:focus,
 #name-order:focus {
     border-bottom: 1px solid #2196f3;
@@ -412,6 +427,8 @@ div.aligncenter {
 }
 
 #name:focus+label,
+#inn:focus+label,
+#password:focus+label,
 #name-bottom:focus+label,
 #name-order:focus+label {
     color: #2196f3;

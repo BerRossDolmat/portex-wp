@@ -80,9 +80,9 @@
               <div class="col l11 zero-padding-left hide-on-mobile header-links-container">
 
                 <ul class="left menu-items">
-                  <li><a href="#">Как найти продукцию</a></li>
-                  <li><a href="#">Как оформить заказ</a></li>
-                  <li><a href="#">Найти свою отгрузку</a></li>
+                  <li><a href="<?php echo home_url( '/find-product' ); ?>">Найти продукцию</a></li>
+                  <li><a href="<?php echo home_url( '/add-order' ); ?>">Оформить заказ</a></li>
+                  <li><a href="<?php echo home_url( '/find-shipping' ); ?>">Найти отгрузку</a></li>
                   <li><a href="#">РУ и сертификаты</a></li>
                   <li><a href="#">Аптеки</a></li>
                 </ul>
