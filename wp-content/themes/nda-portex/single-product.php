@@ -119,7 +119,7 @@ if (isset($product_data['slider_img_urls'])) {
               <span>_______________</span>
             </div>
 
-            <div id="product-content" class="col s10 offset-s1" hidden>
+            <div id="product-content" class="col s10 offset-s1">
               <?php echo $post->post_content; ?>
             </div>
             <div class="col s10 offset-s1">
@@ -158,8 +158,8 @@ if (isset($product_data['slider_img_urls'])) {
     </div>
   </div>
 </div>
-<div id="modal-add-order" class="modal modal-order">
-  <div class="close-symbol modal-action modal-close">&#10006;</div>
+<div id="modal-add-order" class="modal modal-order modal-fixed-footer">
+  <div class="close-symbol"><a href="#" class="modal-action modal-close">&#10006;</a></div>
   <div class="modal-content">
     <form class="row" onsubmit="newOrder(event)">
       <h5>Оформление заказа</h5>
@@ -196,9 +196,6 @@ if (isset($product_data['slider_img_urls'])) {
         </button>
       </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a>
   </div>
 </div>
 <?php get_footer(); ?>

@@ -42,3 +42,4 @@ function nda_save_post_admin( $post_id, $post, $update ) {
 
   update_post_meta( $post_id, 'product_data', $product_data );
 }
+?>

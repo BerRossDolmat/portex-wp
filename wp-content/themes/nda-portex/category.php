@@ -82,44 +82,6 @@
       }
     }
 
-    usort($categories, 'compare');
-
-    ?>
-
-    <div class="text-align-center devider">
-      <h1 class="h1-for-groups-index"><?php echo $thisCat->cat_name; ?></h1>
-      <span>_______________</span>
-    </div>
-
-    <?php
-
-      foreach ( $categories as $category ) {
-
-        $term_id = $category->term_id;
-        $image   = category_image_src( array( 'term_id'=>$term_id, 'size'=>'thumbnail' ) , false );
-
-        ?>
-          <div class="width-thumbnail-5-in-row animate-fadein">
-            <a href="<?php echo get_category_link( $category->term_id ); ?>">
-              <div class="card hoverable category-card" title="<?php echo $category->category_description;?>">
-                <?php
-                  if ($image) {
-                    ?>
-                    <div class="card-image image-padding">
-                      <img class="responsive-img img-border" src="<?php echo $image; ?>">
-                    </div>
-                    <?php
-                  }
-                ?>
-                <div class="card-content text-align-center card-content-text-container">
-                  <p class="card-content-text"><?php echo $category->name; ?></p>
-                </div>
-              </div>
-            </a>
-          </div>
-        <?php
-      }
-
     $args = array( 'post_type' => 'product', 'category__in' => $thisCat->term_id, 'posts_per_page' => 10 );
 
     $posts = get_posts($args);
@@ -131,15 +93,62 @@
       }
     }
 
-    usort($posts, 'compare');
+    $terms =[];
+    $i = 0;
+    foreach( $posts as $post) {
+      $terms[$i] = $post;
+      $i++;
+    }
+    foreach ($categories as $category) {
+      $terms[$i] = $category;
+      $i++;
+    }
+    
+    usort($terms, 'compare');
 
-      foreach($posts as $post) {
-      ?>
+    ?>
+
+    <div class="text-align-center devider">
+      <h1 class="h1-for-groups-index"><?php echo $thisCat->cat_name; ?></h1>
+      <span>_______________</span>
+    </div>
+
+    <?php
+
+    foreach ($terms as $term) {
+      if( $term->taxonomy == 'category') {
+        $term_id = $term->term_id;
+        $image   = category_image_src( array( 'term_id'=>$term_id, 'size'=>'thumbnail' ) , false );
+
+        ?>
+          <div class="width-thumbnail-5-in-row animate-fadein">
+            <a href="<?php echo get_category_link( $term->term_id ); ?>">
+              <div class="card hoverable category-card" title="<?php echo $term->category_description;?>">
+                <?php
+                  if ($image) {
+                    ?>
+                    <div class="card-image image-padding">
+                      <img class="responsive-img img-border" src="<?php echo $image; ?>">
+                    </div>
+                    <?php
+                  }
+                ?>
+                <div class="card-content text-align-center card-content-text-container">
+                  <p class="card-content-text"><?php echo $term->name; ?></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <?php
+        continue;
+      }
+      if ( $term->post_type == 'product') {
+        ?>
       <div class="width-thumbnail-5-in-row animate-fadein">
-        <a href="<?php echo get_permalink(); ?>">
+        <a href="<?php echo get_permalink($term); ?>">
           <div class="card hoverable category-card">
             <?php
-              if ( has_post_thumbnail() ) {
+              if ( has_post_thumbnail($term) ) {
                 ?>
                 <div class="card-image image-padding">
                   <img class="responsive-img img-border" src="<?php the_post_thumbnail_url('thumbnail'); ?>">
@@ -148,14 +157,15 @@
               }
             ?>
             <div class="card-content text-align-center card-content-text-container">
-              <p class="card-content-text"><?php echo the_title(); ?></p>
+              <p class="card-content-text"><?php echo $term->post_title; ?></p>
             </div>
           </div>
         </a>
       </div>
       <?php
     }
-      ?>
+  }
+?>
 
   </div>
 

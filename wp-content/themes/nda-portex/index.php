@@ -59,24 +59,45 @@ function compare($elm1, $elm2) {
     );
 
     $categories=get_categories($args);
+    
     foreach ($categories as $category) {
       $priority = get_option( "taxonomy_$category->term_id" );
       if(isset($priority['priority'])) {
         $category->priority = $priority['priority'];
       }
     }
+    $args = array( 'post_type' => 'product', 'cat' => 1);
 
-    usort($categories, 'compare');
+    $posts = get_posts($args);
 
+    foreach ($posts as $post) {
+      $priority = get_post_meta( get_the_ID(), 'product_data', true );
+      if(isset($priority['priority'])) {
+        $post->priority = $priority['priority'];
+      }
+    }
+    $terms =[];
+    $i = 0;
+    foreach( $posts as $post) {
+      $terms[$i] = $post;
+      $i++;
+    }
     foreach ($categories as $category) {
-
-      $term_id = $category->term_id;
-      $image   = category_image_src( array('term_id'=>$term_id, 'size'=>'thumbnail') , false );
+      $terms[$i] = $category;
+      $i++;
+    }
+    
+    usort($terms, 'compare');
+    
+    foreach ($terms as $term) {
+      if( $term->taxonomy == 'category') {
+        $term_id = $term->term_id;
+        $image   = category_image_src( array('term_id'=>$term_id, 'size'=>'thumbnail') , false );
 
       ?>
         <div class="width-thumbnail-5-in-row animate-fadein">
-          <a href="<?php echo get_category_link( $category->term_id ); ?>">
-            <div class="card hoverable category-card" title="<?php echo $category->category_description;?>">
+          <a href="<?php echo get_category_link( $term->term_id ); ?>">
+            <div class="card hoverable category-card" title="<?php echo $term->category_description;?>">
               <?php
                 if ( $image ) {
                   ?>
@@ -87,38 +108,21 @@ function compare($elm1, $elm2) {
                 }
               ?>
               <div class="card-content text-align-center card-content-text-container">
-                <p class="card-content-text"><?php echo $category->name; ?></p>
+                <p class="card-content-text"><?php echo $term->name; ?></p>
               </div>
             </div>
           </a>
         </div>
       <?php
-    }
-  ?>
-
-  <!-- Products loop -->
-  <?php
-
-  $args = array( 'post_type' => 'product', 'cat' => 1);
-
-  $posts = get_posts($args);
-
-  foreach ($posts as $post) {
-    $priority = get_post_meta( get_the_ID(), 'product_data', true );
-    if(isset($priority['priority'])) {
-      $post->priority = $priority['priority'];
-    }
-  }
-
-  usort($posts, 'compare');
-
-    foreach($posts as $post) {
-      ?>
+        continue;
+      }
+      if ( $term->post_type == 'product') {
+         ?>
       <div class="width-thumbnail-5-in-row animate-fadein">
-        <a href="<?php echo get_permalink(); ?>">
+        <a href="<?php echo get_permalink($term); ?>">
           <div class="card hoverable category-card">
             <?php
-              if ( has_post_thumbnail() ) {
+              if ( has_post_thumbnail($term) ) {
                 ?>
                 <div class="card-image image-padding">
                   <img class="responsive-img img-border" src="<?php the_post_thumbnail_url('thumbnail'); ?>">
@@ -127,17 +131,18 @@ function compare($elm1, $elm2) {
               }
             ?>
             <div class="card-content text-align-center card-content-text-container">
-              <p class="card-content-text"><?php echo the_title(); ?></p>
+              <p class="card-content-text"><?php echo $term->post_title; ?></p>
             </div>
           </div>
         </a>
       </div>
 
       <?php
+        continue;
+      }
     }
 
-    ?>
-
+?>
     </div>
 </div>
 

@@ -407,10 +407,15 @@ div.aligncenter {
 
 /* Contacts */
 
+.modal-content {
+    height: 100% !important;
+}
+
 .close-symbol {
     position: absolute;
     top: 20px;
     right: 20px;
+    z-index: 1;
 }
 
 .contacts-submit-btn {
