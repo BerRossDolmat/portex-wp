@@ -66,11 +66,11 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s4"><a href="#">Скачать реквизиты</a></div>
-            <div class="col s4"><a href="#">Скачать выписку и ЕГРЮЛ</a></div>
+            <div class="col s6 m4"><a href="#">Скачать реквизиты</a></div>
+            <div class="col s6 m4"><a href="#">Скачать выписку и ЕГРЮЛ</a></div>
         </div>
         <div class="row">
-            <div class="col s8 offset-s2 m6 l4">
+            <div class="col s6  m6 l4">
                 <h5>Адрес офиса</h5>
                 <p>
                     190121,<br /> САНКТ-ПЕТЕРБУРГ, <br /> ул. ПЕРЕВОЗНАЯ, д. 6 <br /> (Матисов остров).
@@ -80,7 +80,7 @@
                 <p><a href="https://yandex.ua/maps/2/saint-petersburg/?z=17&ll=30.27939349510259%2C59.923043442380866&l=map&origin=jsapi_2_1_41&from=api-maps&um=constructor%3ATg_88TxbGHE5vPCpmeoq17ndikm6ekVa&ncrnd=2804">Офис (карта Яндекса)</a></p>
                 <p><a href="#">Скачать схему проезда</a></p>
             </div>
-            <div class="col s8 offset-s2 m6 l4">
+            <div class="col s6 m6 l4">
                 <h5>Адрес склада</h5>
                 <p>
                     198099,<br /> САНКТ-ПЕТЕРБУРГ, <br /> ул. Калинина, д. 39
