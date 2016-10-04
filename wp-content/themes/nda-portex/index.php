@@ -59,7 +59,7 @@ function compare($elm1, $elm2) {
     );
 
     $categories=get_categories($args);
-    
+
     foreach ($categories as $category) {
       $priority = get_option( "taxonomy_$category->term_id" );
       if(isset($priority['priority'])) {
@@ -95,7 +95,7 @@ function compare($elm1, $elm2) {
         $image   = category_image_src( array('term_id'=>$term_id, 'size'=>'thumbnail') , false );
 
       ?>
-        <div class="width-thumbnail-5-in-row animate-fadein">
+        <div class="minicard animate-fadein">
           <a href="<?php echo get_category_link( $term->term_id ); ?>">
             <div class="card hoverable category-card" title="<?php echo $term->category_description;?>">
               <?php
@@ -107,8 +107,8 @@ function compare($elm1, $elm2) {
                   <?php
                 }
               ?>
-              <div class="card-content text-align-center card-content-text-container">
-                <p class="card-content-text"><?php echo $term->name; ?></p>
+              <div class="card-content-text-container">
+                <span><?php echo $term->name; ?></span>
               </div>
             </div>
           </a>
@@ -117,21 +117,22 @@ function compare($elm1, $elm2) {
         continue;
       }
       if ( $term->post_type == 'product') {
+        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $term->ID ), 'thumbnail' );
          ?>
-      <div class="width-thumbnail-5-in-row animate-fadein">
+      <div class="minicard animate-fadein">
         <a href="<?php echo get_permalink($term); ?>">
           <div class="card hoverable category-card">
             <?php
-              if ( has_post_thumbnail($term) ) {
+              if ( $image ) {
                 ?>
                 <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php the_post_thumbnail_url('thumbnail'); ?>">
+                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>">
                 </div>
                 <?php
               }
             ?>
-            <div class="card-content text-align-center card-content-text-container">
-              <p class="card-content-text"><?php echo $term->post_title; ?></p>
+            <div class="card-content-text-container">
+              <span><?php echo $term->post_title; ?></span>
             </div>
           </div>
         </a>
