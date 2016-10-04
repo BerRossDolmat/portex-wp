@@ -794,6 +794,25 @@ body {
     .hide-on-desktop {
         display: none;
     }
+    .category-card {
+        height: 290px;
+        overflow: hidden;
+    }
+    .minicard {
+        width: 19.4%;
+        margin-left: 0.3%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 54px;
+        line-height: 54px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+    }
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1380px) {
@@ -806,6 +825,25 @@ body {
     .menu-items li a {
         padding: 0 10px;
         font-size: 19px;
+    }
+    .category-card {
+        height: 260px;
+        overflow: hidden;
+    }
+    .minicard {
+        width: 17%;
+        margin-left: 0.3%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 54px;
+        line-height: 54px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
 }
 
@@ -833,8 +871,24 @@ body {
     .container {
         width: 95%;
     }
+    .category-card {
+        height: 260px;
+        overflow: hidden;
+    }
     .minicard {
-        width: 24.7%;
+        width: 24%;
+        margin-left: 0.3%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 54px;
+        line-height: 54px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
     html {
         position: relative;
@@ -863,8 +917,24 @@ body {
     .container {
         width: 95%;
     }
+    .category-card {
+        height: 260px;
+        overflow: hidden;
+    }
     .minicard {
-        width: 24.7%;
+        width: 24%;
+        margin-left: 0.3%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 54px;
+        line-height: 54px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
 }
 
@@ -885,17 +955,24 @@ body {
     .container {
         width: 95%;
     }
+    .category-card {
+        height: 260px;
+        overflow: hidden;
+    }
     .minicard {
-        width: 24.5%;
+        width: 24%;
+        margin-left: 0.3%;
     }
-}
-
-@media screen and (min-width: 710px) and (max-width: 670px) {
-    .footer-style {
-        height: 120px;
+    .card-content-text-container {
+        text-align: center;
+        height: 54px;
+        line-height: 54px;
+        width: 100%
     }
-    body {
-        margin: 0 0 120px;
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
 }
 
@@ -911,10 +988,10 @@ body {
         width: 95%;
     }
     .footer-style {
-        height: 120px;
+        height: 100px;
     }
     body {
-        margin: 0 0 120px;
+        margin: 0 0 100px;
     }
     .show-on-mobile {
         display: block !important;
@@ -922,8 +999,24 @@ body {
     .show-on-phone {
         display: none;
     }
+    .category-card {
+        height: 295px;
+        overflow: hidden;
+    }
     .minicard {
-        width: 32.5%;
+        width: 31%;
+        margin-left: 1%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 54px;
+        line-height: 54px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
 }
 
@@ -948,17 +1041,99 @@ body {
         display: none;
     }
     .container {
-        width: 95%;
+        width: 80%;
     }
     .show-on-phone {
         display: block;
     }
+    .category-card {
+        height: 300px;
+        overflow: hidden;
+    }
     .minicard {
-        width: 49%;
+        width: 48%;
+        margin-left: 1%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 60px;
+        line-height: 60px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 500px) and (max-width: 600px) {
+    .search-wrapper {
+        width: 180px;
+    }
+    .search-wrapper button {
+        width: 40px;
+    }
+    .search-wrapper input {
+        width: 130px;
+    }
+    .width-100 {
+        min-width: 90px;
+    }
+    .container {
+        width: 80%;
+    }
+    .search-btn {
+        top: -12px;
+        left: 6px;
+        font-size: 12px;
+    }
+    .modal {
+        min-width: 90%;
+    }
+    .contact-us-hide {
+        display: none;
+    }
+    .show-on-phone {
+        display: block;
+    }
+    .search-block {
+        margin-top: -4px !important;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+    .show-on-mobile {
+        display: block !important;
+    }
+    .category-card {
+        height: 280px;
+        overflow: hidden;
+    }
+    .minicard {
+        width: 48%;
+        margin-left: 1%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 62px;
+        line-height: 62px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+    }
+    .footer-style {
+        height: 150px;
+    }
+    body {
+        margin: 0 0 150px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
     .search-wrapper {
         width: 180px;
     }
@@ -1007,8 +1182,8 @@ body {
     }
     .card-content-text-container {
         text-align: center;
-        height: 72px;
-        line-height: 72px;
+        height: 62px;
+        line-height: 62px;
         width: 100%
     }
     .card-content-text-container span {
