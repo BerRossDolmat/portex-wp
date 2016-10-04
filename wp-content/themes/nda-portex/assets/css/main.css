@@ -545,7 +545,7 @@ div.aligncenter {
     line-height: 2;
 }
 
-.width-thumbnail-5-in-row {
+.minicard {
     margin: auto;
     padding: 10px;
     width: 19.7%;
@@ -833,7 +833,7 @@ body {
     .container {
         width: 95%;
     }
-    .width-thumbnail-5-in-row {
+    .minicard {
         width: 24.7%;
     }
     html {
@@ -863,7 +863,7 @@ body {
     .container {
         width: 95%;
     }
-    .width-thumbnail-5-in-row {
+    .minicard {
         width: 24.7%;
     }
 }
@@ -885,7 +885,7 @@ body {
     .container {
         width: 95%;
     }
-    .width-thumbnail-5-in-row {
+    .minicard {
         width: 24.5%;
     }
 }
@@ -922,7 +922,7 @@ body {
     .show-on-phone {
         display: none;
     }
-    .width-thumbnail-5-in-row {
+    .minicard {
         width: 32.5%;
     }
 }
@@ -953,7 +953,7 @@ body {
     .show-on-phone {
         display: block;
     }
-    .width-thumbnail-5-in-row {
+    .minicard {
         width: 49%;
     }
 }
@@ -997,14 +997,29 @@ body {
     .show-on-mobile {
         display: block !important;
     }
-    .width-thumbnail-5-in-row {
-        width: 80%;
-        margin-left: 10%;
+    .category-card {
+        height: 270px;
+        overflow: hidden;
+    }
+    .minicard {
+        width: 48%;
+        margin-left: 1%;
+    }
+    .card-content-text-container {
+        text-align: center;
+        height: 72px;
+        line-height: 72px;
+        width: 100%
+    }
+    .card-content-text-container span {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
     }
     .footer-style {
-        height: 145px;
+        height: 170px;
     }
     body {
-        margin: 0 0 145px;
+        margin: 0 0 170px;
     }
 }
