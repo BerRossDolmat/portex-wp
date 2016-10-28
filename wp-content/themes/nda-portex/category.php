@@ -82,7 +82,7 @@
       }
     }
 
-    $args = array( 'post_type' => 'product', 'category__in' => $thisCat->term_id, 'posts_per_page' => 10 );
+    $args = array( 'post_type' => 'product', 'category__in' => $thisCat->term_id, 'numberposts' => -1 );
 
     $posts = get_posts($args);
 
@@ -173,3 +173,4 @@
 </div>
 
 <?php get_footer(); ?>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/index-category.js"></script>

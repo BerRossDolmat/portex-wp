@@ -6,10 +6,19 @@ $(document).ready(function() {
 
     // Get all tables
 
-    // initialTables = $( "#product-content > table" );
+    initialTables = $("#product-content > table");
 
     // Make THeads and add tabl class
 
+    $(initialTables).each(function(i) {
+        $(this).addClass('bordered');
+    });
+
+    if ($('#minified').val() == 'true') {
+        initialTables.find('td').each(function(i) {
+            $(this).addClass('minified');
+        });
+    }
     // $( initialTables ).each(function(i){
     //   $( this ).addClass('bordered');
     //   if ($(this).children('thead').length === 0) {
@@ -21,17 +30,17 @@ $(document).ready(function() {
     //   }
     // });
 
-    // Remove junk classes
+    // // Remove junk classes
     // var whitelist = ['align'];
 
-    // $(initialTables).find("*").each(function(){
-    //   var attributes = this.attributes;
-    //   var i = attributes.length;
-    //   while ( i-- ) {
-    //     var attr = attributes[i];
-    //     if ( $.inArray(attr.name,whitelist) == -1 )
-    //       this.removeAttributeNode(attr);
-    //   }
+    // $(initialTables).find("*").each(function() {
+    //     var attributes = this.attributes;
+    //     var i = attributes.length;
+    //     while (i--) {
+    //         var attr = attributes[i];
+    //         if ($.inArray(attr.name, whitelist) == -1)
+    //             this.removeAttributeNode(attr);
+    //     }
     // });
 
     // Create headers
@@ -68,24 +77,31 @@ $(document).ready(function() {
     // });
 
     // Clone table to modal
-    // $(initialTables).each(function(i){
-    //   $( this ).clone().appendTo( "#modalPlaceForTables" );
-    // })
+    $(initialTables).each(function(i) {
+        $(this).clone().appendTo("#modalPlaceForTables");
+    })
 
-    // var modalTables = $( "#modalPlaceForTables > table" );
+    var modalTables = $("#modalPlaceForTables > table");
 
-    // $(modalTables).each(function(index){
-    //   $(this).children("thead").children("tr").prepend("<th>Количество</th>");
-    //   $(this).children("tbody").children("tr").each(function() {
-    //     if( $(this).children('td').attr('colspanned') == 1) {
-    //       var newColspan = $(this).children('td').first().attr('colspan');
-    //       $(this).children('td').first().attr('colspan', +newColspan + +1);
-    //     } else if ( $(this).children('td').first().html() == '<span>&nbsp;</span>' && $(this).children('td').last().html() == '<span>&nbsp;</span>' ) {
-    //       $(this).prepend("<td><span>&nbsp;</span></td>");
-    //     } else {
-    //       $(this).prepend("<td>" + getControls() + "</td>");    
-    //     }
-    //   });
+    $(modalTables).each(function(index) {
+        $(this).children("thead").children("tr").prepend("<td>Количество</td>");
+        $(this).children("tbody").children("tr").each(function() {
+            $(this).prepend("<td style='width: 80px;'>" + getControls() + "</td>");
+        });
+    });
+
+    // $(modalTables).each(function(index) {
+    //     $(this).children("thead").children("tr").prepend("<td>Количество</td>");
+    //     $(this).children("tbody").children("tr").each(function() {
+    //         if ($(this).children('td').attr('colspanned') == 1) {
+    //             var newColspan = $(this).children('td').first().attr('colspan');
+    //             $(this).children('td').first().attr('colspan', +newColspan + +1);
+    //         } else if ($(this).children('td').first().html() == '<span>&nbsp;</span>' && $(this).children('td').last().html() == '<span>&nbsp;</span>') {
+    //             $(this).prepend("<td><span>&nbsp;</span></td>");
+    //         } else {
+    //             $(this).prepend("<td>" + getControls() + "</td>");
+    //         }
+    //     });
     // });
 
     // Show ready content
@@ -94,110 +110,110 @@ $(document).ready(function() {
 
     // Quantity control functions
 
-    // $( '.increaseValue' ).on( 'click', function(event) {
-    //   event.preventDefault();
-    //   var oldValue = +($( this ).siblings( "input" ).val());
-    //   var newValue = oldValue + 1;
-    //   $( this ).siblings( "input" ).attr('value', newValue);
-    // });
+    $('.increaseValue').on('click', function(event) {
+        event.preventDefault();
+        var oldValue = +($(this).siblings("input").val());
+        var newValue = oldValue + 1;
+        $(this).siblings("input").attr('value', newValue);
+    });
 
-    // $( '.decreaseValue' ).on( 'click', function(event) {
-    //   event.preventDefault();
-    //   if ( $( this ).siblings( "input" ).val() === '' || $( this ).siblings( "input" ).val() <= 0 ) {
-    //     return false;
-    //   } else {
-    //     var oldValue = +($( this ).siblings( "input" ).val());
-    //     var newValue = oldValue - 1;
-    //     $( this ).siblings( "input" ).attr('value', newValue);
-    //   }
-    // });
+    $('.decreaseValue').on('click', function(event) {
+        event.preventDefault();
+        if ($(this).siblings("input").val() === '' || $(this).siblings("input").val() <= 0) {
+            return false;
+        } else {
+            var oldValue = +($(this).siblings("input").val());
+            var newValue = oldValue - 1;
+            $(this).siblings("input").attr('value', newValue);
+        }
+    });
 
-    // $( '#submitOrder').on("click", function(event) {
-    //   event.preventDefault();
-    //   var orderSuccess = "Все ок";
-    //   var orderFail = "Ошибка";
-    //   Materialize.toast(orderSuccess, 20000, 'toast-style grey lighten-5');
-    //   $('#modal-add-order').closeModal();
-    // });
+    $('#submitOrder').on("click", function(event) {
+        event.preventDefault();
+        var orderSuccess = "Все ок";
+        var orderFail = "Ошибка";
+        Materialize.toast(orderSuccess, 20000, 'toast-style grey lighten-5');
+        $('#modal-add-order').closeModal();
+    });
 });
 
-// function getControls() {
-//   return `
-//     <button
-//       class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped decreaseValue"
-//       data-position="top"
-//       data-delay="150"
-//       data-tooltip="Уменьшить количество товара"
-//     >
-//       -
-//     </button>
-//     <input type="text" class="order-input" placeholder="0">
-//     <button
-//       class="order-number-btn-plus waves-effect waves-blue blue tooltipped increaseValue"
-//       data-position="top"
-//       data-delay="150"
-//       data-tooltip="Увеличить количество товара"
-//     >
-//       +
-//     </button>
-//     `;
-// };
+function getControls() {
+    return `
+    <button
+      class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped decreaseValue"
+      data-position="top"
+      data-delay="150"
+      data-tooltip="Уменьшить количество товара"
+    >
+      -
+    </button>
+    <input type="text" class="order-input" placeholder="0">
+    <button
+      class="order-number-btn-plus waves-effect waves-blue blue tooltipped increaseValue"
+      data-position="top"
+      data-delay="150"
+      data-tooltip="Увеличить количество товара"
+    >
+      +
+    </button>
+    `;
+};
 
-// var newOrderMessageSuccess = $('<div><h5>Уважаемые коллеги!</h5> <p>Ваша заявка получена, и принята в работу. В ближайшее время (не позднее 24 часов Вы получите ответ или готовое коммерческое предложение. В случае если оно Вас устроит, Вам будет выставлен официальный счет для оплаты.</p><p> С уважением коллектив ООО НДА Деловая медицинская компания</p><div><a href="#!" onclick="closeToast()" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a></div></div>');
-// var newOrderMessageError = $('<div><h5>Произошла ошибка!</h5> <p>Попробуйте еще раз.</p><div><a href="#!" onclick="closeToast()" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a></div></div>');
+var newOrderMessageSuccess = $('<div><h5>Уважаемые коллеги!</h5> <p>Ваша заявка получена, и принята в работу. В ближайшее время (не позднее 24 часов Вы получите ответ или готовое коммерческое предложение. В случае если оно Вас устроит, Вам будет выставлен официальный счет для оплаты.</p><p> С уважением коллектив ООО НДА Деловая медицинская компания</p><div><a href="#!" onclick="closeToast()" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a></div></div>');
+var newOrderMessageError = $('<div><h5>Произошла ошибка!</h5> <p>Попробуйте еще раз.</p><div><a href="#!" onclick="closeToast()" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a></div></div>');
 
-// function closeToast() {
-//   $( ".toast-style" ).hide();
-// }
+function closeToast() {
+    $(".toast-style").hide();
+}
 
-// function newOrder(event) {
-//   event.preventDefault();
-//   var allModalTables = $( "#modalPlaceForTables > table" );
-//   var newAllModalTables = $(allModalTables).clone();
-//   $(newAllModalTables).children('tbody').children('tr').each(function() {
-//     if ($(this).find('input').val() == 0) {
-//       $(this).remove();
-//     }
-//     var newTd = $(this).find('input').val();
-//     $(this).find('button').remove();
-//     $(this).find('input').replaceWith(newTd);
-//   });
-//   var tables = [];
-//   $(newAllModalTables).each(function() {
-//     tables.push($(this).outerHTML());
-//   });
+function newOrder(event) {
+    event.preventDefault();
+    var allModalTables = $("#modalPlaceForTables > table");
+    var newAllModalTables = $(allModalTables).clone();
+    $(newAllModalTables).children('tbody').children('tr').each(function() {
+        if ($(this).find('input').val() == 0) {
+            $(this).remove();
+        }
+        var newTd = $(this).find('input').val();
+        $(this).find('button').remove();
+        $(this).find('input').replaceWith(newTd);
+    });
+    var tables = [];
+    $(newAllModalTables).each(function() {
+        tables.push($(this).outerHTML());
+    });
 
-//   var order = new Object;
+    var order = new Object;
 
-//   order.type = "new-order";
+    order.type = "new-order";
 
-//   order.name = $( '#name-order' ).val();
-//   $( '#name-order' ).val('');
+    order.name = $('#name-order').val();
+    $('#name-order').val('');
 
-//   order.email = $( '#email-order' ).val();
-//   $( '#email-order' ).val('');
+    order.email = $('#email-order').val();
+    $('#email-order').val('');
 
-//   order.message = $( '#message-order' ).val();
-//   $( '#message-order' ).val('');
+    order.message = $('#message-order').val();
+    $('#message-order').val('');
 
-//   order.tel = $( '#tel-order' ).val();
-//   $( '#tel-order' ).val('');
+    order.tel = $('#tel-order').val();
+    $('#tel-order').val('');
 
-//   order.title = $('.product_title').html();
-//   order.body = JSON.stringify(tables);
+    order.title = $('.product_title').html();
+    order.body = JSON.stringify(tables);
 
-//   $.ajax({
-//     url: '/wp-json/mail/send',
-//     type: 'POST',
-//     data: order,
-//     success: function(){
-//       $('#modal-add-order').closeModal();
-//       Materialize.toast(newOrderMessageSuccess, 20000, 'toast-style grey lighten-5');
-//     },
-//     error: function(){
-//       $('#modal-add-order').closeModal();
-//       Materialize.toast(newOrderMessageError, 20000, 'toast-style grey lighten-5');
-//     }
-//   });
+    $.ajax({
+        url: '/wp-json/mail/send',
+        type: 'POST',
+        data: order,
+        success: function() {
+            $('#modal-add-order').closeModal();
+            Materialize.toast(newOrderMessageSuccess, 20000, 'toast-style grey lighten-5');
+        },
+        error: function() {
+            $('#modal-add-order').closeModal();
+            Materialize.toast(newOrderMessageError, 20000, 'toast-style grey lighten-5');
+        }
+    });
 
-// };
+};

@@ -16,7 +16,7 @@ function np_product_options_mb( $post ) {
     $product_data['meta_keywords'] = '';
     $product_data['img_option'] = 'standard';
   }
-  if( !$product_data['priority'] ) {
+  if( !isset($product_data['priority']) ) {
     $product_data['priority'] = 10;
   }
   if( !isset($product_data['different_img_title'])) {
@@ -24,6 +24,9 @@ function np_product_options_mb( $post ) {
   }
   if(!isset($product_data['different_img_url'])) {
     $product_data['different_img_url'] = '';
+  }
+  if (!isset($product_data['minified'])) {
+    $product_data['minified'] = 'true';
   }
 
   ?>
@@ -38,6 +41,10 @@ function np_product_options_mb( $post ) {
     <input type="hidden" value="<?php echo $product_data['certificate_url']; ?>" id="certificate-url" name="nda_product_certificate_url">
   </div>
 
+  <h4>Минифицировать таблицы</h4>
+  <div class="form-group">
+    <label class="checkbox-inline"><input style="margin-top:0px;" type="checkbox" name="nda_product_minified" <?php echo $product_data['minified'] === 'true' ? 'checked' : '' ?> value="">Минифицировать</label>
+  </div>
   <h4>Приоритет</h4>
   <div class="form-group">
     <label>Приоритет</label>

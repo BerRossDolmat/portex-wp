@@ -158,6 +158,9 @@ if (isset($product_data['slider_img_urls'])) {
     </div>
   </div>
 </div>
+<div hidden>
+  <input type="hidden" id="minified" value="<?php echo $product_data['minified'] ?>">
+</div>
 <div id="modal-add-order" class="modal modal-order modal-fixed-footer">
   <div class="close-symbol"><a href="#" class="modal-action modal-close">&#10006;</a></div>
   <div class="modal-content">

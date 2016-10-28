@@ -19,6 +19,12 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   $product_data['meta_description'] = sanitize_text_field( $_POST['nda_product_meta_description']);
   $product_data['meta_keywords'] = sanitize_text_field( $_POST['nda_product_meta_keywords']);
   $product_data['img_option'] = sanitize_text_field( $_POST['nda_img_radio_option']);
+  if (isset($_POST['nda_product_minified'])) {
+    $product_data['minified'] = 'true';
+  } else {
+    $product_data['minified'] = 'false';
+  }
+  
 
   // Image presentation mode check for different imgs mode
 

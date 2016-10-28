@@ -66,16 +66,18 @@ function compare($elm1, $elm2) {
         $category->priority = $priority['priority'];
       }
     }
-    $args = array( 'post_type' => 'product', 'cat' => 1);
+    $args = array( 'post_type' => 'product', 'cat' => 1, 'numberposts' => -1);
 
     $posts = get_posts($args);
-
+    // print_r($posts);
+    // die();
     foreach ($posts as $post) {
       $priority = get_post_meta( get_the_ID(), 'product_data', true );
       if(isset($priority['priority'])) {
         $post->priority = $priority['priority'];
       }
     }
+
     $terms =[];
     $i = 0;
     foreach( $posts as $post) {
@@ -148,3 +150,5 @@ function compare($elm1, $elm2) {
 </div>
 
 <?php get_footer(); ?>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/index-category.js"></script>
+

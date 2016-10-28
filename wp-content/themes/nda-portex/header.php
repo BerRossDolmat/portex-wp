@@ -54,7 +54,7 @@
       <nav>
         <div class="nav-wrapper blue lighten-2">
           <div class="container">
-            <div class="row">
+            <div class="row top-menu">
               <div class="col s2 m1 l1 zero-padding-right">
                 <a href="<?php echo home_url( '/' ); ?>" class="logo">Portex</a>
               </div>
@@ -106,10 +106,12 @@
               <div>
                 <ul class="side-nav" id="mobile-sidebar">
                   <li class="side-menu-li">Меню</li>
-                  <li><a href="#">Как найти продукцию</a></li>
-                  <li><a href="#">Как оформить заказ</a></li>
-                  <li><a href="#">Найти свою отгрузку</a></li>
+                  <li><a href="<?php echo home_url( '/' ); ?>">Главная</a></li>
+                  <li><a href="<?php echo home_url( '/find-product' ); ?>">Найти продукцию</a></li>
+                  <li><a href="<?php echo home_url( '/add-order' ); ?>">Оформить заказ</a></li>
+                  <li><a href="<?php echo home_url( '/find-shipping' ); ?>">Найти отгрузку</a></li>
                   <li><a href="#">РУ и сертификаты</a></li>
+                  <li><a href="#">Аптеки</a></li>
                   <li class="show-on-phone"><a href="#contactsModal" class="modal-trigger contacts-container">Контакты</a>
                 </ul>
               </div>
