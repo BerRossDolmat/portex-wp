@@ -104,7 +104,7 @@ function compare($elm1, $elm2) {
                 if ( $image ) {
                   ?>
                   <div class="card-image image-padding">
-                    <img class="responsive-img img-border" src="<?php echo $image; ?>">
+                    <img class="responsive-img img-border" src="<?php echo $image; ?>" alt="<?php echo $term->name; ?>">
                   </div>
                   <?php
                 }
@@ -128,7 +128,7 @@ function compare($elm1, $elm2) {
               if ( $image ) {
                 ?>
                 <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>">
+                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $term->post_title; ?>">
                 </div>
                 <?php
               }

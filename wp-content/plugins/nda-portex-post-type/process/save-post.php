@@ -24,6 +24,11 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   } else {
     $product_data['minified'] = 'false';
   }
+  if ($_POST['nda_product_breadcrumb'] === '') {
+    $product_data['breadcrumb'] = sanitize_text_field( $post->post_name);
+  } else {
+    $product_data['breadcrumb'] = sanitize_text_field( $_POST['nda_product_breadcrumb']);
+  }
   
 
   // Image presentation mode check for different imgs mode

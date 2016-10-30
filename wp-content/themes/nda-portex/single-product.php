@@ -1,4 +1,10 @@
 <?php
+// retrieves the attachment ID from the file URL
+function get_image_id($image_url) {
+	global $wpdb;
+	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url )); 
+        return $attachment[0]; 
+}
 
 get_header();
 
@@ -25,8 +31,8 @@ if (isset($product_data['slider_img_urls'])) {
             if( $ancestors ) {
               $ancestors = array_reverse($ancestors);
               foreach( $ancestors as $ancestor ) {
-
-                $ancestorTitle = get_cat_name( $ancestor );
+                $category_meta = get_option( "taxonomy_$ancestor" );
+                $ancestorTitle = $category_meta['breadcrumb'];
                 if (mb_strlen($ancestorTitle) > 10) {
                   $ancestorTitle = mb_substr($ancestorTitle, 0, 20) . '...';
                 }
@@ -38,12 +44,14 @@ if (isset($product_data['slider_img_urls'])) {
             }
             // check for main category that has not to be shown in breadcrumbs
             if ($thisCat[0]->cat_ID !== 1) {
+              $term_id = $thisCat[0]->term_id;
+              $category_meta = get_option( "taxonomy_$term_id" );
               ?>
-              <a href="<?php echo get_category_link( $thisCat[0]->cat_ID ); ?>" class="breadcrumb"><?php echo $thisCat[0]->cat_name; ?></a>
+              <a href="<?php echo get_category_link( $thisCat[0]->cat_ID ); ?>" class="breadcrumb"><?php echo $category_meta['breadcrumb']; ?></a>
               <?php
             }
           ?>
-          <a href="#" class="breadcrumb breadcrumb-active"><?php echo the_title(); ?></a>
+          <a href="#" class="breadcrumb breadcrumb-active"><?php echo $product_data['breadcrumb']; ?></a>
         </div>
       </div>
     </div>
@@ -62,14 +70,19 @@ if (isset($product_data['slider_img_urls'])) {
             if ( (has_post_thumbnail() && $product_data['img_option'] === 'standard') || (has_post_thumbnail() && $product_data['img_option'] === 'undefined') ) {
               ?>
               <div class="card-image col s4 offset-s4">
-                <img src="<?php the_post_thumbnail_url('large'); ?>" class="responsive-img"></img>
+                <?php 
+                  $post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
+                  echo wp_get_attachment_image( $post_thumbnail_id, 'large', "", array( "class" => "responsive-img" ) );  
+                ?>
+
               </div>
               <?php
             }
             if ($product_data['img_option'] === 'different') {
+              $img_id = get_image_id($product_data['different_img_url']);
               ?>
               <div class="card-image col s4 offset-s4">
-                <img src="<?php echo $product_data['different_img_url']; ?>" class="responsive-img"></img>
+                <?php echo wp_get_attachment_image( $img_id, 'large', "", array( "class" => "responsive-img" ) ); ?>
               </div>
               <?php
             }
@@ -79,10 +92,11 @@ if (isset($product_data['slider_img_urls'])) {
                 <ul class="thumbs">
                   <?php
                     foreach ($product_data['slider_img_urls'] as $url) {
+                      $img_id = get_image_id($url);
                       ?>
                       <li>
                         <a href="<?php echo $url;?>">
-                          <img src="<?php echo $url;?>">
+                          <?php echo wp_get_attachment_image( $img_id); ?>
                         </a>
                       </li>
                       <?php
@@ -94,12 +108,14 @@ if (isset($product_data['slider_img_urls'])) {
               <div class="col s6 offset-s3">
                 <ul id="slideshow-thumbs" class="slider-thumbs-horizontal">
                   <?php
+                  $i = 0;
                   foreach ($product_data['slider_img_urls'] as $url) {
-                    $i = 0;
+                    
+                    $img_id = get_image_id($url);
                     ?>
                     <li>
                       <a href="<?php echo $url; ?>" data-desoslide-index="<?php echo $i; ?>">
-                        <img src="<?php echo $url; ?>">
+                        <?php echo wp_get_attachment_image( $img_id); ?>
                       </a>
                     </li>
                     <?php

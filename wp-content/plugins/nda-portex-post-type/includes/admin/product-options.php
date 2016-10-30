@@ -28,10 +28,19 @@ function np_product_options_mb( $post ) {
   if (!isset($product_data['minified'])) {
     $product_data['minified'] = 'true';
   }
+  if(!isset($product_data['breadcrumb'])) {
+    $product_data['breadcrumb'] = '';
+  }
 
   ?>
 
   <!-- Metabox template -->
+
+  <h4>Хлебные крошки</h4>
+  <div class="form-group">
+    <label>Имя в хлебных крошках</label>
+    <input class="form-control" type="text" name="nda_product_breadcrumb" value="<?php echo $product_data['breadcrumb']; ?>">
+  </div>
 
   <h4>Сертификат</h4>
   <div class="form-group" id="choose_certificate">

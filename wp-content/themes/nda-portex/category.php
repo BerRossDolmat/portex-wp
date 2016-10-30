@@ -42,7 +42,8 @@
             if( $ancestors ) {
               $ancestors = array_reverse( $ancestors );
               foreach( $ancestors as $ancestor ) {
-                $ancestorTitle = get_cat_name( $ancestor );
+                $category_meta = get_option( "taxonomy_$ancestor" );
+                $ancestorTitle = $category_meta['breadcrumb'];
                 if (mb_strlen( $ancestorTitle ) > 10) {
                   $ancestorTitle = mb_substr( $ancestorTitle, 0, 20 ) . '...';
                 }
@@ -52,8 +53,10 @@
               }
 
             }
+
+            $category_data = get_option( "taxonomy_$thisCat->cat_ID" );
           ?>
-          <a href="#" class="breadcrumb breadcrumb-active"><?php echo get_cat_name( $thisCat->cat_ID ) ?></a>
+          <a href="#" class="breadcrumb breadcrumb-active"><?php echo $category_data['breadcrumb'] ?></a>
         </div>
       </div>
     </div>
@@ -128,7 +131,7 @@
                   if ($image) {
                     ?>
                     <div class="card-image image-padding">
-                      <img class="responsive-img img-border" src="<?php echo $image; ?>">
+                      <img class="responsive-img img-border" src="<?php echo $image; ?>" alt="<?php echo $term->name; ?>">
                     </div>
                     <?php
                   }
@@ -152,7 +155,7 @@
               if ( $image ) {
                 ?>
                 <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>">
+                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $term->post_title; ?>">
                 </div>
                 <?php
               }

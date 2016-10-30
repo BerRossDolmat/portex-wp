@@ -18,9 +18,20 @@ function nda_category_add_new_meta_field($term) {
     $category_data['priority'] = 10;
   }
 
+  // Breadcrumb existence check
+  if(!isset($category_data['breadcrumb'])) {
+    $category_data['breadcrumb'] = '';
+  }
+
   ?>
 
   <!-- Metabox template -->
+
+  <h4>Хлебные крошки</h4>
+  <div class="form-group">
+    <label>Имя в хлебных крошках</label>
+    <input class="form-control" type="text" name="nda_category_breadcrumb" value="<?php echo $category_data['breadcrumb']; ?>">
+  </div>
 
   <h4>Метаданные</h4>
   <div class="form-group">
@@ -39,5 +50,6 @@ function nda_category_add_new_meta_field($term) {
     <label>Приоритет</label>
     <input class="form-control" type="number" name="nda_category_priority" value="<?php echo $category_data['priority']; ?>">
   </div>
+
   <?php
 }

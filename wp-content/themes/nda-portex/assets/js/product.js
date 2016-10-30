@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     initialTables = $("#product-content > table");
 
-    // Make THeads and add tabl class
+    // Make THeads and add table class
 
     $(initialTables).each(function(i) {
         $(this).addClass('bordered');
@@ -19,19 +19,21 @@ $(document).ready(function() {
             $(this).addClass('minified');
         });
     }
-    // $( initialTables ).each(function(i){
-    //   $( this ).addClass('bordered');
-    //   if ($(this).children('thead').length === 0) {
-    //     $( this ).prepend('<thead></thead>')
-    //     $( this ).find('thead').append($(this).find("tr:eq(0)"));
-    //     $(this).find('thead').find('tr').children('td').replaceWith(function(i, html) {
-    //       return '<th>' + html + '</th>';
-    //     });
-    //   }
-    // });
+
+    // Create table headers
+
+    $(initialTables).each(function(i) {
+        if ($(this).children('thead').length === 0) {
+            $(this).prepend('<thead></thead>')
+            $(this).find('thead').append($(this).find("tr:eq(0)"));
+            $(this).find('thead').find('tr').children('td').replaceWith(function(i, html) {
+                return '<th>' + html + '</th>';
+            });
+        }
+    });
 
     // // Remove junk classes
-    // var whitelist = ['align'];
+    var whitelist = ['align', 'colspan', 'class'];
 
     // $(initialTables).find("*").each(function() {
     //     var attributes = this.attributes;
@@ -42,6 +44,19 @@ $(document).ready(function() {
     //             this.removeAttributeNode(attr);
     //     }
     // });
+
+    $(initialTables).find('td').each(function() {
+        $(this).css('text-align', 'center');
+    });
+
+    $(initialTables).find('th').each(function() {
+        $(this).css('text-align', 'center');
+    });
+
+    $(initialTables).each(function() {
+        $(this).css('width', '100%');
+    });
+
 
     // Create headers
 
@@ -86,7 +101,11 @@ $(document).ready(function() {
     $(modalTables).each(function(index) {
         $(this).children("thead").children("tr").prepend("<td>Количество</td>");
         $(this).children("tbody").children("tr").each(function() {
-            $(this).prepend("<td style='width: 80px;'>" + getControls() + "</td>");
+            if ($(this).children('td').attr('colspan') > 0) {
+                $(this).children('td').attr('colspan', +$(this).children('td').attr('colspan') + 1);
+            } else {
+                $(this).prepend("<td style='width: 80px;' class='minified btns-paddingtop'>" + getControls() + "</td>");
+            }
         });
     });
 

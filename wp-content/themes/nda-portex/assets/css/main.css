@@ -664,6 +664,11 @@ div.aligncenter {
     width: 23px;
 }
 
+.btns-paddingtop {
+    padding: 0px !important;
+    padding-top: 7px !important;
+}
+
 
 /* Product tables*/
 
