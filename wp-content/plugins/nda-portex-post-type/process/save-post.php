@@ -25,7 +25,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     $product_data['minified'] = 'false';
   }
   if ($_POST['nda_product_breadcrumb'] === '') {
-    $product_data['breadcrumb'] = sanitize_text_field( $post->post_name);
+
+    $product_data['breadcrumb'] = sanitize_text_field( $post->post_title);
   } else {
     $product_data['breadcrumb'] = sanitize_text_field( $_POST['nda_product_breadcrumb']);
   }
