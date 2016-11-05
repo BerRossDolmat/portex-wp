@@ -86,7 +86,8 @@ function send_mail() {
     $tables = '';
     $body = json_decode(stripslashes($_POST['body']));
     if(isset($_FILES['file'])) {
-      rename($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+      $target_path = $_SERVER['DOCUMENT_ROOT'] . "/wp-content/uploads/requisites/" . basename($_FILES['file']['name']);
+      move_uploaded_file($_FILES['file']['tmp_name'], $target_path);
     }
     foreach($body as $key => $value)
     {
@@ -105,7 +106,7 @@ function send_mail() {
 
     // Send letter
     if(isset($file)) {
-      wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $_FILES['file']);
+      wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $target_path);
     } else {
       wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
     }
