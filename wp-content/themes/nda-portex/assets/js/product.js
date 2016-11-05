@@ -202,29 +202,46 @@ function newOrder(event) {
         tables.push($(this).outerHTML());
     });
 
-    var order = new Object;
+    var order = new FormData();
+    var formData = new FormData();
+    formData.append('type', "new-order");
+    formData.append('name', $('#name-order').val());
+    formData.append('email', $('#email-order').val());
+    formData.append('message', $('#message-order').val());
+    formData.append('tel', $('#tel-order').val());
+    if ($('#req-file').get(0).files.length > 0) {
+        formData.append('file', $('#req-file')[0].files[0]);
+    }
+    formData.append('body', JSON.stringify(tables));
+    formData.append('title', $('.product_title').html());
 
-    order.type = "new-order";
+    // order.type = "new-order";
 
-    order.name = $('#name-order').val();
-    $('#name-order').val('');
+    // order.name = $('#name-order').val();
+    // $('#name-order').val('');
 
-    order.email = $('#email-order').val();
-    $('#email-order').val('');
+    // order.email = $('#email-order').val();
+    // $('#email-order').val('');
 
-    order.message = $('#message-order').val();
-    $('#message-order').val('');
+    // order.message = $('#message-order').val();
+    // $('#message-order').val('');
 
-    order.tel = $('#tel-order').val();
-    $('#tel-order').val('');
+    // order.tel = $('#tel-order').val();
+    // $('#tel-order').val('');
 
-    order.title = $('.product_title').html();
-    order.body = JSON.stringify(tables);
+    // if ($('#req-file').get(0).files.length > 0) {
+    //     order.file = $('#req-file')[0].files[0];
+    // }
 
+    // order.title = $('.product_title').html();
+    // order.body = JSON.stringify(tables);
+    // console.log(formData);
     $.ajax({
         url: '/wp-json/mail/send',
         type: 'POST',
-        data: order,
+        data: formData,
+        contentType: false,
+        processData: false,
         success: function() {
             $('#modal-add-order').closeModal();
             Materialize.toast(newOrderMessageSuccess, 20000, 'toast-style grey lighten-5');

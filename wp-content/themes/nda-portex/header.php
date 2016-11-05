@@ -10,42 +10,49 @@
 
   <head>
     <meta charset="utf-8" />
-    <title>Portex</title>
+
+    <!-- Title for categories -->
+    <?php
+    if( is_home() ) {
+      echo '<title>Portex</title>';
+    }
+    if( is_category() ) {
+      $thisCat = get_category( get_query_var( 'cat' ) );
+      $cat_id = $thisCat->term_id;
+      $category_data = get_option( "taxonomy_$cat_id" );
+      if (!isset($category_data['title']) || $category_data['title'] === '' ) {
+        echo '<title>Portex</title>';
+      } else {
+        echo '<title>' . $category_data['title'] . '</title>'; 
+      }
+      ?>
+        <meta name="title" content="<?php echo $category_data['meta_title']; ?>">
+        <meta name="description" content="<?php echo $category_data['meta_description']; ?>">
+        <meta name="keywords" content="<?php echo $category_data['meta_keywords']; ?>">
+      <?php
+    }
+    if( is_single() ) {
+      $product_data = get_post_meta( get_the_ID(), 'product_data', true );
+        if (!isset($product_data['title']) || $product_data['title'] === '' ) {
+          echo '<title>Portex</title>';
+        } else {
+          echo '<title>' . $product_data['title'] . '</title>'; 
+        }
+        ?>
+          <meta name="title" content="<?php echo $product_data['meta_title']; ?>">
+          <meta name="description" content="<?php echo $product_data['meta_description']; ?>">
+          <meta name="keywords" content="<?php echo $product_data['meta_keywords']; ?>">
+
+        <?php
+    }
+      ?>
+    
     <!--Import styles, fonts and icons-->
 
     <?php wp_head(); ?>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
-    <?php
-
-    // Meta information for product
-      if( is_single() ){
-        $product_data = get_post_meta( get_the_ID(), 'product_data', true );
-
-        ?>
-
-          <meta name="title" content="<?php echo $product_data['meta_title']; ?>">
-          <meta name="description" content="<?php echo $product_data['meta_description']; ?>">
-          <meta name="keywords" content="<?php echo $product_data['meta_keywords']; ?>">
-
-        <?php
-      }
-    // Meta information for categories
-      if( is_category() ) {
-        $thisCat = get_category( get_query_var( 'cat' ) );
-        $cat_id = $thisCat->term_id;
-        $category_data = get_option( "taxonomy_$cat_id" );
-      ?>
-
-      <meta name="title" content="<?php echo $category_data['meta_title']; ?>">
-      <meta name="description" content="<?php echo $category_data['meta_description']; ?>">
-      <meta name="keywords" content="<?php echo $category_data['meta_keywords']; ?>">
-
-      <?php
-      }
-
-    ?>
   </head>
 
   <body class="grey lighten-5">

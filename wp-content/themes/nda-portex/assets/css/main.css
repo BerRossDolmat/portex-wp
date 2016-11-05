@@ -609,7 +609,7 @@ div.aligncenter {
 }
 
 #message-order {
-    min-height: 150px;
+    min-height: 226px;
 }
 
 .order-input:focus {
@@ -699,10 +699,8 @@ table thead td {
 
 .slider-thumbs-horizontal li {
     display: inline-block;
-    margin-right: 10px;
-    margin-top: 10px;
-    vertical-align: middle;
-    padding: 0px;
+    padding: 5px;
+    padding-bottom: 0px;
     border: 2px solid #90a4ae;
     border-radius: 5px;
     opacity: 1;
@@ -710,6 +708,9 @@ table thead td {
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    width: 18.5%;
+    margin-right: 5px;
+    margin-bottom: 10px;
 }
 
 .slider-thumbs-horizontal li:hover {
@@ -718,12 +719,13 @@ table thead td {
 }
 
 .slider-thumbs-horizontal li a img {
-    width: 100px;
+    width: 100%;
     height: auto;
 }
 
 #slideshow {
     height: auto;
+    margin-bottom: 25px;
 }
 
 
@@ -1152,7 +1154,7 @@ body {
         display: none;
     }
     .container {
-        width: 80%;
+        width: 90%;
     }
     .show-on-phone {
         display: block;

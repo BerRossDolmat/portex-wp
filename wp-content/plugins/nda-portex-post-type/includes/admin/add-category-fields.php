@@ -23,10 +23,20 @@ function nda_category_add_new_meta_field($term) {
     $category_data['breadcrumb'] = '';
   }
 
+  // Title existence check
+  if(!isset($category_data['title'])) {
+    $category_data['title'] = '';
+  }
+
   ?>
 
   <!-- Metabox template -->
-
+  <h4>Тайтл</h4>
+  <div class="form-group">
+    <label>Тайтл страницы категорий</label>
+    <input class="form-control" type="text" name="nda_category_title" value="<?php echo $category_data['title']; ?>">
+  </div>
+  
   <h4>Хлебные крошки</h4>
   <div class="form-group">
     <label>Имя в хлебных крошках</label>

@@ -77,6 +77,7 @@ function send_mail() {
   }
 
   if ($_POST['type'] === 'new-order') {
+
     $type = 'Новый заказ';
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -84,7 +85,9 @@ function send_mail() {
     $tel = $_POST['tel'];
     $tables = '';
     $body = json_decode(stripslashes($_POST['body']));
-
+    if(isset($_FILES['file'])) {
+      $file = $_FILES['file'];
+    }
     foreach($body as $key => $value)
     {
       $tables .= $value;
@@ -101,7 +104,12 @@ function send_mail() {
             . '<div>' . $tables . '</div>';
 
     // Send letter
-    wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
+    if(isset($file)) {
+      wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $file);
+    } else {
+      wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
+    }
+    
 
     $letter = '<div><h1>Уважаемые коллеги!</h1>'
       . '<p>Мы благодарны Вам, что Вы обратились в ООО "НДА Деловая медицинская компания". ' 

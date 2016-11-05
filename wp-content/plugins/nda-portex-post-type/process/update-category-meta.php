@@ -17,6 +17,8 @@ function save_category_custom_meta( $term_id ) {
     $category_data['breadcrumb'] = sanitize_text_field( $_POST['nda_category_breadcrumb']);
   }
 
+  $category_data['title'] = sanitize_text_field( $_POST['nda_category_title']);
+
 		// Save the option array.
 	update_option( "taxonomy_$term_id", $category_data );
 }

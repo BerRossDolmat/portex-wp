@@ -12,6 +12,7 @@ get_header();
 $thisCat = get_the_category();
 
 // Get ancestors of parent category
+
 $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
 
 // Get product data
@@ -69,7 +70,7 @@ if (isset($product_data['slider_img_urls'])) {
           <?php
             if ( (has_post_thumbnail() && $product_data['img_option'] === 'standard') || (has_post_thumbnail() && $product_data['img_option'] === 'undefined') ) {
               ?>
-              <div class="card-image col s4 offset-s4">
+              <div class="card-image col s8 offset-s2 m6 offset-m3 l4 offset-l4">
                 <?php 
                   $post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
                   echo wp_get_attachment_image( $post_thumbnail_id, 'large', "", array( "class" => "responsive-img" ) );  
@@ -81,14 +82,14 @@ if (isset($product_data['slider_img_urls'])) {
             if ($product_data['img_option'] === 'different') {
               $img_id = get_image_id($product_data['different_img_url']);
               ?>
-              <div class="card-image col s4 offset-s4">
+              <div class="card-image col s8 offset-s2 m6 offset-m3 l4 offset-l4">
                 <?php echo wp_get_attachment_image( $img_id, 'large', "", array( "class" => "responsive-img" ) ); ?>
               </div>
               <?php
             }
             if ($product_data['img_option'] === 'slider') {
               ?>
-              <div class="card-image col s6 offset-s3" id="slideshow">
+              <div class="card-image col s12 m10 offset-m1 l6 offset-l3" id="slideshow">
                 <ul class="thumbs">
                   <?php
                     foreach ($product_data['slider_img_urls'] as $url) {
@@ -105,7 +106,7 @@ if (isset($product_data['slider_img_urls'])) {
                 </ul>
               </div>
 
-              <div class="col s6 offset-s3">
+              <div class="col s12 m10 offset-m1 l6 offset-l3">
                 <ul id="slideshow-thumbs" class="slider-thumbs-horizontal">
                   <?php
                   $i = 0;
@@ -115,7 +116,7 @@ if (isset($product_data['slider_img_urls'])) {
                     ?>
                     <li>
                       <a href="<?php echo $url; ?>" data-desoslide-index="<?php echo $i; ?>">
-                        <?php echo wp_get_attachment_image( $img_id); ?>
+                        <?php echo wp_get_attachment_image( $img_id ); ?>
                       </a>
                     </li>
                     <?php
@@ -135,10 +136,10 @@ if (isset($product_data['slider_img_urls'])) {
               <span>_______________</span>
             </div>
 
-            <div id="product-content" class="col s10 offset-s1">
+            <div id="product-content" class="col s12 m10 offset-m1">
               <?php echo $post->post_content; ?>
             </div>
-            <div class="col s10 offset-s1">
+            <div class="col s12 m10 offset-m1">
               <div class="row">
                 <?php
 
@@ -202,13 +203,23 @@ if (isset($product_data['slider_img_urls'])) {
           <input id="tel-order" type="tel" class="validate" placeholder="+7 XXX XXX-XX-XX">
           <label for="tel-order" class="active">Ваш номер телефона</label>
         </div>
+        <div class="file-field input-field col s12">
+          <div class="btn" style="background-color: #0091ea;">
+            <span>Реквизиты</span>
+            <input type="file" id="req-file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text" placeholder="Приложить файл с реквизитами">
+          </div>
+        </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field col s12">
-          <textarea id="message-order" class="materialize-textarea" rows=25></textarea>
+          <textarea id="message-order" class="materialize-textarea" rows=30></textarea>
           <label for="message-order">Текст сообщения</label>
         </div>
       </div>
+      
       <div class="input-field col s12">
         <button type="submit" class="btn waves-effect waves-light right contacts-submit-btn blue">Подтвердить заказ
           <i class="material-icons right">send</i>

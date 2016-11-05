@@ -31,10 +31,19 @@ function np_product_options_mb( $post ) {
   if(!isset($product_data['breadcrumb'])) {
     $product_data['breadcrumb'] = '';
   }
+  if(!isset($product_data['title'])) {
+    $product_data['title'] = '';
+  }
 
   ?>
 
   <!-- Metabox template -->
+
+  <h4>Тайтл</h4>
+  <div class="form-group">
+    <label>Тайтл</label>
+    <input class="form-control" type="text" name="nda_product_title" value="<?php echo $product_data['title']; ?>">
+  </div>
 
   <h4>Хлебные крошки</h4>
   <div class="form-group">
