@@ -105,7 +105,7 @@ function send_mail() {
 
     // Send letter
     if(isset($file)) {
-      $file['name'] = $_POST['filename'];
+      $file['tmp_name'] = $_POST['filename'];
       wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $file);
     } else {
       wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
