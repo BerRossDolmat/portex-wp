@@ -199,7 +199,7 @@ function newOrder(event) {
         var filename = file.name;
         var parts = filename.split('.');
         var ext = parts[parts.length - 1];
-        if (ext.toLowerCase() != 'pdf') {
+        if (ext.toLowerCase() != 'xlsx') {
             $('#error-filetype').show(500);
             return false;
         } else {

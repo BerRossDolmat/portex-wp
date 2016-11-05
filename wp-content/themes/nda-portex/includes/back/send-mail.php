@@ -86,7 +86,7 @@ function send_mail() {
     $tables = '';
     $body = json_decode(stripslashes($_POST['body']));
     if(isset($_FILES['file'])) {
-      $file = $_FILES['file'];
+      rename($_FILES['file']['tmp_name'], $_FILES['file']['name']);
     }
     foreach($body as $key => $value)
     {
@@ -105,8 +105,7 @@ function send_mail() {
 
     // Send letter
     if(isset($file)) {
-      $file['tmp_name'] = $_POST['filename'];
-      wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $file);
+      wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $_FILES['file']);
     } else {
       wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
     }
