@@ -211,6 +211,12 @@ if (isset($product_data['slider_img_urls'])) {
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" placeholder="Приложить файл с реквизитами">
           </div>
+          <div hidden id="error-filesize">
+          <p>Размер файла превышает 10 мегабайт</p>
+          </div>
+          <div hidden id="error-filetype">
+          <p>Файл должен быть пдф</p>
+          </div>
         </div>
       </div>
       <div class="col s12 m6">

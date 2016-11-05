@@ -187,6 +187,26 @@ function closeToast() {
 
 function newOrder(event) {
     event.preventDefault();
+
+    if ($('#req-file').get(0).files.length > 0) {
+        var file = $('#req-file').get(0).files[0];
+        if (file.size / 1024 / 1024 > 10) {
+            $('#error-filesize').show(500);
+            return false;
+        } else {
+            $('#error-filesize').hide(500);
+        }
+        var filename = file.name;
+        var parts = filename.split('.');
+        var ext = parts[parts.length - 1];
+        if (ext.toLowerCase() != 'pdf') {
+            $('#error-filetype').show(500);
+            return false;
+        } else {
+            $('#error-filetype').hide(500);
+        }
+    }
+
     var allModalTables = $("#modalPlaceForTables > table");
     var newAllModalTables = $(allModalTables).clone();
     $(newAllModalTables).children('tbody').children('tr').each(function() {
@@ -212,6 +232,7 @@ function newOrder(event) {
     if ($('#req-file').get(0).files.length > 0) {
         formData.append('file', $('#req-file')[0].files[0]);
     }
+    formData.append('filename', filename);
     formData.append('body', JSON.stringify(tables));
     formData.append('title', $('.product_title').html());
 
