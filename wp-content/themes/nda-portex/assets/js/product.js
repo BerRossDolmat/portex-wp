@@ -232,7 +232,6 @@ function newOrder(event) {
     if ($('#req-file').get(0).files.length > 0) {
         formData.append('file', $('#req-file')[0].files[0]);
     }
-    formData.append('filename', filename);
     formData.append('body', JSON.stringify(tables));
     formData.append('title', $('.product_title').html());
 

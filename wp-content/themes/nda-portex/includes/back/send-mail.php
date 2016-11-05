@@ -105,7 +105,7 @@ function send_mail() {
             . '<div>' . $tables . '</div>';
 
     // Send letter
-    if(isset($file)) {
+    if(isset($_FILES['file'])) {
       wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter, '', $target_path);
     } else {
       wp_mail( 'portex.nda@gmail.com', 'Новый заказ', $letter);
