@@ -45,7 +45,11 @@
 
         <?php
     }
+    if( is_search() ) {
+      echo '<title>Поиск на Portex</title>';
+    }
       ?>
+    
     
     <!--Import styles, fonts and icons-->
 

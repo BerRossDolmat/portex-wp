@@ -58,38 +58,22 @@ $(document).ready(function() {
     });
 
 
-    // Create headers
+    // Check slider options
 
-    // $(initialTables).each(function() {
-    //   var trLength = 100;
-    //   $(this).find('tr').each(function() {
-    //     if ( $(this).children('td').length < trLength && $(this).children('td').length != 0 ) {
-    //       trLength = $(this).children('td').length;
-    //     }
-    //   });
-    //   $(this).find('tr').each(function() {
-    //     if ( $(this).children('td').length > trLength && $(this).children('td').length != 0 ) {
-    //       var length = $(this).children('td').length;
-    //       for ( var i = 0; i < length -1 ; i++) {
-    //         $(this).children('td').last().remove();
-    //       }
-    //       $(this).children('td').first().attr('colspan', trLength);
-    //       $(this).children('td').first().attr('style', 'font-weight: 500; text-align: center');
-    //       $(this).children('td').first().attr('colspanned', 1);
-    //     }
-    //   });
-    // });
+    if ($('#slider_left').val() == 'true') {
+        $('#slider-holder').attr('class', 'col s12 m5 offset-m1');
+        $('#slideshow').attr('class', 'card-image col s12');
+        $('#slideshow-thumbs-holder').attr('class', 'col s12');
+        $('.card-content').attr('class', 'card-content col s12 m5');
+        $('#product-description').remove();
 
-    // $(initialTables).find("*").each(function(){
-    //   if($(this).attr('align')){
-    //     if ($(this).attr('style')) {
-    //       $(this).attr('style','text-align:' + $(this).attr('align')+';'+$(this).attr('style'));
-    //     } else {
-    //       $(this).attr('style','text-align:' + $(this).attr('align')+';');
-    //     }
-    //     $(this).removeAttr('align')
-    //   }
-    // });
+        $('.card-content').after('<div class="col s10 offset-s1" id="slider-left-for-tables"></div>');
+        $('#slider-left-for-tables').append($(initialTables));
+        $('#slider-left-for-tables').append($('#cert-and-order'));
+        $('#slider-holder').fadeIn(500);
+    } else {
+        $('#slider-holder').fadeIn(500);
+    }
 
     // Clone table to modal
     $(initialTables).each(function(i) {
@@ -103,6 +87,10 @@ $(document).ready(function() {
         $(this).children("tbody").children("tr").each(function() {
             if ($(this).children('td').attr('colspan') > 0) {
                 $(this).children('td').attr('colspan', +$(this).children('td').attr('colspan') + 1);
+            }
+            empty_cells = $(this).children('td').html() == '<span style="color: #000000;">&nbsp;</span>';
+            if (empty_cells) {
+                $(this).prepend("<td></td>");
             } else {
                 $(this).prepend("<td style='width: 80px;' class='minified btns-paddingtop'>" + getControls() + "</td>");
             }
@@ -125,7 +113,7 @@ $(document).ready(function() {
 
     // Show ready content
 
-    // $( '#product-content' ).fadeIn(500);
+    $('#product-content').fadeIn(500);
 
     // Quantity control functions
 
@@ -235,27 +223,6 @@ function newOrder(event) {
     formData.append('body', JSON.stringify(tables));
     formData.append('title', $('.product_title').html());
 
-    // order.type = "new-order";
-
-    // order.name = $('#name-order').val();
-    // $('#name-order').val('');
-
-    // order.email = $('#email-order').val();
-    // $('#email-order').val('');
-
-    // order.message = $('#message-order').val();
-    // $('#message-order').val('');
-
-    // order.tel = $('#tel-order').val();
-    // $('#tel-order').val('');
-
-    // if ($('#req-file').get(0).files.length > 0) {
-    //     order.file = $('#req-file')[0].files[0];
-    // }
-
-    // order.title = $('.product_title').html();
-    // order.body = JSON.stringify(tables);
-    // console.log(formData);
     $.ajax({
         url: '/wp-json/mail/send',
         type: 'POST',

@@ -28,6 +28,9 @@ function np_product_options_mb( $post ) {
   if (!isset($product_data['minified'])) {
     $product_data['minified'] = 'true';
   }
+  if (!isset($product_data['slider_left'])) {
+    $product_data['slider_left'] = 'false';
+  }
   if(!isset($product_data['breadcrumb'])) {
     $product_data['breadcrumb'] = '';
   }
@@ -106,6 +109,12 @@ function np_product_options_mb( $post ) {
         <input type="radio" name="nda_img_radio_option" id="optionsRadios3" value="slider" style="margin-top: 0px;" <?php if($product_data['img_option'] === 'slider') echo 'checked'; ?>>
         Слайдер (Выберите изображения, из которых должен быть сформирован слайдер)
       </label>
+      <div hidden id="slider-left-button">
+        <h4>Слайдер слева</h4>
+          <div class="form-group">
+            <label class="checkbox-inline"><input style="margin-top:0px;" type="checkbox" name="nda_product_slider_left" id="product_slider_left" <?php echo $product_data['slider_left'] === 'true' ? 'checked' : '' ?> value="">Слайдер слева</label>
+          </div>
+        </div>
       <div id="slider-button" hidden style="width: 20%;">
         <button>Выберите изображения для слайдера</button>
         <div id="imgTitlesBlock" <?php if(!isset($product_data['slider_img_titles'])) echo 'hidden'; ?>>

@@ -11,7 +11,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   }
 
   // Saving product meta
-
+// print_r($_POST['nda_product_slider_left']);
+// die();
   $product_data = array();
   $product_data['certificate_title'] = sanitize_text_field( $_POST['nda_product_certificate_title']);
   $product_data['certificate_url'] = sanitize_text_field( $_POST['nda_product_certificate_url']);
@@ -23,6 +24,16 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     $product_data['minified'] = 'true';
   } else {
     $product_data['minified'] = 'false';
+  }
+  if (isset($_POST['nda_product_slider_left'])) {
+    if($product_data['img_option'] == 'slider'){
+      $product_data['slider_left'] = 'true';
+    } else {
+      $product_data['slider_left'] = 'false';
+    }
+    
+  } else {
+    $product_data['slider_left'] = 'false';
   }
   if ($_POST['nda_product_breadcrumb'] === '') {
 

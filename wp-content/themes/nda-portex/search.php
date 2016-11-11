@@ -1,6 +1,28 @@
+<?php
+/*
+Template Name: Search Page
+*/
+?>
+<?php
+global $query_string;
 
-<?php get_header(); ?>
+$query_args = explode("&", $query_string);
+$search_query = array();
 
+if( strlen($query_string) > 0 ) {
+	foreach($query_args as $key => $string) {
+		$query_split = explode("=", $string);
+		$search_query[$query_split[0]] = urldecode($query_split[1]);
+	} // foreach
+} //if
+
+$search = new WP_Query($search_query);
+
+get_header();
+
+// Get img_urls array for slider
+$slider_imgs = json_decode(get_option('main_slider_urls'));
+?>
 <!-- Slider -->
 
 <div class="container">
@@ -8,15 +30,18 @@
     <div class="col s12">
       <div class="my-slider">
       	<ul>
-      		<li>
-            <img class="slider-img" src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-placeholder1.jpg">
-          </li>
-          <li>
-            <img class="slider-img slider-no-display" src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-placeholder2.jpg">
-          </li>
-          <li>
-            <img class="slider-img slider-no-display" src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-placeholder3.jpg">
-          </li>
+          <?php
+            $first_slide = '';
+
+            foreach ($slider_imgs as $img) {
+              ?>
+              <li>
+                <img class="slider-img <?php echo $first_slide; ?>" src="<?php echo $img; ?>">
+              </li>
+              <?php
+              $first_slide = ' slider-no-display';
+            }
+            ?>
       	</ul>
       </div>
     </div>
@@ -33,43 +58,41 @@
 
   <div class="row">
   <?php
-    $args = array(
-      'orderby' => 'name',
-      'parent' => 0,
-      'hide_empty' => 0,
-      'exclude' => '1',
-    );
+    global $wp_query;
+    $total_results = $wp_query->found_posts;
 
-    $categories=get_categories($args);
-    foreach ($categories as $category) {
-
-      $term_id = $category->term_id;
-      $image   = category_image_src( array('term_id'=>$term_id) , false );
-
-      ?>
-        <div class="width-20p animate-fadein">
-          <a href="<?php echo get_category_link( $category->term_id ); ?>">
-            <div class="card hoverable category-card">
-              <?php
-                if ($image) {
-                  ?>
-                  <div class="card-image image-padding">
-                    <img class="responsive-img" src="<?php echo $image; ?>">
-                  </div>
-                  <?php
-                }
-              ?>
-              <div class="card-content text-align-center">
-                <p><?php echo $category->name; ?></p>
-              </div>
-            </div>
-          </a>
-        </div>
-      <?php
-    }
   ?>
 
-    </div>
+  <?php
+
+    foreach($wp_query->posts as $post) {
+      $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
+      ?>
+      <div class="minicard animate-fadein">
+        <a href="<?php echo get_permalink($post->ID); ?>">
+          <div class="card hoverable category-card">
+            <?php
+              if ( $image ) {
+                ?>
+                <div class="card-image image-padding">
+                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
+                </div>
+                <?php
+              }
+            ?>
+            <div class="card-content-text-container">
+              <span><?php echo $post->post_title; ?></span>
+            </div>
+          </div>
+        </a>
+      </div>
+      <?php
+    }
+    
+  ?>
+
+  </div>
 </div>
 
 <?php get_footer(); ?>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/index-category.js"></script>
