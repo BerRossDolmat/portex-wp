@@ -140,7 +140,7 @@ if (isset($product_data['slider_img_urls'])) {
           ?>
                                         <div class="card-content">
                                             <div class="row">
-                                                <div class="text-align-center devider" id="product-description">
+                                                <div class="text-align-center devider col s12" id="product-description">
                                                     <h2 class="h1-for-groups-index">Описание продукта</h2>
                                                     <span>_______________</span>
                                                 </div>
