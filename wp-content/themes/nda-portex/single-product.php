@@ -17,6 +17,9 @@ $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
 
 // Get product data
 $product_data = get_post_meta( get_the_ID(), 'product_data', true );
+
+// print_r($product_data);
+// die();
 if (isset($product_data['slider_img_urls'])) {
   $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls']);
 }
@@ -148,6 +151,35 @@ if (isset($product_data['slider_img_urls'])) {
                                                 <div id="product-content" hidden class="col s12 m10 offset-m1">
                                                     <?php echo $post->post_content; ?>
                                                 </div>
+                                                
+                                                <?php
+
+                                                if (isset($product_data['attached_pdf_urls'])
+                                                && isset($product_data['attached_pdf_names']) 
+                                                && ($product_data['attached_pdf_names'] != '')
+                                                && ($product_data['attached_pdf_urls'] != '')) {
+                                                   $product_data['attached_pdf_urls'] = json_decode($product_data['attached_pdf_urls']);
+                                                   $product_data['attached_pdf_names'] = json_decode($product_data['attached_pdf_names']);
+                                                   ?>
+                                                   <div class="col s12 m10 offset-m1" id="attached-pdfs" style="text-align: center;">
+                                                     <h5>Файлы, связанные с товаром</h5>
+                                                     <div class="pdf-collection-container">
+                                                     <div class="collection">
+                                                    <?php
+                                                   $i = 0;
+                                                   
+                                                   foreach($product_data['attached_pdf_urls'] as $pdf) {
+                                                       ?>
+                                                       <a download href="<?php echo $product_data['attached_pdf_urls'][$i]; ?>" class="pdf-download-link collection-item">Скачать приложенный файл - <?php echo $product_data['attached_pdf_names'][$i]; ?></a>
+                                                       <?php
+                                                       $i++;
+                                                   }
+                                                ?>  </div>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                                }
+                                                ?>
                                                 <div class="col s12 m10 offset-m1" id="cert-and-order">
                                                     <div class="row">
                                                         <?php
@@ -223,7 +255,7 @@ if (isset($product_data['slider_img_urls'])) {
                             <p>Размер файла превышает 10 мегабайт</p>
                         </div>
                         <div hidden id="error-filetype">
-                            <p>Файл должен быть пдф</p>
+                            <p>Файл должен быть одного из следующих типов: .pdf, .xls, .doc, .jpg</p>
                         </div>
                     </div>
                 </div>

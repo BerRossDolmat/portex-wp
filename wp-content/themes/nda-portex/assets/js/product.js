@@ -69,7 +69,10 @@ $(document).ready(function() {
 
         $('.card-content').after('<div class="col s10 offset-s1" id="slider-left-for-tables"></div>');
         $('#slider-left-for-tables').append($(initialTables));
-        $('#slider-left-for-tables').append($('#cert-and-order'));
+        
+        $('#slider-left-for-tables').after($('#attached-pdfs'));
+        $('#attached-pdfs').after($('#cert-and-order'));
+        
         $('#slider-holder').fadeIn(500);
     } else {
         $('#slider-holder').fadeIn(500);
@@ -87,10 +90,6 @@ $(document).ready(function() {
         $(this).children("tbody").children("tr").each(function() {
             if ($(this).children('td').attr('colspan') > 0) {
                 $(this).children('td').attr('colspan', +$(this).children('td').attr('colspan') + 1);
-            }
-            empty_cells = $(this).children('td').html() == '<span style="color: #000000;">&nbsp;</span>';
-            if (empty_cells) {
-                $(this).prepend("<td></td>");
             } else {
                 $(this).prepend("<td style='width: 80px;' class='minified btns-paddingtop'>" + getControls() + "</td>");
             }
@@ -187,11 +186,19 @@ function newOrder(event) {
         var filename = file.name;
         var parts = filename.split('.');
         var ext = parts[parts.length - 1];
-        if (ext.toLowerCase() != 'xlsx') {
+        if (
+            ext.toLowerCase() == 'xlsx' 
+            || ext.toLowerCase() == 'xls' 
+            || ext.toLowerCase() == 'doc' 
+            || ext.toLowerCase() == 'docx'
+            || ext.toLowerCase() == 'pdf'
+            || ext.toLowerCase() == 'xlsx'
+            || ext.toLowerCase() == 'jpg'
+            || ext.toLowerCase() == 'jpeg') {
+            $('#error-filetype').hide(500);
+        } else {
             $('#error-filetype').show(500);
             return false;
-        } else {
-            $('#error-filetype').hide(500);
         }
     }
 

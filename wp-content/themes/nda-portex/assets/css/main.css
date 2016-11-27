@@ -559,6 +559,22 @@ div.aligncenter {
 
 /* Product */
 
+.pdf-download-link {
+    color: #42a5f5 !important;
+}
+
+.pdf-download-link:hover {
+    color: #2979ff  !important;
+    background-color: #e3f2fd !important; 
+}
+
+.pdf-collection-container {
+    padding: 0 !important;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+
 .product {
     padding: 20px;
     padding-top: 40px;
