@@ -1,5 +1,12 @@
 var $ = jQuery;
 $(document).ready(function() {
+    
+    // Fix the footer
+
+    $('#wpfooter').css('position', 'static');
+
+    // Hide/show radio buttons for slider controls
+
     $('input[type="radio"]').click(function() {
         if ($(this).attr('id') == 'optionsRadios2') {
             $('#different-image-button').show(500);
@@ -16,6 +23,9 @@ $(document).ready(function() {
         }
     });
 });
+
+// Autoopen permalinks field
+
 var checked = false;
 
 $('body').on('mouseover', function() {
@@ -27,14 +37,12 @@ $('body').on('mouseover', function() {
 })
 
 // Uploading certificate
+
 var file_frame;
 jQuery('#choose_certificate').live('click', function(event) {
     event.preventDefault();
     // If the media frame already exists, reopen it.
-    if (file_frame) {
-        file_frame.open();
-        return;
-    }
+    
     // Create the media frame.
     file_frame = wp.media.frames.file_frame = wp.media({
         title: jQuery(this).data('uploader_title'),
@@ -52,14 +60,12 @@ jQuery('#choose_certificate').live('click', function(event) {
         $('#certificate_title').val(attachment.title);
         $('#certificate_title_hidden').val(attachment.title);
         $('#certificate-url').val(attachment.url);
-        console.log(attachment);
-
     });
     // Finally, open the modal
     file_frame.open();
 });
 
-// Uploading file
+// Upload file for different image slider type
 var file_frame;
 jQuery('#different-image-button').live('click', function(event) {
     event.preventDefault();
@@ -92,15 +98,11 @@ jQuery('#different-image-button').live('click', function(event) {
     file_frame.open();
 });
 
-// Upload files
+// Upload files for slider type 
 
 jQuery('#slider-button').live('click', function(event) {
     event.preventDefault();
 
-    if (file_frame) {
-        file_frame.open();
-        return;
-    }
     file_frame = wp.media.frames.file_frame = wp.media({
         title: jQuery(this).data('uploader_title'),
         button: {
@@ -129,3 +131,41 @@ jQuery('#slider-button').live('click', function(event) {
     // Finally, open the modal
     file_frame.open();
 });
+
+// Choose pdf files for product
+
+jQuery('#pdf-attach-button').live('click', function(event) {
+    event.preventDefault();
+
+    file_frame = wp.media.frames.file_frame = wp.media({
+        title: jQuery(this).data('uploader_title'),
+        button: {
+            text: jQuery(this).data('uploader_button_text'),
+        },
+        multiple: true
+    });
+    file_frame.on('select', function() {
+        var pdfUrls = [];
+        var pdfNames = [];
+
+        var selection = file_frame.state().get('selection');
+        $('#pdfNames').html('');
+        selection.map(function(attachment) {
+            attachment = attachment.toJSON();
+            console.log(attachment);
+            // Do something with attachment.id and/or attachment.url here
+            console.log(attachment);
+            pdfUrls.push(attachment.url);
+            pdfNames.push(attachment.title);
+            $('#pdfNames').append('<li class="list-group-item">' + attachment.title + '</li>');
+            $('#pdfNamesBlock').show(500);
+        });
+
+        $('#attached_pdf_urls').val(JSON.stringify(pdfUrls));
+        $('#attached_pdf_names').val(JSON.stringify(pdfNames));
+
+    });
+    // Finally, open the modal
+    file_frame.open();
+});
+
