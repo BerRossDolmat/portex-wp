@@ -174,22 +174,7 @@ function contactUs() {
       Materialize.toast(contactUsMessageError, 20000, 'toast-style grey lighten-5');
     }
   });
-
 }
-
-// Validating forms
-
-//Validating email in order modal
-
-// var email = document.getElementById("email-order");
-//
-// email.addEventListener("keyup", function (event) {
-//   if (email.validity.typeMismatch) {
-//     email.setCustomValidity("Введите Ваш email");
-//   } else {
-//     email.setCustomValidity("");
-//   }
-// });
 
 // Validate email in contactUsTop
 
