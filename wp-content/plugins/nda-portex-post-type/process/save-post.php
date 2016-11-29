@@ -13,7 +13,12 @@ function nda_save_post_admin( $post_id, $post, $update ) {
 
   // Saving product meta
 
+  // Creating product_data array to save metadata and pass it to wp save script
+
   $product_data = array();
+
+  // Existence checks for data, essential for product deletion and partial updates
+
   if( isset($_POST['nda_product_certificate_title']) ) {
     $product_data['certificate_title'] = sanitize_text_field( $_POST['nda_product_certificate_title'] );
   }
@@ -33,9 +38,6 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     $product_data['img_option'] = sanitize_text_field( $_POST['nda_img_radio_option'] );
   }
   
-
-
-  
   // Attach PDF files and index
   if (isset($_POST['nda_attached_pdf_urls'])) {
     $product_data['attached_pdf_urls'] = sanitize_text_field($_POST['nda_attached_pdf_urls']);
@@ -43,6 +45,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   if (isset($_POST['nda_attached_pdf_names'])) {
     $product_data['attached_pdf_names'] = sanitize_text_field($_POST['nda_attached_pdf_names']);
   }
+
+  // Index state check for attached pdf files
 
   if ( isset($_POST['nda_attached_pdf_urls']) && isset($_POST['nda_attached_pdf_names']) ) {
     if ( isset($_POST['nda_index_pdf_checkbox']) ) {
@@ -54,14 +58,12 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     $product_data['index_checkbox'] = 'false';
   }
 
-  
+  // Generate string from every attached pdf file and contatination to store in database
 
   if (($product_data['index_checkbox'] = 'true') && (isset($product_data['attached_pdf_urls']) && ($product_data['attached_pdf_names']))) {
     require 'pdf2text.php';
     $cleanData = str_replace("\\", "",$_POST['nda_attached_pdf_urls']);
     $products = json_decode( $cleanData, true );
-
-    // var_dump($products);
 
     $finalString = '';
 
@@ -72,11 +74,15 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     
   }
 
+  // Minified checkbox check
+
   if (isset($_POST['nda_product_minified'])) {
     $product_data['minified'] = 'true';
   } else {
     $product_data['minified'] = 'false';
   }
+
+  // Slider-left checkbox check
   
   if (isset($_POST['nda_product_slider_left'])) {
     if($product_data['img_option'] == 'slider'){
@@ -88,6 +94,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     $product_data['slider_left'] = 'false';
   }
 
+  // Breadcrumbs handle and update in case of breadcrumb data was deleted
+
   if ( isset($_POST['nda_product_breadcrumb'])) {
     if ( $_POST['nda_product_breadcrumb'] === '') {
       $product_data['breadcrumb'] = sanitize_text_field( $post->post_title);
@@ -95,12 +103,15 @@ function nda_save_post_admin( $post_id, $post, $update ) {
       $product_data['breadcrumb'] = sanitize_text_field( $_POST['nda_product_breadcrumb']);
     }
   }
+
+  // Product Title check
   
   if ( isset($_POST['nda_product_title']) ) {
     $product_data['title'] = sanitize_text_field( $_POST['nda_product_title'] );
   }
   
   // Image presentation mode check for different imgs mode
+  
   if ( isset($_POST['nda_different_img_url']) ) {
     if ( $product_data['img_option'] ==='different' ) {
       $product_data['different_img_url'] = sanitize_text_field( $_POST['nda_different_img_url']);
@@ -108,8 +119,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     }
   }
   
-
   // Image presentation mode check for slider mode
+  
   if ( isset($_POST['nda_slider_img_urls']) ) {
     if ( $product_data['img_option'] ==='slider' ) {
       $product_data['slider_img_urls'] = sanitize_text_field( $_POST['nda_slider_img_urls']);
@@ -117,12 +128,11 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     }
   }
   
-
   // Save product priority
+  
   if ( isset($_POST['nda_product_priority']) ) {
     $product_data['priority'] = sanitize_text_field( $_POST['nda_product_priority'] );
   }
-  
 
   // Update post meta
   

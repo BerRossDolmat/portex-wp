@@ -26,12 +26,28 @@ function nda_enqueue() {
   wp_register_script( 'nda_main', get_template_directory_uri() . '/assets/js/main.js', array(), false, true );
   wp_register_script( 'nda_unslider', get_template_directory_uri() . '/assets/js/unslider-min.js', array(), false, true );
   wp_register_script( 'nda_desoslider', get_template_directory_uri() . '/assets/js/jquery.desoslide.min.js', array(), false, true );
-
+  
+  
   // Register new jquery version
   wp_deregister_script('jquery');
   wp_register_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery-2.1.1.min.js', array(), false, true );
   wp_enqueue_script( 'jquery' );
 
+  // Scripts for index, category and product pages
+  
+  if ( is_home() ) {
+    wp_register_script( 'nda_index_category', get_template_directory_uri() . '/assets/js/index-category.js', array(), false, true );
+    wp_enqueue_script( 'nda_index_category' );
+  }
+  if( is_category() ) {
+    wp_register_script( 'nda_index_category', get_template_directory_uri() . '/assets/js/index-category.js', array(), false, true );
+    wp_enqueue_script( 'nda_index_category' );
+  }
+  if( is_singular() ) {
+    wp_register_script( 'nda_product', get_template_directory_uri() . '/assets/js/product.js', array(), false, true );
+    wp_enqueue_script( 'nda_product' );
+  }
+  
   // Enqueue front-end scripts
   wp_enqueue_script( 'nda_materialize' );
   wp_enqueue_script( 'nda_scrollreveal' );

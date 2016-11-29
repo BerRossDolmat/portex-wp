@@ -17,6 +17,7 @@
       echo '<title>Portex</title>';
     }
     if( is_category() ) {
+
       $thisCat = get_category( get_query_var( 'cat' ) );
       $cat_id = $thisCat->term_id;
       $category_data = get_option( "taxonomy_$cat_id" );

@@ -23,7 +23,11 @@
     'depth' => 1
   );
 
+  // Get all child categories for render loop later on
+
   $categories = get_categories( $args );
+
+  // Get category ancestors to create breadcrumbs
 
   $ancestors = get_ancestors( $thisCat->cat_ID, 'category' );
 
@@ -40,20 +44,29 @@
           <a href="<?php echo home_url(); ?>" class="breadcrumb">Главная</a>
           <?php
             if( $ancestors ) {
+
+              // Reverse array to match breadcrumbs order
+
               $ancestors = array_reverse( $ancestors );
+
+              // Loop through ancestors to get titles
+
               foreach( $ancestors as $ancestor ) {
                 $category_meta = get_option( "taxonomy_$ancestor" );
                 $ancestorTitle = $category_meta['breadcrumb'];
+                
+                // Crop too long ancestor titles to match desired length
+                
                 if (mb_strlen( $ancestorTitle ) > 10) {
                   $ancestorTitle = mb_substr( $ancestorTitle, 0, 20 ) . '...';
                 }
+                // Echo breadcrumb
                 ?>
                   <a href="<?php echo get_category_link( $ancestor ); ?>" class="breadcrumb"><?php echo $ancestorTitle; ?></a>
                 <?php
               }
-
             }
-
+            // Get current category id and echo it in last place
             $category_data = get_option( "taxonomy_$thisCat->cat_ID" );
           ?>
           <a href="#" class="breadcrumb breadcrumb-active"><?php echo $category_data['breadcrumb'] ?></a>
@@ -66,8 +79,12 @@
 
     <?php
 
-    $thisCat = get_category(get_query_var( 'cat' ));
+    // Get current category object
 
+    $thisCat = get_category(get_query_var( 'cat' ));
+    
+    // Take arguments for child categories
+    
     $args = array(
       'orderby' => 'name',
       'parent' => $thisCat->cat_ID,
@@ -76,7 +93,11 @@
       'depth' => 1
     );
 
+    // Get child categories
+
     $categories = get_categories( $args );
+
+    // Get priority for each child category and add priority property for each category object
 
     foreach ($categories as $category) {
       $priority = get_option( "taxonomy_$category->term_id" );
@@ -85,9 +106,15 @@
       }
     }
 
+    // Arguments for posts query
+
     $args = array( 'post_type' => 'product', 'category__in' => $thisCat->term_id, 'numberposts' => -1 );
 
+    // Get child posts
+
     $posts = get_posts($args);
+
+    // Get priority for each child post and add priority property for each post object
 
     foreach ($posts as $post) {
       $priority = get_post_meta( get_the_ID(), 'product_data', true );
@@ -95,6 +122,8 @@
         $post->priority = $priority['priority'];
       }
     }
+
+    // Merge categories and posts arrays in one terms array
 
     $terms =[];
     $i = 0;
@@ -106,6 +135,8 @@
       $terms[$i] = $category;
       $i++;
     }
+
+    // Sort terms array comparing their priority
     
     usort($terms, 'compare');
 
@@ -119,10 +150,15 @@
     <?php
 
     foreach ($terms as $term) {
-      if( $term->taxonomy == 'category') {
-        $term_id = $term->term_id;
-        $image   = category_image_src( array( 'term_id'=>$term_id, 'size'=>'thumbnail' ) , false );
 
+      // If term is category - process it like category object
+
+      if( $term->taxonomy == 'category') {
+        // Get id
+        $term_id = $term->term_id;
+        // Get image for category
+        $image = category_image_src( array( 'term_id'=>$term_id, 'size'=>'thumbnail' ) , false );
+        // Render category card
         ?>
           <div class="minicard animate-fadein">
             <a href="<?php echo get_category_link( $term->term_id ); ?>">
@@ -146,7 +182,14 @@
         continue;
       }
       if ( $term->post_type == 'product') {
+
+        // if term is post of type product
+        // Get attachment image
+
         $image = wp_get_attachment_image_src( get_post_thumbnail_id( $term->ID ), 'thumbnail' );
+
+        // Render Product card
+
         ?>
       <div class="minicard animate-fadein">
         <a href="<?php echo get_permalink($term); ?>">
@@ -176,4 +219,3 @@
 </div>
 
 <?php get_footer(); ?>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/index-category.js"></script>

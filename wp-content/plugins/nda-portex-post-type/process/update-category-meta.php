@@ -3,9 +3,13 @@
   // Save function for saving category meta through options API
 
 function save_category_custom_meta( $term_id ) {
+  // Getting term data for chosen category
   $term_data = get_term($term_id);
 
   $category_data = array();
+
+  // Update category meta
+  
   $category_data['meta_title'] = sanitize_text_field( $_POST['nda_category_meta_title']);
   $category_data['meta_description'] = sanitize_text_field( $_POST['nda_category_meta_description']);
   $category_data['meta_keywords'] = sanitize_text_field( $_POST['nda_category_meta_keywords']);

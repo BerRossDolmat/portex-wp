@@ -150,5 +150,4 @@ function compare($elm1, $elm2) {
 </div>
 
 <?php get_footer(); ?>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/index-category.js"></script>
 

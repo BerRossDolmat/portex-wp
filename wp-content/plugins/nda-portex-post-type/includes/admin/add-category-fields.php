@@ -1,11 +1,15 @@
 <?php
 
+// Add ability to use meta information with categories taxonomy
+
 function nda_category_add_new_meta_field($term) {
+  
   // Get category id
   if(isset($term->term_id)){
     $t_id = $term->term_id;
     $category_data = get_option( "taxonomy_$t_id" );
   }
+
   // Meta data existence check
   if(!isset($category_data)) {
     $category_data['meta_title'] = '';

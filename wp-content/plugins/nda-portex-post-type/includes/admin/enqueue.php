@@ -18,7 +18,6 @@ function nda_admin_enqueue() {
 
   global $typenow, $pagenow;
 
-  // Checks for custom admin pages
 
   // Scripts and styles for admin product page
 

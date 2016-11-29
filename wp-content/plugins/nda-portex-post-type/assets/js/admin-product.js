@@ -5,7 +5,8 @@ $(document).ready(function() {
 
     $('#wpfooter').css('position', 'static');
 
-    // Hide/show radio buttons for slider controls
+    // Hide/show radio buttons for slider controls,
+    // manage left-slider checkbox input
 
     $('input[type="radio"]').click(function() {
         if ($(this).attr('id') == 'optionsRadios2') {
@@ -24,7 +25,7 @@ $(document).ready(function() {
     });
 });
 
-// Autoopen permalinks field
+// Auto-open permalinks field on body-mouseover event
 
 var checked = false;
 
@@ -36,12 +37,11 @@ $('body').on('mouseover', function() {
     }
 })
 
-// Uploading certificate
+// Event handler for Upload certificate button
 
 var file_frame;
 jQuery('#choose_certificate').live('click', function(event) {
     event.preventDefault();
-    // If the media frame already exists, reopen it.
     
     // Create the media frame.
     file_frame = wp.media.frames.file_frame = wp.media({
@@ -50,7 +50,6 @@ jQuery('#choose_certificate').live('click', function(event) {
             text: jQuery(this).data('uploader_button_text'),
         },
         multiple: false
-            // Set to true to allow multiple files to be selected
     });
     // When an image is selected, run a callback.
     file_frame.on('select', function() {
@@ -65,15 +64,11 @@ jQuery('#choose_certificate').live('click', function(event) {
     file_frame.open();
 });
 
-// Upload file for different image slider type
+// Event handler for Upload file for different image slider type
 var file_frame;
 jQuery('#different-image-button').live('click', function(event) {
     event.preventDefault();
-    // If the media frame already exists, reopen it.
-    if (file_frame) {
-        file_frame.open();
-        return;
-    }
+    
     // Create the media frame.
     file_frame = wp.media.frames.file_frame = wp.media({
         title: jQuery(this).data('uploader_title'),
@@ -81,7 +76,6 @@ jQuery('#different-image-button').live('click', function(event) {
             text: jQuery(this).data('uploader_button_text'),
         },
         multiple: false
-            // Set to true to allow multiple files to be selected
     });
     // When an image is selected, run a callback.
     file_frame.on('select', function() {
@@ -98,7 +92,7 @@ jQuery('#different-image-button').live('click', function(event) {
     file_frame.open();
 });
 
-// Upload files for slider type 
+// Event handler for Upload files for usual and left slider types 
 
 jQuery('#slider-button').live('click', function(event) {
     event.preventDefault();

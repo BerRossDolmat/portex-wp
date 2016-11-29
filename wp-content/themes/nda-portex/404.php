@@ -1,21 +1,29 @@
-<?php get_header(); ?>
+<?php 
 
-<!-- Slider -->
+get_header(); 
+
+// Get img_urls array for slider
+$slider_imgs = json_decode(get_option('main_slider_urls'));
+?>
+<!-- Top Slider -->
 
 <div class="container">
   <div class="row">
     <div class="col s12">
       <div class="my-slider">
       	<ul>
-      		<li>
-            <img class="slider-img" src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-placeholder1.jpg">
-          </li>
-          <li>
-            <img class="slider-img slider-no-display" src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-placeholder2.jpg">
-          </li>
-          <li>
-            <img class="slider-img slider-no-display" src="<?php echo get_template_directory_uri(); ?>/assets/img/slider-placeholder3.jpg">
-          </li>
+          <?php
+            $first_slide = '';
+
+            foreach ($slider_imgs as $img) {
+              ?>
+              <li>
+                <img class="slider-img <?php echo $first_slide; ?>" src="<?php echo $img; ?>">
+              </li>
+              <?php
+              $first_slide = ' slider-no-display';
+            }
+            ?>
       	</ul>
       </div>
     </div>

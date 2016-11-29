@@ -47,14 +47,22 @@ function np_product_options_mb( $post ) {
       <h4>Тайтл</h4>
       <div class="form-group">
         <label>Тайтл</label>
-        <input class="form-control" type="text" name="nda_product_title" value="<?php echo $product_data['title']; ?>">
+        <input 
+          class="form-control" 
+          type="text" 
+          name="nda_product_title" 
+          value="<?php echo $product_data['title']; ?>">
       </div>
     </div>
     <div class="col-xs-6">
       <h4>Хлебные крошки</h4>
       <div class="form-group">
         <label>Имя в хлебных крошках</label>
-        <input class="form-control" type="text" name="nda_product_breadcrumb" value="<?php echo $product_data['breadcrumb']; ?>">
+        <input 
+          class="form-control" 
+          type="text" 
+          name="nda_product_breadcrumb" 
+          value="<?php echo $product_data['breadcrumb']; ?>">
       </div>
     </div>
   </div>
@@ -64,19 +72,31 @@ function np_product_options_mb( $post ) {
     <div class="col-xs-6">
       <div class="form-group">
         <label>Meta Title</label>
-        <input class="form-control" type="text" name="nda_product_meta_title" value="<?php echo $product_data['meta_title']; ?>">
+        <input 
+          class="form-control" 
+          type="text" 
+          name="nda_product_meta_title" 
+          value="<?php echo $product_data['meta_title']; ?>">
       </div>
     </div>
     <div class="col-xs-6">
       <div class="form-group">
         <label>Meta Keywords</label>
-        <input class="form-control" type="text" name="nda_product_meta_keywords" value="<?php echo $product_data['meta_keywords']; ?>">
+        <input 
+          class="form-control" 
+          type="text" 
+          name="nda_product_meta_keywords" 
+          value="<?php echo $product_data['meta_keywords']; ?>">
       </div>
     </div>
     <div class="col-xs-12">
       <div class="form-group">
         <label>Meta Description</label>
-        <input class="form-control" type="text" name="nda_product_meta_description" value="<?php echo $product_data['meta_description']; ?>">
+        <input 
+          class="form-control" 
+          type="text" 
+          name="nda_product_meta_description" 
+          value="<?php echo $product_data['meta_description']; ?>">
       </div>
     </div>
   </div>
@@ -89,16 +109,36 @@ function np_product_options_mb( $post ) {
           <button id="choose_certificate" class="btn btn-default">Выберите Сертификат</button>
         </div>
         <div class="col-xs-6">
-          <input type="text" class="form-control" value="<?php echo $product_data['certificate_title'] ?>" disabled id="certificate_title">
+          <input 
+            type="text" 
+            class="form-control" 
+            value="<?php echo $product_data['certificate_title'] ?>" 
+            disabled 
+            id="certificate_title">
         </div>
-        <input type="hidden" value="<?php echo $product_data['certificate_title']; ?>" id="certificate_title_hidden" name="nda_product_certificate_title">
-        <input type="hidden" value="<?php echo $product_data['certificate_url']; ?>" id="certificate-url" name="nda_product_certificate_url">
+        <input 
+          type="hidden" 
+          value="<?php echo $product_data['certificate_title']; ?>" 
+          id="certificate_title_hidden" 
+          name="nda_product_certificate_title">
+        <input 
+          type="hidden" 
+          value="<?php echo $product_data['certificate_url']; ?>" 
+          id="certificate-url" 
+          name="nda_product_certificate_url">
       </div>
     </div>
     <div class="col-xs-6 col-md-3">
       <h4>Минифицировать</h4>
       <div class="form-group">
-        <label class="checkbox-inline" style="margin-top: 10px;"><input style="margin-top:0px;" type="checkbox" name="nda_product_minified" <?php echo $product_data['minified'] === 'true' ? 'checked' : '' ?> value="">Минифицировать</label>
+        <label class="checkbox-inline" style="margin-top: 10px;">
+          <input 
+            style="margin-top:0px;" 
+            type="checkbox" 
+            name="nda_product_minified" <?php echo $product_data['minified'] === 'true' ? 'checked' : '' ?> 
+            value="">
+              Минифицировать
+          </label>
       </div>
     </div>
     <div class="col-xs-6 col-md-3">
@@ -115,25 +155,52 @@ function np_product_options_mb( $post ) {
       <div class="form-group">
         <div class="radio">
           <label>
-            <input type="radio" name="nda_img_radio_option" id="optionsRadios1" value="standard" style="margin-top: 0px;" <?php if($product_data['img_option'] === 'standard') echo 'checked'; ?>>
+            <input 
+              type="radio" 
+              name="nda_img_radio_option" 
+              id="optionsRadios1" 
+              value="standard" 
+              style="margin-top: 0px;" <?php if($product_data['img_option'] === 'standard') echo 'checked'; ?>>
               Обычное (1 картинка на миниатюре и странице товара)
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="nda_img_radio_option" id="optionsRadios2" value="different" style="margin-top: 0px;" <?php if($product_data['img_option'] === 'different') echo 'checked'; ?>>
+            <input 
+              type="radio" 
+              name="nda_img_radio_option" 
+              id="optionsRadios2" 
+              value="different" 
+              style="margin-top: 0px;" <?php if($product_data['img_option'] === 'different') echo 'checked'; ?>>
             Разные изображения (На миниатюре будет отображаться основное изображение, выбранное в правой части этого окна, а на странице будет отображаться изображение выбранное ниже.)
           </label>
           <div id="different-image-button" hidden>
             <button class="btn btn-default">Выберите изображение</button>
-            <input type="text" value="<?php echo $product_data['different_img_title'] ?>" disabled id="different-image-input">
-            <input type="hidden" value="<?php echo $product_data['different_img_url']; ?>" id="different-image-url" name="nda_different_img_url">
-            <input type="hidden" value="<?php echo $product_data['different_img_title']; ?>" id="different-image-title" name="nda_different_img_title">
+            <input 
+              type="text" 
+              value="<?php echo $product_data['different_img_title'] ?>" 
+              disabled 
+              id="different-image-input">
+            <input 
+              type="hidden" 
+              value="<?php echo $product_data['different_img_url']; ?>" 
+              id="different-image-url" 
+              name="nda_different_img_url">
+            <input 
+              type="hidden" 
+              value="<?php echo $product_data['different_img_title']; ?>" 
+              id="different-image-title" 
+              name="nda_different_img_title">
           </div>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="nda_img_radio_option" id="optionsRadios3" value="slider" style="margin-top: 0px;" <?php if($product_data['img_option'] === 'slider') echo 'checked'; ?>>
+            <input 
+              type="radio" 
+              name="nda_img_radio_option" 
+              id="optionsRadios3" 
+              value="slider" 
+              style="margin-top: 0px;" <?php if($product_data['img_option'] === 'slider') echo 'checked'; ?>>
             Слайдер (Выберите изображения, из которых должен быть сформирован слайдер)
           </label>
           <div hidden id="slider-left-button">
@@ -188,7 +255,7 @@ function np_product_options_mb( $post ) {
           <ul class="list-group" id="pdfNames">
             <?php
 
-            // Create list of chosen img titles
+            // Create list of chosen pdf names
 
               if (isset($product_data['attached_pdf_names'])) {
                 $names = json_decode($product_data['attached_pdf_names']);

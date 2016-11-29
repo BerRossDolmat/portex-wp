@@ -8,13 +8,15 @@ $(document).ready(function() {
 
     initialTables = $("#product-content > table");
 
-    // Make THeads and add table class
+    // Set styles to bordered and check for minified property
 
     $(initialTables).each(function(i) {
         $(this).addClass('bordered');
     });
 
     if ($('#minified').val() == 'true') {
+
+        // Add necessary minified classes for elements
         initialTables.find('td').each(function(i) {
             $(this).addClass('minified');
         });
@@ -32,8 +34,11 @@ $(document).ready(function() {
         }
     });
 
-    // // Remove junk classes
-    var whitelist = ['align', 'colspan', 'class'];
+    // Cycle to remove styling classes for tables. May be needed for custom styling for tables
+
+    // Remove junk classes
+
+    // var whitelist = ['align', 'colspan', 'class'];
 
     // $(initialTables).find("*").each(function() {
     //     var attributes = this.attributes;
@@ -44,6 +49,8 @@ $(document).ready(function() {
     //             this.removeAttributeNode(attr);
     //     }
     // });
+
+    // Center align table cells and make table 100% width
 
     $(initialTables).find('td').each(function() {
         $(this).css('text-align', 'center');
@@ -59,6 +66,7 @@ $(document).ready(function() {
 
 
     // Check slider options
+    // If slider option is set to left, make necessary changes to DOM
 
     if ($('#slider_left').val() == 'true') {
         $('#slider-holder').attr('class', 'col s12 m5 offset-m1');
@@ -79,14 +87,23 @@ $(document).ready(function() {
     }
 
     // Clone table to modal
+
     $(initialTables).each(function(i) {
         $(this).clone().appendTo("#modalPlaceForTables");
     })
 
+    // Place cloned table to modal
+
     var modalTables = $("#modalPlaceForTables > table");
 
     $(modalTables).each(function(index) {
+        
+        // Prepend table with quantiy row
+        
         $(this).children("thead").children("tr").prepend("<td>Количество</td>");
+        
+        // Make colspan for headers and place controls for non header rows
+
         $(this).children("tbody").children("tr").each(function() {
             if ($(this).children('td').attr('colspan') > 0) {
                 $(this).children('td').attr('colspan', +$(this).children('td').attr('colspan') + 1);
@@ -95,20 +112,6 @@ $(document).ready(function() {
             }
         });
     });
-
-    // $(modalTables).each(function(index) {
-    //     $(this).children("thead").children("tr").prepend("<td>Количество</td>");
-    //     $(this).children("tbody").children("tr").each(function() {
-    //         if ($(this).children('td').attr('colspanned') == 1) {
-    //             var newColspan = $(this).children('td').first().attr('colspan');
-    //             $(this).children('td').first().attr('colspan', +newColspan + +1);
-    //         } else if ($(this).children('td').first().html() == '<span>&nbsp;</span>' && $(this).children('td').last().html() == '<span>&nbsp;</span>') {
-    //             $(this).prepend("<td><span>&nbsp;</span></td>");
-    //         } else {
-    //             $(this).prepend("<td>" + getControls() + "</td>");
-    //         }
-    //     });
-    // });
 
     // Show ready content
 
@@ -133,15 +136,9 @@ $(document).ready(function() {
             $(this).siblings("input").attr('value', newValue);
         }
     });
-
-    $('#submitOrder').on("click", function(event) {
-        event.preventDefault();
-        var orderSuccess = "Все ок";
-        var orderFail = "Ошибка";
-        Materialize.toast(orderSuccess, 20000, 'toast-style grey lighten-5');
-        $('#modal-add-order').closeModal();
-    });
 });
+
+// Function that returns control buttons for products in order modal
 
 function getControls() {
     return `
@@ -165,6 +162,8 @@ function getControls() {
     `;
 };
 
+// Success and failure messages for ajax request for new order
+
 var newOrderMessageSuccess = $('<div><h5>Уважаемые коллеги!</h5> <p>Ваша заявка получена, и принята в работу. В ближайшее время (не позднее 24 часов Вы получите ответ или готовое коммерческое предложение. В случае если оно Вас устроит, Вам будет выставлен официальный счет для оплаты.</p><p> С уважением коллектив ООО НДА Деловая медицинская компания</p><div><a href="#!" onclick="closeToast()" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a></div></div>');
 var newOrderMessageError = $('<div><h5>Произошла ошибка!</h5> <p>Попробуйте еще раз.</p><div><a href="#!" onclick="closeToast()" class=" modal-action modal-close waves-effect waves-blue btn-flat">Закрыть</a></div></div>');
 
@@ -172,8 +171,12 @@ function closeToast() {
     $(".toast-style").hide();
 }
 
+// Submit handler for new orders
+
 function newOrder(event) {
     event.preventDefault();
+
+    // Get requisites file and make checks
 
     if ($('#req-file').get(0).files.length > 0) {
         var file = $('#req-file').get(0).files[0];
@@ -202,6 +205,8 @@ function newOrder(event) {
         }
     }
 
+    // Clone order table and make summary table for email
+
     var allModalTables = $("#modalPlaceForTables > table");
     var newAllModalTables = $(allModalTables).clone();
     $(newAllModalTables).children('tbody').children('tr').each(function() {
@@ -216,6 +221,8 @@ function newOrder(event) {
     $(newAllModalTables).each(function() {
         tables.push($(this).outerHTML());
     });
+
+    //  Make ajax call with form data
 
     var order = new FormData();
     var formData = new FormData();

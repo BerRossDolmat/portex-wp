@@ -1,3 +1,16 @@
+/*
+ 
+ Annotation
+
+ 1. Common classes and helpers
+ 2. Slider
+ 3. Cards
+ 4. Breadcrumbs
+
+*/
+
+/* 1. Common classes and helpers */
+
 html {
     position: relative;
     min-height: 100%;
@@ -13,6 +26,112 @@ body {
     src: url('../fonts/2219.ttf');
 }
 
+.text-align-center {
+    text-align: center;
+}
+
+.devider {
+    color: #0091ea;
+    padding-bottom: 30px;
+    width: 60%;
+    margin: auto;
+}
+
+
+.image-padding {
+    padding: 10px 10px 5px 10px;
+}
+
+/* 2. Slider */
+
+.slider-img {
+    height: auto;
+    max-height: 250px;
+    width: 100%;
+}
+
+.my-slider {
+    margin-top: 20px;
+}
+
+.slider-no-display {
+    display: none;
+}
+
+/* 3. Cards */
+
+.h1-for-groups-index {
+    font-size: 1.46em;
+    font-weight: 300;
+    color: #0091ea;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 2;
+}
+
+.minicard {
+    margin: auto;
+    padding: 10px;
+    width: 19.7%;
+    display: inline-block;
+}
+
+.card {
+    color: #37474f;
+}
+
+.category-card {
+    height: 350px;
+    overflow: hidden;
+}
+
+.img-border {
+    border: 1px solid #0091ea;
+    background-color: white;
+    padding: 3px;
+    border-radius: 0 35px !important;
+}
+
+.card-content-text-container {
+    padding: 0 10px 0 10px !important;
+    display: table;
+    height: 115px;
+    width: 100%;
+}
+
+/* 4. Breadcrumbs */
+
+
+.breadcrumbs {
+    background-color: #fafafa;
+}
+
+.breadcrumbs-wrapper {
+    border: 0px;
+    background-color: #fafafa;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 00);
+}
+
+.breadcrumbs-wrapper a {
+    color: #455a64;
+}
+
+.breadcrumbs-wrapper a:before {
+    color: #37474f;
+}
+
+.breadcrumb {
+    font-size: 1.06em;
+    color: #64b5f6 !important;
+}
+
+.breadcrumb-active {
+    color: #546e7a !important;
+}
+
+.breadcrumb-active:hover {
+    cursor: default;
+}
 
 /* Styles for product page */
 
@@ -93,9 +212,7 @@ div.aligncenter {
     margin-bottom: 0px;
 }
 
-.text-align-center {
-    text-align: center;
-}
+
 
 .min-height-50 {
     min-height: 100px;
@@ -382,19 +499,7 @@ div.aligncenter {
 
 /* Slider */
 
-.slider-img {
-    height: auto;
-    max-height: 250px;
-    width: 100%;
-}
 
-.my-slider {
-    margin-top: 20px;
-}
-
-.slider-no-display {
-    display: none;
-}
 
 
 /* Add shipping */
@@ -491,36 +596,6 @@ div.aligncenter {
 
 /* Breadcrumbs */
 
-.breadcrumbs {
-    background-color: #fafafa;
-}
-
-.breadcrumbs-wrapper {
-    border: 0px;
-    background-color: #fafafa;
-    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 00);
-}
-
-.breadcrumbs-wrapper a {
-    color: #455a64;
-}
-
-.breadcrumbs-wrapper a:before {
-    color: #37474f;
-}
-
-.breadcrumb {
-    font-size: 1.06em;
-    color: #64b5f6 !important;
-}
-
-.breadcrumb-active {
-    color: #546e7a !important;
-}
-
-.breadcrumb-active:hover {
-    cursor: default;
-}
 
 
 /*  Tooltip */
@@ -532,29 +607,7 @@ div.aligncenter {
 
 /* Groups */
 
-.h1-for-groups {
-    font-size: 1.33em;
-    font-weight: 300;
-    margin-top: 75px;
-    line-height: 2;
-    color: #263238;
-}
 
-.h1-for-groups-index {
-    font-size: 1.46em;
-    font-weight: 300;
-    color: #0091ea;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
-}
-
-.minicard {
-    margin: auto;
-    padding: 10px;
-    width: 19.7%;
-    display: inline-block;
-}
 
 
 /* Product */
@@ -747,36 +800,16 @@ table thead td {
 
 /* Card */
 
-.img-border {
-    border: 1px solid #0091ea;
-    background-color: white;
-    padding: 3px;
-    border-radius: 0 35px !important;
-}
 
-.card {
-    color: #37474f;
-}
 
-.image-padding {
-    padding: 10px 10px 5px 10px;
-}
+
 
 .paper-margin {
     margin: 10px;
 }
 
-.category-card {
-    height: 350px;
-    overflow: hidden;
-}
 
-.card-content-text-container {
-    padding: 0 10px 0 10px !important;
-    display: table;
-    height: 115px;
-    width: 100%;
-}
+
 
 .card-content-text {
     display: table-cell;

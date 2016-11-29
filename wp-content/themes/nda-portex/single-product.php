@@ -275,4 +275,3 @@ if (isset($product_data['slider_img_urls'])) {
         </div>
     </div>
     <?php get_footer(); ?>
-    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/product.js"></script>
