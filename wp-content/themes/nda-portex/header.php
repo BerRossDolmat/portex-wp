@@ -77,8 +77,8 @@
                   <div class="social-icons vk tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Контакте"></div>
                 </div>
                 <div class="right">
-                  <div class="inline-block search-block">
-                    <?php get_search_form(); ?>
+                  <div class="inline-block search-block" id="search-form-mobile">
+
                   </div>
                 </div>
                 <div class="right contact-us-margin-top contact-us-hide">
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="right">
-                  <div class="inline-block">
+                  <div class="inline-block" id="search-form-desktop">
                     <?php get_search_form(); ?>
                   </div>
                 </div>

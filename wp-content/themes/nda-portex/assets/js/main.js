@@ -1,5 +1,31 @@
 $( document ).ready(function(){
 
+  // Manage seacrh form unique id
+
+  var width = $(window).width();
+  
+  var searchForm = $('#searchform').clone();
+
+  manageSearchId();
+  $(window).resize(function(){
+        if($(this).width() != width){
+            width = $(this).width();
+            manageSearchId();
+        }
+    });
+
+  function manageSearchId() {
+    if (width > 1130) {
+      $('#search-form-desktop').children().remove();
+      $('#search-form-mobile').children().remove();
+      $('#search-form-desktop').append(searchForm);
+    } else {
+      $('#search-form-desktop').children().remove();
+      $('#search-form-mobile').children().remove();
+      $('#search-form-mobile').append(searchForm);
+    }
+  }
+
   // Sidenavigation
 
   $(".button-collapse").sideNav();
