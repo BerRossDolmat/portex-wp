@@ -16,58 +16,68 @@ $thisCat = get_the_category();
 $ancestors = get_ancestors( $thisCat[0]->term_id, 'category' );
 
 // Get product data
+
 $product_data = get_post_meta( get_the_ID(), 'product_data', true );
 
-// print_r($product_data);
-// die();
+// Check for slider img urls
+
 if (isset($product_data['slider_img_urls'])) {
   $product_data['slider_img_urls'] = json_decode($product_data['slider_img_urls']);
 }
 ?>
 
     <div class="container">
+
+        <!-- Create breadcrumbs -->
+        
         <nav class="breadcrumbs-wrapper">
             <div class="nav-wrapper">
                 <div class="row">
                     <div class="col s11 offset-s1">
                         <a href="<?php echo home_url(); ?>" class="breadcrumb">Главная</a>
                         <?php
-            if( $ancestors ) {
-              $ancestors = array_reverse($ancestors);
-              foreach( $ancestors as $ancestor ) {
-                $category_meta = get_option( "taxonomy_$ancestor" );
-                $ancestorTitle = $category_meta['breadcrumb'];
-                if (mb_strlen($ancestorTitle) > 10) {
-                  $ancestorTitle = mb_substr($ancestorTitle, 0, 20) . '...';
-                }
-                ?>
-                            <a href="<?php echo get_category_link( $ancestor ); ?>" class="breadcrumb">
-                                <?php echo $ancestorTitle; ?>
-                            </a>
-                            <?php
-              }
+                            if( $ancestors ) {
+                                $ancestors = array_reverse($ancestors);
+                                foreach( $ancestors as $ancestor ) {
+                                    $category_meta = get_option( "taxonomy_$ancestor" );
+                                    $ancestorTitle = $category_meta['breadcrumb'];
+                                    if (mb_strlen($ancestorTitle) > 10) {
+                                        $ancestorTitle = mb_substr($ancestorTitle, 0, 20) . '...';
+                                    }
+                                    ?>
+                                        <a href="<?php echo get_category_link( $ancestor ); ?>" class="breadcrumb">
+                                            <?php echo $ancestorTitle; ?>
+                                        </a>
+                                    <?php
+                                    }
 
-            }
+                            }
+            
             // check for main category that has not to be shown in breadcrumbs
+            
             if ($thisCat[0]->cat_ID !== 1) {
-              $term_id = $thisCat[0]->term_id;
-              $category_meta = get_option( "taxonomy_$term_id" );
-              ?>
-                                <a href="<?php echo get_category_link( $thisCat[0]->cat_ID ); ?>" class="breadcrumb">
-                                    <?php echo $category_meta['breadcrumb']; ?>
-                                </a>
-                                <?php
+                $term_id = $thisCat[0]->term_id;
+                $category_meta = get_option( "taxonomy_$term_id" );
+                ?>
+                <a href="<?php echo get_category_link( $thisCat[0]->cat_ID ); ?>" class="breadcrumb">
+                    <?php echo $category_meta['breadcrumb']; ?>
+                </a>
+                <?php
             }
-          ?>
-                                    <a href="#" class="breadcrumb breadcrumb-active">
-                                        <?php echo $product_data['breadcrumb']; ?>
-                                    </a>
+            ?>
+                <a href="#" class="breadcrumb breadcrumb-active">
+                    <?php echo $product_data['breadcrumb']; ?>
+                </a>
                     </div>
                 </div>
             </div>
         </nav>
-
+        
+        <!-- End of breadcrumbs -->
+        
         <div class="row">
+
+            <!-- Main card container -->
 
             <div class="col s12">
                 <div class="card product">
@@ -79,138 +89,156 @@ if (isset($product_data['slider_img_urls'])) {
                             <span>_______________</span>
                         </div>
                         <?php
+
+            // Check slider type
+            
+            // If slider type is standard
+
             if ( (has_post_thumbnail() && $product_data['img_option'] === 'standard') || (has_post_thumbnail() && $product_data['img_option'] === 'undefined') ) {
               ?>
-                            <div class="card-image col s8 offset-s2 m6 offset-m3 l4 offset-l4">
-                                <?php 
-                  $post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
-                  echo wp_get_attachment_image( $post_thumbnail_id, 'large', "", array( "class" => "responsive-img" ) );  
-                ?>
+                <div class="card-image col s8 offset-s2 m6 offset-m3 l4 offset-l4">
+                    <?php 
+                        $post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
+                        echo wp_get_attachment_image( $post_thumbnail_id, 'large', "", array( "class" => "responsive-img" ) );  
+                    ?>
+                </div>
+                <?php
+            }
 
+            // If slider type is different
+
+            if ($product_data['img_option'] === 'different') {
+                $img_id = get_image_id($product_data['different_img_url']);
+                ?>
+                    <div class="card-image col s8 offset-s2 m6 offset-m3 l4 offset-l4">
+                        <?php echo wp_get_attachment_image( $img_id, 'large', "", array( "class" => "responsive-img" ) ); ?>
+                    </div>
+                <?php
+            }
+
+            // If slider type is slider
+
+            if ($product_data['img_option'] === 'slider') {
+              
+              // Create slider holder
+
+              ?>
+                <div id="slider-holder" hidden>
+                    <div class="card-image col s12 m10 offset-m1 l6 offset-l3" id="slideshow">
+                        <ul class="thumbs">
+                            <?php
+                                foreach ($product_data['slider_img_urls'] as $url) {
+                                    $img_id = get_image_id($url);
+                                    ?>
+                                        <li>
+                                            <a href="<?php echo $url;?>">
+                                                <?php echo wp_get_attachment_image( $img_id); ?>
+                                            </a>
+                                        </li>
+                                        <?php
+                                }
+                                        ?>
+                        </ul>
+                    </div>
+
+                    <!-- Create slider thumbnails -->
+                    
+                    <div class="col s12 m10 offset-m1 l6 offset-l3" id="slideshow-thumbs-holder">
+                        <ul id="slideshow-thumbs" class="slider-thumbs-horizontal">
+                            <?php
+                                $i = 0;
+                                foreach ($product_data['slider_img_urls'] as $url) {
+                                    $img_id = get_image_id($url);
+                                ?>
+                                    <li>
+                                        <a href="<?php echo $url; ?>" data-desoslide-index="<?php echo $i; ?>">
+                                            <?php echo wp_get_attachment_image( $img_id ); ?>
+                                        </a>
+                                    </li>
+                                <?php
+                                     $i++;
+                                }
+                                ?>
+                        </ul>
+                    </div>
+                </div>
+                <?php
+            }
+            // Start rendering content card
+          ?>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="text-align-center devider col s12" id="product-description">
+                            <h2 class="h1-for-groups-index">Описание продукта</h2>
+                            <span>_______________</span>
+                        </div>
+
+                        <div id="product-content" hidden class="col s12 m10 offset-m1">
+                            <?php echo $post->post_content; ?>
+                        </div>
+                        
+                        <?php
+                            
+                            // Check for attached pdf files
+
+                            if (isset($product_data['attached_pdf_urls'])
+                            && isset($product_data['attached_pdf_names']) 
+                            && ($product_data['attached_pdf_names'] != '')
+                            && ($product_data['attached_pdf_urls'] != '')) {
+                                $product_data['attached_pdf_urls'] = json_decode($product_data['attached_pdf_urls']);
+                                $product_data['attached_pdf_names'] = json_decode($product_data['attached_pdf_names']);
+                                ?>
+                                <div class="col s12 m10 offset-m1" id="attached-pdfs" style="text-align: center;">
+                                    <h5>Файлы, связанные с товаром</h5>
+                                    <div class="pdf-collection-container">
+                                    <div class="collection">
+                                <?php
+                                $i = 0;
+                            // Render download pdfs block
+
+                                foreach($product_data['attached_pdf_urls'] as $pdf) {
+                                    ?>
+                                    <a download href="<?php echo $product_data['attached_pdf_urls'][$i]; ?>" class="pdf-download-link collection-item">Скачать приложенный файл - <?php echo $product_data['attached_pdf_names'][$i]; ?></a>
+                                    <?php
+                                    $i++;
+                                }
+                            ?>  </div>
+                                </div>
                             </div>
                             <?php
-            }
-            if ($product_data['img_option'] === 'different') {
-              $img_id = get_image_id($product_data['different_img_url']);
-              ?>
-                                <div class="card-image col s8 offset-s2 m6 offset-m3 l4 offset-l4">
-                                    <?php echo wp_get_attachment_image( $img_id, 'large', "", array( "class" => "responsive-img" ) ); ?>
-                                </div>
-                                <?php
-            }
-            if ($product_data['img_option'] === 'slider') {
-              ?>
-                                    <div id="slider-holder" hidden>
-                                        <div class="card-image col s12 m10 offset-m1 l6 offset-l3" id="slideshow">
-                                            <ul class="thumbs">
-                                                <?php
-                      foreach ($product_data['slider_img_urls'] as $url) {
-                        $img_id = get_image_id($url);
-                        ?>
-                                                    <li>
-                                                        <a href="<?php echo $url;?>">
-                                                            <?php echo wp_get_attachment_image( $img_id); ?>
-                                                        </a>
-                                                    </li>
-                                                    <?php
-                      }
-                        ?>
-                                            </ul>
-                                        </div>
-
-                                        <div class="col s12 m10 offset-m1 l6 offset-l3" id="slideshow-thumbs-holder">
-                                            <ul id="slideshow-thumbs" class="slider-thumbs-horizontal">
-                                                <?php
-                    $i = 0;
-                    foreach ($product_data['slider_img_urls'] as $url) {
-                      
-                      $img_id = get_image_id($url);
-                      ?>
-                                                    <li>
-                                                        <a href="<?php echo $url; ?>" data-desoslide-index="<?php echo $i; ?>">
-                                                            <?php echo wp_get_attachment_image( $img_id ); ?>
-                                                        </a>
-                                                    </li>
-                                                    <?php
-                      $i++;
-                    }
-                    ?>
-                                            </ul>
-                                        </div>
-                                    </div>
+                            }
+                            ?>
+                            <div class="col s12 m10 offset-m1" id="cert-and-order">
+                                <div class="row">
                                     <?php
-            }
-          ?>
-                                        <div class="card-content">
-                                            <div class="row">
-                                                <div class="text-align-center devider col s12" id="product-description">
-                                                    <h2 class="h1-for-groups-index">Описание продукта</h2>
-                                                    <span>_______________</span>
-                                                </div>
-
-                                                <div id="product-content" hidden class="col s12 m10 offset-m1">
-                                                    <?php echo $post->post_content; ?>
-                                                </div>
-                                                
-                                                <?php
-
-                                                if (isset($product_data['attached_pdf_urls'])
-                                                && isset($product_data['attached_pdf_names']) 
-                                                && ($product_data['attached_pdf_names'] != '')
-                                                && ($product_data['attached_pdf_urls'] != '')) {
-                                                   $product_data['attached_pdf_urls'] = json_decode($product_data['attached_pdf_urls']);
-                                                   $product_data['attached_pdf_names'] = json_decode($product_data['attached_pdf_names']);
-                                                   ?>
-                                                   <div class="col s12 m10 offset-m1" id="attached-pdfs" style="text-align: center;">
-                                                     <h5>Файлы, связанные с товаром</h5>
-                                                     <div class="pdf-collection-container">
-                                                     <div class="collection">
-                                                    <?php
-                                                   $i = 0;
-                                                   
-                                                   foreach($product_data['attached_pdf_urls'] as $pdf) {
-                                                       ?>
-                                                       <a download href="<?php echo $product_data['attached_pdf_urls'][$i]; ?>" class="pdf-download-link collection-item">Скачать приложенный файл - <?php echo $product_data['attached_pdf_names'][$i]; ?></a>
-                                                       <?php
-                                                       $i++;
-                                                   }
-                                                ?>  </div>
-                                                    </div>
-                                                </div>
-                                                <?php
-                                                }
-                                                ?>
-                                                <div class="col s12 m10 offset-m1" id="cert-and-order">
-                                                    <div class="row">
-                                                        <?php
 
                 // Check if certificate exists
                 if(!empty($product_data['certificate_url'])){
                   ?>
-                                                            <div class="col s1 m1 l2">
-                                                                <div class="download-ru-container">
-                                                                    <a href="<?php echo $product_data['certificate_url']; ?>" download>
-                                                                        <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
-                                                                        <div class="inline-block download-ru-text">Скачать РУ</div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col s7 offset-s4 m5 offset-m6 l3 offset-l7">
-                                                                <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
-                                                            </div>
-                                                            <?php
+                    <div class="col s1 m1 l2">
+                        <div class="download-ru-container">
+                            <a href="<?php echo $product_data['certificate_url']; ?>" download>
+                                <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
+                                <div class="inline-block download-ru-text">Скачать РУ</div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col s7 offset-s4 m5 offset-m6 l3 offset-l7">
+                        <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
+                    </div>
+                    <?php
               } else {
                 ?>
-                                                                <div class="col s7 offset-s5 m5 offset-m7 l3 offset-l9">
-                                                                    <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
-                                                                </div>
-                                                                <?php
+                <div class="col s7 offset-s5 m5 offset-m7 l3 offset-l9">
+                    <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
+                </div>
+                <?php
               }
-              ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                  ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -222,6 +250,9 @@ if (isset($product_data['slider_img_urls'])) {
     <div hidden>
         <input type="hidden" id="slider_left" value="<?php echo $product_data['slider_left'] ?>">
     </div>
+
+    <!-- Add order modal -->
+
     <div id="modal-add-order" class="modal modal-order modal-fixed-footer">
         <div class="close-symbol"><a href="#" class="modal-action modal-close">&#10006;</a></div>
         <div class="modal-content">
@@ -268,8 +299,8 @@ if (isset($product_data['slider_img_urls'])) {
 
                 <div class="input-field col s12">
                     <button type="submit" class="btn waves-effect waves-light right contacts-submit-btn blue">Подтвердить заказ
-          <i class="material-icons right">send</i>
-        </button>
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
             </form>
         </div>

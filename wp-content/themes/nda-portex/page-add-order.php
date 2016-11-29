@@ -52,7 +52,7 @@ get_header();
                                 </div>
                                 <div class="col s12 m6">
                                     <div class="input-field col s12">
-                                        <textarea id="message-order" disabled class="materialize-textarea" rows=25></textarea>
+                                        <textarea id="message-order" disabled class="message-order-disabled materialize-textarea"></textarea>
                                         <label for="message-order">Текст сообщения</label>
                                     </div>
                                 </div>

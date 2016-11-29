@@ -16,6 +16,15 @@
     if( is_home() ) {
       echo '<title>Portex</title>';
     }
+    if( is_page('add-order') ) {
+      echo '<title>Как оформить заказ</title>';
+    }
+    if( is_page('find-product') ) {
+      echo '<title>Как найти продукцию</title>';
+    }
+    if( is_page('find-shipping') ) {
+      echo '<title>Как найти отгрузку</title>';
+    }
     if( is_category() ) {
 
       $thisCat = get_category( get_query_var( 'cat' ) );
@@ -72,7 +81,7 @@
               </div>
 
               <div class="col m8 offset-m2 s8 hide-on-desktop">
-                <div class="right social-bar social-bar-mobile">
+                <div class="right social-bar">
                   <div class="social-icons fb tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Facebook"></div>
                   <div class="social-icons vk tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Контакте"></div>
                 </div>
@@ -81,8 +90,8 @@
 
                   </div>
                 </div>
-                <div class="right contact-us-margin-top contact-us-hide">
-                  <a href="#contactsModal" class="modal-trigger contacts-container"><span class="contacts-btn-header">Контакты</span></a>
+                <div class="right contact-us-hide">
+                  <a href="#contactsModal" class="modal-trigger"><span class="contacts-btn-header">Контакты</span></a>
                 </div>
               </div>
 

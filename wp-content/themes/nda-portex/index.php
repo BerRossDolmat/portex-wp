@@ -23,13 +23,14 @@ function compare($elm1, $elm2) {
       	<ul>
           <?php
             $first_slide = '';
-
+            $i = 1;
             foreach ($slider_imgs as $img) {
               ?>
               <li>
-                <img class="slider-img <?php echo $first_slide; ?>" src="<?php echo $img; ?>">
+                <img alt="Slide №<?php echo $i;?>" class="slider-img <?php echo $first_slide; ?>" src="<?php echo $img; ?>">
               </li>
               <?php
+              $i++;
               $first_slide = ' slider-no-display';
             }
             ?>
@@ -58,7 +59,11 @@ function compare($elm1, $elm2) {
       'exclude' => '1',
     );
 
+    // Get child categories
+
     $categories=get_categories($args);
+    
+    // Loop categories to set their priority
 
     foreach ($categories as $category) {
       $priority = get_option( "taxonomy_$category->term_id" );
@@ -66,17 +71,25 @@ function compare($elm1, $elm2) {
         $category->priority = $priority['priority'];
       }
     }
+    
+    // Arguments to search child posts
+    
     $args = array( 'post_type' => 'product', 'cat' => 1, 'numberposts' => -1);
 
+    // Get posts by arguments
+
     $posts = get_posts($args);
-    // print_r($posts);
-    // die();
+
+    // Loop through posts to set their priority
+
     foreach ($posts as $post) {
       $priority = get_post_meta( get_the_ID(), 'product_data', true );
       if(isset($priority['priority'])) {
         $post->priority = $priority['priority'];
       }
     }
+
+    // Merge posts and categories array
 
     $terms =[];
     $i = 0;
@@ -89,9 +102,16 @@ function compare($elm1, $elm2) {
       $i++;
     }
     
+    // Sort merged array by priority
+
     usort($terms, 'compare');
     
+    // Loop terms to render cards
+
     foreach ($terms as $term) {
+
+      // Category term case
+
       if( $term->taxonomy == 'category') {
         $term_id = $term->term_id;
         $image   = category_image_src( array('term_id'=>$term_id, 'size'=>'thumbnail') , false );
@@ -119,6 +139,9 @@ function compare($elm1, $elm2) {
         continue;
       }
       if ( $term->post_type == 'product') {
+
+        // Post term case 
+
         $image = wp_get_attachment_image_src( get_post_thumbnail_id( $term->ID ), 'thumbnail' );
          ?>
       <div class="minicard animate-fadein">

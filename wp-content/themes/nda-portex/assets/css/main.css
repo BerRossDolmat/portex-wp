@@ -6,6 +6,15 @@
  2. Slider
  3. Cards
  4. Breadcrumbs
+ 5. Header
+ 6. Modals
+ 7. Search
+ 8. Find shipping page
+ 9. Contacts
+ 10. Tooltip
+ 11. Product
+ 12. Footer
+ 13. Media queries
 
 */
 
@@ -37,9 +46,30 @@ body {
     margin: auto;
 }
 
-
 .image-padding {
     padding: 10px 10px 5px 10px;
+}
+
+.zero-padding-right {
+    padding-right: 0px !important;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.zero-padding {
+    padding: 0px;
+}
+
+.zero-padding-left {
+    padding-left: 0px !important;
 }
 
 /* 2. Slider */
@@ -133,116 +163,14 @@ body {
     cursor: default;
 }
 
-/* Styles for product page */
-
-.aligncenter,
-div.aligncenter {
-    display: block;
-    margin: 5px auto 5px auto;
-}
-
-
-/* Common */
-
-.devider {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
-}
-
-.devider-margin-top {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-
-/* Modals */
-
-.modal {
-    width: 80%;
-}
-
-.modal-order {
-    width: 90%;
-}
-
-#contactsModal {
-    width: 70%;
-}
-
-.contact-us-btn {
-    position: fixed;
-    bottom: 62px;
-    right: 30px;
-}
-
-#send-letter-modal {
-    width: 40%;
-}
-
-
-/* Helpers */
-
-.width-15p {
-    width: 15%;
-}
-
-.width-85p {
-    width: 85%;
-}
-
-.zero-padding {
-    padding: 0px;
-}
-
-.zero-padding-left {
-    padding-left: 0px !important;
-}
-
-.zero-padding-right {
-    padding-right: 0px !important;
-}
-
-.zero-margin-top {
-    margin-top: 0px;
-}
-
-.zero-margin-bottom {
-    margin-bottom: 0px;
-}
-
-
-
-.min-height-50 {
-    min-height: 100px;
-}
-
-.width-100 {
-    min-width: 100px;
-    padding-top: 22px;
-    padding-bottom: 10px;
-}
-
-.width-120 {
-    min-width: 120px;
-    padding-top: 14px;
-    padding-bottom: 10px;
-}
-
-.inline-block {
-    display: inline-block;
-}
-
-
-/* Header */
-
-.social-bar {
-    padding-top: 7px;
-}
+/* 5. Header */
 
 .top-menu {
     max-height: 70px;
+}
+
+.social-bar {
+    padding-top: 7px;
 }
 
 .social-icons {
@@ -276,12 +204,21 @@ div.aligncenter {
     opacity: 1;
 }
 
-.jumbotron {
-    min-height: 250px;
+.contacts-btn-header {
+    border: 2px solid white;
+    padding: 3px 5px;
+    border-radius: 7px;
+    font-weight: 500;
+    margin-right: 10px;
+    font-size: 1.3em;
+    font-family: costumfont, sans-serif;
+    transition-property: all;
+    transition-duration: 1s;
+    transition-timing-function: ease;
 }
 
-.header-container-fix {
-    max-height: 64px;
+.contacts-btn-header:hover {
+    background: #607d8b;
 }
 
 .header-links-container {
@@ -325,27 +262,10 @@ div.aligncenter {
     box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.5) !important;
 }
 
-.contacts-btn-header {
-    border: 2px solid white;
-    padding: 3px 5px;
-    border-radius: 7px;
-    font-weight: 500;
-    margin-right: 10px;
-    font-size: 1.3em;
-    font-family: costumfont, sans-serif;
-    transition-property: all;
-    transition-duration: 1s;
-    transition-timing-function: ease;
-}
-
 .logo {
     font-size: 1.3em;
     font-family: sans-serif;
     font-weight: 500;
-}
-
-.contacts-btn-header:hover {
-    background: #607d8b;
 }
 
 .side-menu-li {
@@ -354,8 +274,31 @@ div.aligncenter {
     font-weight: 500;
 }
 
+/* 6. Modals */
 
-/* Search */
+.modal {
+    width: 80%;
+}
+
+.modal-order {
+    width: 90%;
+}
+
+#contactsModal {
+    width: 70%;
+}
+
+.contact-us-btn {
+    position: fixed;
+    bottom: 62px;
+    right: 30px;
+}
+
+#send-letter-modal {
+    width: 40%;
+}
+
+/* 7. Search */
 
 #search {
     color: white;
@@ -382,18 +325,12 @@ div.aligncenter {
     zoom: 1;
 }
 
-
-/* Form wrapper styling */
-
 .search-wrapper {
     width: 220px;
     margin: 0px auto 50px auto;
     margin-top: 17px;
     box-shadow: 0 0px 0px rgba(0, 0, 0, .4) inset, 0 0px 0 rgba(255, 255, 255, .2);
 }
-
-
-/* Form text input */
 
 .search-wrapper input {
     width: 138px;
@@ -496,13 +433,7 @@ div.aligncenter {
     left: 25px;
 }
 
-
-/* Slider */
-
-
-
-
-/* Add shipping */
+/* 8. Find shipping page */
 
 .forgot-pass {
     font-style: italic;
@@ -513,8 +444,7 @@ div.aligncenter {
     margin-top: 0;
 }
 
-
-/* Contacts */
+/* 9. Contacts */
 
 .modal-content {
     height: 100% !important;
@@ -593,24 +523,14 @@ div.aligncenter {
     height: auto;
 }
 
-
-/* Breadcrumbs */
-
-
-
-/*  Tooltip */
+/* 10. Tooltip */
 
 .backdrop {
     background-color: #64b5f6;
 }
 
 
-/* Groups */
-
-
-
-
-/* Product */
+/* 11. Product */
 
 .pdf-download-link {
     color: #42a5f5 !important;
@@ -626,7 +546,6 @@ div.aligncenter {
     margin: 0 auto;
     display: inline-block;
 }
-
 
 .product {
     padding: 20px;
@@ -679,6 +598,10 @@ div.aligncenter {
 
 #message-order {
     min-height: 226px;
+}
+
+.message-order-disabled {
+    min-height: 150px !important;
 }
 
 .order-input:focus {
@@ -754,12 +677,6 @@ table thead td {
     font-weight: 500;
 }
 
-
-/*#product-content > table {
-  width: 90%;
-}*/
-
-
 /* Product Slider */
 
 .slider-thumbs-horizontal {
@@ -797,27 +714,12 @@ table thead td {
     margin-bottom: 25px;
 }
 
-
-/* Card */
-
-
-
-
-
-.paper-margin {
-    margin: 10px;
-}
-
-
-
-
 .card-content-text {
     display: table-cell;
     vertical-align: middle;
 }
 
-
-/* Footer */
+/* 12. Footer */
 
 .footer-style {
     position: absolute;
@@ -857,6 +759,8 @@ html {
 body {
     margin: 0 0 80px;
 }
+
+/* 13. Media queries */
 
 @media screen and (min-width: 1380px) {
     .container {
