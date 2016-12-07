@@ -10,5 +10,6 @@ function nda_remove_menu_pages() {
     remove_menu_page( 'tools.php' );
 
     // Remove SEO friendly image button 
-    remove_menu_page( 'sfi_settings' );  
+    remove_menu_page( 'sfi_settings' );
+    remove_menu_page( 'wpfastestcacheoptions' );  
 }
