@@ -69,7 +69,7 @@ function np_product_options_mb( $post ) {
 
   <h4>Метаданные</h4>
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <div class="form-group">
         <label>Meta Title</label>
         <input 
@@ -79,7 +79,7 @@ function np_product_options_mb( $post ) {
           value="<?php echo $product_data['meta_title']; ?>">
       </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-12">
       <div class="form-group">
         <label>Meta Keywords</label>
         <input 

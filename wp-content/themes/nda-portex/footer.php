@@ -60,8 +60,8 @@
     <div class="modal-content">
         <h4>Контакты</h4>
         <div class="row">
-            <div class="col s6 m4"><a href="#">Скачать реквизиты</a></div>
-            <div class="col s6 m4"><a href="#">Скачать выписку и ЕГРЮЛ</a></div>
+            <div class="col s6 m4 l3"><a href="#">Скачать реквизиты</a></div>
+            <div class="col s6 m4 offset-m2 l3 offset-l1"><a href="#">Скачать выписку и ЕГРЮЛ</a></div>
         </div>
         <div class="row">
             <div class="col s6  m6 l4">

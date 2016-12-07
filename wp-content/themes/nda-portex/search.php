@@ -51,9 +51,9 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
 <div class="container">
 
   <div class="text-align-center devider">
-    <h1 class="h1-for-groups-index">Результаты поиска</h1>
-    <span>_______________</span>
+    <h1 class="h1-for-search-page">Результаты поиска по запросу</h1>
     <h3><?php the_search_query(); ?></h3>
+    <span>_______________</span>
   </div>
 
   <div class="row">
@@ -64,7 +64,13 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
   ?>
 
   <?php
-
+    if(!$total_results) {
+      ?>
+        <div class="col s12 text-align-center">
+          <h6>К сожалению по Вашему запросу ничего не найдено, попробуйте уточнить свой запрос</h6>
+        </div>
+      <?php
+    };
     foreach($wp_query->posts as $post) {
       $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'thumbnail' );
       ?>

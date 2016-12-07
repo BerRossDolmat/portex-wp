@@ -15,6 +15,7 @@
  11. Product
  12. Footer
  13. Media queries
+ 14. Pages
 
 */
 
@@ -39,11 +40,25 @@ body {
     text-align: center;
 }
 
+.text-align-right {
+    text-align: right;
+}
+
 .devider {
     color: #0091ea;
     padding-bottom: 30px;
     width: 60%;
     margin: auto;
+}
+
+.devider-product-description {
+    margin-bottom: 30px;
+}
+
+.devider-span {
+    color: #0091ea;
+    margin-bottom: 30px;
+    margin-top: 22px;
 }
 
 .image-padding {
@@ -385,6 +400,7 @@ div.aligncenter {
     color: white;
     text-transform: uppercase;
     background: #607d8b;
+    transition: background .5s ease;
     border-radius: 0 3px 3px 0;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 }
@@ -398,9 +414,9 @@ div.aligncenter {
     background: #455a64;
     outline: 0;
 }
-
+/*
 .search-wrapper button:before {
-    /* left arrow */
+    left arrow
     content: '';
     position: absolute;
     border-width: 8px 8px 8px 0;
@@ -408,7 +424,9 @@ div.aligncenter {
     border-color: transparent #607d8b transparent;
     top: 8px;
     left: -6px;
+    transition: background .5s ease;
 }
+*/
 
 .search-wrapper button:hover:before {
     border-right-color: #455a64;
@@ -533,17 +551,17 @@ div.aligncenter {
 /* 11. Product */
 
 .pdf-download-link {
-    color: #42a5f5 !important;
+    color: #2196F3 !important;
 }
 
 .pdf-download-link:hover {
     color: #2979ff  !important;
-    background-color: #e3f2fd !important; 
+    background-color: #eceff1 !important; 
 }
 
 .pdf-collection-container {
     padding: 0 !important;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: inline-block;
 }
 
@@ -770,7 +788,6 @@ body {
         display: none;
     }
     .category-card {
-        height: 290px;
         overflow: hidden;
     }
     .minicard {
@@ -824,11 +841,10 @@ body {
         font-size: 19px;
     }
     .category-card {
-        height: 260px;
         overflow: hidden;
     }
     .minicard {
-        width: 17%;
+        width: 19.4%;
         margin-left: 0.3%;
     }
     .card-content-text-container {
@@ -891,7 +907,6 @@ body {
         width: 95%;
     }
     .category-card {
-        height: 330px;
         overflow: hidden;
     }
     .minicard {
@@ -952,7 +967,6 @@ body {
         width: 95%;
     }
     .category-card {
-        height: 260px;
         overflow: hidden;
     }
     .minicard {
@@ -1084,6 +1098,15 @@ body {
         vertical-align: middle;
         line-height: normal;
     }
+    .class1of3 {
+        margin-left: 33.5% !important;
+    }
+    .class2of3 {
+        margin-left: 15.9% !important;
+    }
+    .class2of3~.class2of3 {
+        margin-left: 0.3% !important;
+    }
 }
 
 @media screen and (min-width: 600px) and (max-width: 670px) {
@@ -1151,7 +1174,7 @@ body {
         min-width: 90px;
     }
     .container {
-        width: 80%;
+        width: 90%;
     }
     .search-btn {
         top: -12px;
@@ -1275,4 +1298,17 @@ body {
     body {
         margin: 0 0 170px;
     }
+}
+
+/* 14. Pages */
+
+/* Search page */
+
+.h1-for-search-page {
+    font-size: 1.46em;
+    color: #37474f; 
+    font-weight: 300;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 2;
 }

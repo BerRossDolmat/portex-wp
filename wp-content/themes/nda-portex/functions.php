@@ -4,7 +4,7 @@
 
 if ( function_exists( 'add_theme_support' ) ) {
     add_theme_support( 'post-thumbnails' );
-    set_post_thumbnail_size( 200, 200, true ); // default Featured Image dimensions (cropped)
+    set_post_thumbnail_size( 200, 200, false ); // default Featured Image dimensions (cropped)
 
     // additional image sizes
     // delete the next line if you do not need additional image sizes
@@ -15,10 +15,12 @@ if ( function_exists( 'add_theme_support' ) ) {
 
 include ( get_template_directory() . '/includes/front/enqueue.php' );
 include ( get_template_directory() . '/includes/back/send-mail.php' );
+include ( get_template_directory() . '/includes/back/remove-menu-pages.php');
 
 // Actions & Hooks
 
 add_action( 'wp_enqueue_scripts', 'nda_enqueue' );
+add_action( 'admin_menu', 'nda_remove_menu_pages' );
 
 // Add rest route for mailing
 add_action( 'rest_api_init', function () {

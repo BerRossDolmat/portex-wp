@@ -168,7 +168,7 @@ if (isset($product_data['slider_img_urls'])) {
           ?>
                 <div class="card-content">
                     <div class="row">
-                        <div class="text-align-center devider col s12" id="product-description">
+                        <div class="text-align-center devider devider-product-description col s12" id="product-description">
                             <h2 class="h1-for-groups-index">Описание продукта</h2>
                             <span>_______________</span>
                         </div>
@@ -188,8 +188,11 @@ if (isset($product_data['slider_img_urls'])) {
                                 $product_data['attached_pdf_urls'] = json_decode($product_data['attached_pdf_urls']);
                                 $product_data['attached_pdf_names'] = json_decode($product_data['attached_pdf_names']);
                                 ?>
-                                <div class="col s12 m10 offset-m1" id="attached-pdfs" style="text-align: center;">
-                                    <h5>Файлы, связанные с товаром</h5>
+                                <div class="col s12 m10 offset-m1 text-align-center" id="attached-pdfs">
+                                    <div class="devider-span">
+                                        <span>_______________</span>
+                                    </div>
+                                    <h6>Файлы, связанные с товаром <b><?php echo the_title(); ?></b></h6>
                                     <div class="pdf-collection-container">
                                     <div class="collection">
                                 <?php
@@ -198,7 +201,9 @@ if (isset($product_data['slider_img_urls'])) {
 
                                 foreach($product_data['attached_pdf_urls'] as $pdf) {
                                     ?>
-                                    <a download href="<?php echo $product_data['attached_pdf_urls'][$i]; ?>" class="pdf-download-link collection-item">Скачать приложенный файл - <?php echo $product_data['attached_pdf_names'][$i]; ?></a>
+                                    <a download href="<?php echo $product_data['attached_pdf_urls'][$i]; ?>" class="pdf-download-link collection-item">
+                                        Скачать файл - <?php echo $product_data['attached_pdf_names'][$i]; ?>
+                                    </a>
                                     <?php
                                     $i++;
                                 }
@@ -215,7 +220,7 @@ if (isset($product_data['slider_img_urls'])) {
                 // Check if certificate exists
                 if(!empty($product_data['certificate_url'])){
                   ?>
-                    <div class="col s1 m1 l2">
+                    <div class="col s5 m5 l3">
                         <div class="download-ru-container">
                             <a href="<?php echo $product_data['certificate_url']; ?>" download>
                                 <div class="download-ru-icon inline-block"><i class="material-icons">file_download</i></div>
@@ -223,13 +228,13 @@ if (isset($product_data['slider_img_urls'])) {
                             </a>
                         </div>
                     </div>
-                    <div class="col s7 offset-s4 m5 offset-m6 l3 offset-l7">
+                    <div class="col s7 m6 offset-m1 l4 offset-l5 text-align-right">
                         <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
                     </div>
                     <?php
               } else {
                 ?>
-                <div class="col s7 offset-s5 m5 offset-m7 l3 offset-l9">
+                <div class="col s7 offset-s5 m6 offset-m6 l4 offset-l8 text-align-right">
                     <a class="btn waves-effect waves-light blue order-btn modal-trigger" href="#modal-add-order">Оформить заказ</a>
                 </div>
                 <?php
@@ -261,7 +266,7 @@ if (isset($product_data['slider_img_urls'])) {
                 <div class="col s12" id="modalPlaceForTables">
 
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m12 l6">
                     <div class="input-field col s12">
                         <input id="name-order" type="text" required class="validate" oninvalid="this.setCustomValidity('Представьтесь пожалуйста')" oninput="setCustomValidity('')">
                         <label for="name-bottom">Представьтесь пожалуйста</label>
@@ -290,7 +295,7 @@ if (isset($product_data['slider_img_urls'])) {
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m6">
+                <div class="col s12 m12 l6">
                     <div class="input-field col s12">
                         <textarea id="message-order" class="materialize-textarea" rows=30></textarea>
                         <label for="message-order">Текст сообщения</label>

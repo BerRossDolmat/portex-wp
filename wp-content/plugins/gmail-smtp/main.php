@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Gmail SMTP
-Version: 1.0.6
+Version: 1.0.7
 Plugin URI: http://wphowto.net/
 Author: naa986
 Author URI: http://wphowto.net/
@@ -16,7 +16,7 @@ if (!defined('ABSPATH')){
 
 class GMAIL_SMTP {
     
-    var $plugin_version = '1.0.6';
+    var $plugin_version = '1.0.7';
     var $phpmailer_version = '5.2.14';
     var $plugin_url;
     var $plugin_path;
@@ -277,6 +277,15 @@ class GMAIL_SMTP {
         }
         $server_info .= sprintf('stream_socket_client: %s%s', $stream_socket_client_status, PHP_EOL);
         $server_info .= sprintf('fsockopen: %s%s%s', $fsockopen_status, $socket_text, PHP_EOL);
+        $cURL_status = 'Not Available. In order to make a SMTP connection your server needs to have cURL enabled';
+        if(function_exists('curl_init')){
+            $cURL_status = 'Available';           
+        }
+        $server_info .= sprintf('cURL: %s%s', $cURL_status, PHP_EOL);
+        if(function_exists('curl_version')){
+            $curl_version = curl_version();
+            $server_info .= sprintf('cURL Version: %s, %s%s', $curl_version['version'], $curl_version['ssl_version'], PHP_EOL);
+        }
         ?>
         <textarea rows="10" cols="50" class="large-text code"><?php echo $server_info;?></textarea>
         <?php

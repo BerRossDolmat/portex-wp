@@ -1,19 +1,28 @@
 $( document ).ready(function(){
 
-  // Manage seacrh form unique id
+  // Manage minicard height
 
   var width = $(window).width();
   
   var searchForm = $('#searchform').clone();
 
+  manageCardHeight();
   manageSearchId();
+  
   $(window).resize(function(){
         if($(this).width() != width){
             width = $(this).width();
+            manageCardHeight();
             manageSearchId();
         }
     });
 
+  // Manage seacrh form unique id
+
+  function manageCardHeight() {
+      $('.category-card').height($('.category-card').first().width() + 60);
+  }
+ 
   function manageSearchId() {
     if (width > 1130) {
       $('#search-form-desktop').children().remove();
@@ -199,3 +208,4 @@ email.addEventListener("keyup", function (event) {
     email.setCustomValidity("");
   }
 });
+
