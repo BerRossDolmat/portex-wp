@@ -142,8 +142,8 @@
 
     ?>
 
-    <div class="text-align-center devider">
-      <h1 class="h1-for-groups-index"><?php echo $thisCat->cat_name; ?></h1>
+    <div class="text-align-center divider-category">
+      <h1 class="h1-for-categories"><?php echo $thisCat->cat_name; ?></h1>
       <span>_______________</span>
     </div>
 
@@ -166,8 +166,8 @@
                 <?php
                   if ($image) {
                     ?>
-                    <div class="card-image image-padding">
-                      <img class="responsive-img img-border" src="<?php echo $image; ?>" alt="<?php echo $term->name; ?>">
+                    <div class="card-image card-image-padding">
+                      <img class="responsive-img card-img-border" src="<?php echo $image; ?>" alt="<?php echo $term->name; ?>">
                     </div>
                     <?php
                   }
@@ -197,8 +197,8 @@
             <?php
               if ( $image ) {
                 ?>
-                <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $term->post_title; ?>">
+                <div class="card-image card-image-padding">
+                  <img class="responsive-img card-img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $term->post_title; ?>">
                 </div>
                 <?php
               }

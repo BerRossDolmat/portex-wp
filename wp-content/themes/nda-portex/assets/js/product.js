@@ -144,8 +144,8 @@ function getControls() {
     return `
     <button
       class="order-number-btn-minus waves-effect waves-blue white blue-grey-text text-darken-4 tooltipped decreaseValue"
-      data-position="top"
-      data-delay="150"
+      data-position="left"
+      data-delay="500"
       data-tooltip="Уменьшить количество товара"
     >
       -
@@ -153,8 +153,8 @@ function getControls() {
     <input type="text" class="order-input" placeholder="0">
     <button
       class="order-number-btn-plus waves-effect waves-blue blue tooltipped increaseValue"
-      data-position="top"
-      data-delay="150"
+      data-position="left"
+      data-delay="500"
       data-tooltip="Увеличить количество товара"
     >
       +

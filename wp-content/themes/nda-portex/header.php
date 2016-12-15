@@ -62,6 +62,7 @@
     
     
     <!--Import styles, fonts and icons-->
+    <script src="https://use.fontawesome.com/e8f0f1e444.js"></script>
 
     <?php wp_head(); ?>
 
@@ -82,8 +83,8 @@
 
               <div class="col m8 offset-m2 s8 hide-on-desktop">
                 <div class="right social-bar">
-                  <div class="social-icons fb tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Facebook"></div>
-                  <div class="social-icons vk tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Контакте"></div>
+                  <div class="social-icons fb tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></div>
+                    <div class="social-icons vk tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Контакте"><i class="fa fa-vk fa-lg" aria-hidden="true"></i></div>
                 </div>
                 <div class="right">
                   <div class="inline-block search-block" id="search-form-mobile">
@@ -109,18 +110,22 @@
                 </ul>
 
                 <div class="right social-bar">
-                  <div class="social-icons fb tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Facebook"></div>
-                  <div class="social-icons vk tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Контакте"></div>
+                    <div class="social-icons fb tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Facebook"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></div>
+                    <div class="social-icons vk tooltipped" data-position="bottom" data-delay="50" data-tooltip="Мы в Контакте"><i class="fa fa-vk fa-lg" aria-hidden="true"></i></div>
                 </div>
 
                 <div class="right">
-                  <div class="inline-block" id="search-form-desktop">
-                    <?php get_search_form(); ?>
+                  <div class="contacts-container">
+                    <div class="inline-block" id="search-form-desktop">
+                      <?php get_search_form(); ?>
+                    </div>
                   </div>
                 </div>
 
                 <div class="right">
-                  <a href="#contactsModal" class="modal-trigger contacts-container"><span class="contacts-btn-header">Контакты</span></a>
+                  <div class="contacts-container">
+                    <a href="#contactsModal" class="modal-trigger"><span class="contacts-btn-header">Контакты</span></a>
+                  </div>
                 </div>
 
               </div>

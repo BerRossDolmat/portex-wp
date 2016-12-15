@@ -35,7 +35,16 @@ $('body').on('mouseover', function() {
         checked = true;
         $('body').off('mouseover');
     }
-})
+});
+
+// Clear attacheb pdfs button
+$('#pdf-attach-reset-button').live('click', function(e) {
+    e.preventDefault();
+    $('#pdfNamesBlock').hide(500);
+    $('#attached_pdf_urls').val('');
+    $('#attached_pdf_names').val('');
+});
+
 
 // Event handler for Upload certificate button
 

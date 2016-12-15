@@ -43,6 +43,10 @@ function nda_enqueue() {
     wp_register_script( 'nda_index_category', get_template_directory_uri() . '/assets/js/index-category.js', array(), false, true );
     wp_enqueue_script( 'nda_index_category' );
   }
+  if( is_search() ) {
+    wp_register_script( 'nda_index_category', get_template_directory_uri() . '/assets/js/index-category.js', array(), false, true );
+    wp_enqueue_script( 'nda_index_category' );
+  }
   if( is_singular() ) {
     wp_register_script( 'nda_product', get_template_directory_uri() . '/assets/js/product.js', array(), false, true );
     wp_enqueue_script( 'nda_product' );

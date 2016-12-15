@@ -1,24 +1,40 @@
 /*
+ 
+ Annotation
 
-Annotation by components
-
-1. Common helpers and classes
-2. 404 page
-3. header.php
-4. footer.php
-5. modals
-6. index.php
-7. search.php
-8. category.php and single-product.php
-
-
-10. media queries
-
-
+ 1. Common classes and helpers
+ 2. Slider
+ 3. Cards
+ 4. Breadcrumbs
+ 5. Header
+ 6. Modals
+ 7. Search
+ 8. Find shipping page
+ 9. Contacts
+ 10. Tooltip
+ 11. Product
+ 12. Footer
+ 13. Media queries
+ 14. Pages
 
 */
 
-/* 1. Common helpers and classes */
+/* 1. Common classes and helpers */
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 15px;
+}
+
+body {
+    margin: 0 0 70px;
+}
+
+@font-face {
+    font-family: "costumfont";
+    src: url('../fonts/2219.ttf');
+}
 
 .text-align-center {
     text-align: center;
@@ -28,8 +44,25 @@ Annotation by components
     text-align: right;
 }
 
-.padding-top {
-    padding-top: 10px;
+.devider {
+    color: #0091ea;
+    padding-bottom: 30px;
+    width: 60%;
+    margin: auto;
+}
+
+.devider-product-description {
+    margin-bottom: 30px;
+}
+
+.devider-span {
+    color: #0091ea;
+    margin-bottom: 30px;
+    margin-top: 22px;
+}
+
+.image-padding {
+    padding: 10px 10px 5px 10px;
 }
 
 .zero-padding-right {
@@ -40,27 +73,46 @@ Annotation by components
     display: inline-block;
 }
 
-.backdrop {
-    background-color: #64b5f6;
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
 }
 
-.divider-span {
+.zero-padding {
+    padding: 0px;
+}
+
+.zero-padding-left {
+    padding-left: 0px !important;
+}
+
+/* 2. Slider */
+
+.slider-img {
+    height: auto;
+    max-height: 250px;
+    width: 100%;
+}
+
+.my-slider {
+    margin-top: 20px;
+}
+
+.slider-no-display {
+    display: none;
+}
+
+/* 3. Cards */
+
+.h1-for-groups-index {
+    font-size: 1.46em;
+    font-weight: 300;
     color: #0091ea;
-    margin-bottom: 30px;
-    margin-top: 22px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 2;
 }
-
-html {
-    position: relative;
-    min-height: 100%;
-    font-size: 15px;
-}
-
-body {
-    margin: 0 0 80px;
-}
-
-/* Product and category cards */
 
 .minicard {
     margin: auto;
@@ -78,12 +130,7 @@ body {
     overflow: hidden;
 }
 
-
-.card-image-padding {
-    padding: 10px 10px 5px 10px;
-}
-
-.card-img-border {
+.img-border {
     border: 1px solid #0091ea;
     background-color: white;
     padding: 3px;
@@ -97,49 +144,77 @@ body {
     width: 100%;
 }
 
-@font-face {
-    font-family: "costumfont";
-    src: url('../fonts/2219.ttf');
+/* 4. Breadcrumbs */
+
+
+.breadcrumbs {
+    background-color: #fafafa;
 }
 
-/* 2. 404 page */
-
-.my-slider {
-    margin-top: 20px;
+.breadcrumbs-wrapper {
+    border: 0px;
+    background-color: #fafafa;
+    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 00);
 }
 
-.slider-img {
-    height: auto;
-    max-height: 250px;
-    width: 100%;
+.breadcrumbs-wrapper a {
+    color: #455a64;
 }
 
-.slider-no-display {
-    display: none;
+.breadcrumbs-wrapper a:before {
+    color: #37474f;
 }
 
-.divider-404 {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
+.breadcrumb {
+    font-size: 1.06em;
+    color: #64b5f6 !important;
 }
 
-.h1-404 {
-    font-size: 1.46em;
-    font-weight: 300;
-    color: #0091ea;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
+.breadcrumb-active {
+    color: #546e7a !important;
 }
 
-/* 3. header */
+.breadcrumb-active:hover {
+    cursor: default;
+}
+
+/* 5. Header */
 
 .top-menu {
     max-height: 70px;
 }
 
+.social-bar {
+    margin-top: -6px;
+}
+
+.social-icons {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: all .5s ease;
+}
+
+.vk {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    opacity: 0.85;
+}
+
+.fb {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    opacity: 0.7s;
+    margin-left: 17px;
+}
+
+.fb:hover,
+.vk:hover {
+    opacity: 1;
+}
 
 .contacts-container {
     padding-top: 2px;
@@ -215,33 +290,31 @@ body {
     font-weight: 500;
 }
 
-.social-bar {
-    margin-top: -6px;
+/* 6. Modals */
+
+.modal {
+    width: 80%;
 }
 
-.social-icons {
-    display: inline-block;
-    cursor: pointer;
-    transition: all .5s ease;
+.modal-order {
+    width: 90%;
 }
 
-.vk {
-    display: inline-block;
-    opacity: 0.7;
-    margin-left: 7px;
+#contactsModal {
+    width: 70%;
 }
 
-.fb {
-    display: inline-block;
-    opacity: 0.7;
-    margin-left: 15px;
+.contact-us-btn {
+    position: fixed;
+    bottom: 62px;
+    right: 30px;
 }
 
-.fb:hover,
-.vk:hover {
-    opacity: 1;
+#send-letter-modal {
+    width: 40%;
 }
 
+/* 7. Search */
 
 #search {
     color: white;
@@ -379,39 +452,21 @@ body {
     left: 25px;
 }
 
-/* 4. footer.php */
+/* 8. Find shipping page */
 
-.footer-style {
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    height: 80px;
-    background-color: #546e7a;
+.forgot-pass {
+    font-style: italic;
+    padding-top: 10px;
 }
 
-.centered-text-footer {
-    text-align: center;
-    color: white;
-    display: inline-block;
-    padding-left: 30px;
-    padding-right: 30px;
+.log-in-btn {
+    margin-top: 0;
 }
 
-.footer-style div div p {
-    margin-bottom: 0;
-}
+/* 9. Contacts */
 
-.footer-style div div {
-    margin-bottom: 0;
-}
-
-
-/* 5. modals */
-
-.contact-us-btn {
-    position: fixed;
-    bottom: 62px;
-    right: 30px;
+.modal-content {
+    height: 100% !important;
 }
 
 .close-symbol {
@@ -481,104 +536,21 @@ body {
     color: #2196f3;
 }
 
-/* 6. index.php */
-
-.h1-for-index {
-    font-size: 1.46em;
-    font-weight: 300;
-    color: #0091ea;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
+.toast-style {
+    color: #263238;
+    width: auto;
+    height: auto;
 }
 
-.divider-index {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
+/* 10. Tooltip */
+
+.backdrop {
+    background-color: #64b5f6;
+
 }
 
-/* 7. search.php */
 
-.divider-search {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
-}
-
-.h1-for-search-page {
-    font-size: 1.46em;
-    color: #37474f; 
-    font-weight: 300;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
-}
-
-/* 8. category.php and single-product.php */
-
-.h1-for-categories {
-    font-size: 1.46em;
-    font-weight: 300;
-    color: #0091ea;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
-}
-
-.divider-category {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
-}
-
-.product {
-    padding: 20px;
-    padding-top: 40px;
-    margin-bottom: 20px;
-}
-
-.h1-for-product {
-    font-size: 1.46em;
-    font-weight: 300;
-    color: #0091ea;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
-}
-
-.divider-product {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
-}
-
-.divider-product-description {
-    color: #0091ea;
-    padding-bottom: 30px;
-    width: 60%;
-    margin: auto;
-    margin-bottom: 30px;
-}
-
-.h2-for-product-description {
-    font-size: 1.46em;
-    font-weight: 300;
-    color: #0091ea;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    line-height: 2;
-}
-
-.pdf-collection-container {
-    padding: 0 !important;
-    margin: 20px auto 0;
-    display: inline-block;
-}
+/* 11. Product */
 
 .pdf-download-link {
     color: #2196F3 !important;
@@ -587,6 +559,33 @@ body {
 .pdf-download-link:hover {
     color: #2979ff  !important;
     background-color: #eceff1 !important; 
+}
+
+.pdf-collection-container {
+    padding: 0 !important;
+    margin: 20px auto 0;
+    display: inline-block;
+}
+
+.product {
+    padding: 20px;
+    padding-top: 40px;
+    margin-bottom: 20px;
+}
+
+.product-specification {
+    margin-top: 20px;
+}
+
+.h5-for-product {
+    font-weight: 400;
+    color: #263238;
+    margin-top: 0px;
+    line-height: 2;
+}
+
+.width-24px {
+    width: 24px;
 }
 
 .shipping-icon {
@@ -682,6 +681,7 @@ body {
     padding-top: 7px !important;
 }
 
+
 /* Product tables */
 
 #product-content hr {
@@ -697,45 +697,86 @@ table thead td {
     font-weight: 500;
 }
 
-/* breadcrumbs */
+/* Product Slider */
 
-.breadcrumbs {
-    background-color: #fafafa;
+.slider-thumbs-horizontal {
+    margin-top: 0px;
 }
 
-.breadcrumbs-wrapper {
-    border: 0px;
-    background-color: #fafafa;
-    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 00);
+.slider-thumbs-horizontal li {
+    display: inline-block;
+    padding: 5px;
+    padding-bottom: 0px;
+    border: 2px solid #90a4ae;
+    border-radius: 5px;
+    opacity: 1;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    width: 18.5%;
+    margin-right: 5px;
+    margin-bottom: 10px;
 }
 
-.breadcrumbs-wrapper a {
-    color: #455a64;
+.slider-thumbs-horizontal li:hover {
+    opacity: 0.6;
+    border-color: #42a5f5;
 }
 
-.breadcrumbs-wrapper a:before {
-    color: #37474f;
+.slider-thumbs-horizontal li a img {
+    width: 100%;
+    height: auto;
 }
 
-.breadcrumb {
-    font-size: 1.06em;
-    color: #64b5f6 !important;
+#slideshow {
+    height: auto;
+    margin-bottom: 25px;
 }
 
-.breadcrumb-active {
-    color: #546e7a !important;
+.card-content-text {
+    display: table-cell;
+    vertical-align: middle;
 }
 
-.breadcrumb-active:hover {
-    cursor: default;
+/* 12. Footer */
+
+.footer-style {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 80px;
+    background-color: #546e7a;
 }
 
-/* 10. media queries */
+.footer-style div div p {
+    margin-bottom: 0;
+}
+
+.footer-style div div {
+    margin-bottom: 0;
+}
+
+.centered-text {
+    text-align: center;
+    color: white;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.padding-top {
+    padding-top: 10px;
+}
+
+body {
+    margin: 0 0 80px;
+}
+
+/* 13. Media queries */
 
 @media screen and (min-width: 1380px) {
-    .modal {
-        width: 70%;
-    }
     .container {
         min-width: 1280px !important;
     }
@@ -785,9 +826,6 @@ table thead td {
 }
 
 @media screen and (min-width: 1280px) and (max-width: 1380px) {
-    .modal {
-        width: 80%;
-    }
     .container {
         min-width: 1180px !important;
     }
@@ -856,20 +894,7 @@ table thead td {
         font-size: 19px;
     }
     .contacts-btn-header {
-        border: 2px solid white;
-        padding: 1px 5px 2px 5px;
-        border-radius: 5px;
-        font-weight: 500;
-        margin-right: 10px;
-        font-size: 1.3em;
-        font-family: costumfont, sans-serif;
-        transition-property: all;
-        transition-duration: 1s;
-        transition-timing-function: ease;
-    }
-
-    .contacts-btn-header:hover {
-        background: #607d8b;
+        font-size: 18px;
     }
     .show-on-phone {
         display: none;
@@ -1274,5 +1299,16 @@ table thead td {
     }
 }
 
+/* 14. Pages */
 
 
+/* Search page */
+
+.h1-for-search-page {
+    font-size: 1.46em;
+    color: #37474f; 
+    font-weight: 300;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    line-height: 2;
+}

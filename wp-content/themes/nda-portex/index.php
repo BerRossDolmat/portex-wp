@@ -42,8 +42,8 @@ function compare($elm1, $elm2) {
 
 <div class="container">
 
-  <div class="text-align-center devider">
-    <h1 class="h1-for-groups-index">ИЗДЕЛИЯ КОМПАНИИ PORTEX (SMITHS MEDICAL)</h1>
+  <div class="text-align-center divider-index">
+    <h1 class="h1-for-index">ИЗДЕЛИЯ КОМПАНИИ PORTEX (SMITHS MEDICAL)</h1>
     <span>_______________</span>
   </div>
 
@@ -123,8 +123,8 @@ function compare($elm1, $elm2) {
               <?php
                 if ( $image ) {
                   ?>
-                  <div class="card-image image-padding">
-                    <img class="responsive-img img-border" src="<?php echo $image; ?>" alt="<?php echo $term->name; ?>">
+                  <div class="card-image card-image-padding">
+                    <img class="responsive-img card-img-border" src="<?php echo $image; ?>" alt="<?php echo $term->name; ?>">
                   </div>
                   <?php
                 }
@@ -150,8 +150,8 @@ function compare($elm1, $elm2) {
             <?php
               if ( $image ) {
                 ?>
-                <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $term->post_title; ?>">
+                <div class="card-image card-image-padding">
+                  <img class="responsive-img card-img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $term->post_title; ?>">
                 </div>
                 <?php
               }

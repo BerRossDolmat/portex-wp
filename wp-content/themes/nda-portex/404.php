@@ -32,8 +32,8 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
 
 <div class="container">
 
-  <div class="text-align-center devider">
-    <h1 class="h1-for-groups-index">Запрошенная Вами страница не найдена, попробуйте ещё раз</h1>
+  <div class="text-align-center divider-404">
+    <h1 class="h1-404">Запрошенная Вами страница не найдена, попробуйте ещё раз</h1>
     <span>_______________</span>
   </div>
 

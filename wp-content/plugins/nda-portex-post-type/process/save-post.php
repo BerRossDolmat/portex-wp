@@ -47,9 +47,14 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   }
 
   // Index state check for attached pdf files
-
-  if ( isset($_POST['nda_attached_pdf_urls']) && isset($_POST['nda_attached_pdf_names']) ) {
-    if ( isset($_POST['nda_index_pdf_checkbox']) ) {
+  // print_r($_POST);
+  // die();
+  if ( isset($_POST['nda_attached_pdf_urls']) 
+        && isset($_POST['nda_attached_pdf_names']) 
+        && !empty($_POST['nda_attached_pdf_names'])
+        && !empty($_POST['nda_attached_pdf_urls'])
+        ) {
+    if ( isset($_POST['nda_index_pdf_checkbox'])) {
     $product_data['index_checkbox'] = 'true';
     } else {
       $product_data['index_checkbox'] = 'false';
@@ -57,10 +62,12 @@ function nda_save_post_admin( $post_id, $post, $update ) {
   } else {
     $product_data['index_checkbox'] = 'false';
   }
+  // print_r($product_data);
+  // die();
 
   // Generate string from every attached pdf file and contatination to store in database
 
-  if (($product_data['index_checkbox'] = 'true') && (isset($product_data['attached_pdf_urls']) && ($product_data['attached_pdf_names']))) {
+  if (($product_data['index_checkbox'] === 'true') && (isset($product_data['attached_pdf_urls']) && ($product_data['attached_pdf_names']))) {
     require 'pdf2text.php';
     $cleanData = str_replace("\\", "",$_POST['nda_attached_pdf_urls']);
     $products = json_decode( $cleanData, true );
@@ -72,6 +79,8 @@ function nda_save_post_admin( $post_id, $post, $update ) {
     }
     $product_data['index_pdf_files_content'] = $finalString;
     
+  } else {
+    $product_data['index_pdf_files_content'] = '';
   }
 
   // Minified checkbox check

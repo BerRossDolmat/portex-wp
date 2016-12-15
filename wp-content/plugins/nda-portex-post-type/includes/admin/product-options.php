@@ -250,7 +250,13 @@ function np_product_options_mb( $post ) {
         Если файлы, указанные здесь, должны индексироваться поисковым движком сайта - установите галочку - "Индексировать" (по умолчанию - включена, замедляет работу базы данных) 
       </p>
         <button id="pdf-attach-button" class="btn btn-default">Добавить ПДФ файлы</button>
-        <div id="pdfNamesBlock" <?php if(!isset($product_data['attached_pdf_names'])) echo 'hidden'; ?>>
+        <?php 
+          $hidePdfBlock = true;
+          if (isset($product_data['attached_pdf_names']) && !empty($product_data['attached_pdf_names'])) {
+            $hidePdfBlock = false;
+          }
+        ?>
+        <div id="pdfNamesBlock" <?php if($hidePdfBlock) echo 'hidden'; ?>>
           <h4>Выбранные PDF</h4>
           <ul class="list-group" id="pdfNames">
             <?php
@@ -259,8 +265,10 @@ function np_product_options_mb( $post ) {
 
               if (isset($product_data['attached_pdf_names'])) {
                 $names = json_decode($product_data['attached_pdf_names']);
-                foreach($names as $name) {
-                  echo '<li class="list-group-item">' . $name . '</li>';
+                if(is_array($names)) {
+                  foreach($names as $name) {
+                    echo '<li class="list-group-item">' . $name . '</li>';
+                  }
                 }
               }
             ?>
@@ -282,11 +290,16 @@ function np_product_options_mb( $post ) {
                 style="margin-top:0px;" 
                 type="checkbox" 
                 name="nda_index_pdf_checkbox" 
-                id="product_index_pdf_checkbox" <?php if (isset($product_data['index_checkbox'])){echo $product_data['index_checkbox'] === 'false' ? '' : 'checked';} else {echo 'checked';} ?> 
+                id="product_index_pdf_checkbox" <?php if ($product_data['index_checkbox'] === 'true'){echo 'checked';} ?> 
                 value="">
                 Индексировать
               </label>
           </div>
+
+          <div class="form-group">
+            <button id="pdf-attach-reset-button" class="btn btn-danger">Очистить список ПДФ файлов</button>
+          </div>
+
         </div>
       </div>
     </div>

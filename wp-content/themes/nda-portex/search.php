@@ -50,7 +50,7 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
 
 <div class="container">
 
-  <div class="text-align-center devider">
+  <div class="text-align-center divider-search">
     <h1 class="h1-for-search-page">Результаты поиска по запросу</h1>
     <h3><?php the_search_query(); ?></h3>
     <span>_______________</span>
@@ -61,9 +61,6 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
     global $wp_query;
     $total_results = $wp_query->found_posts;
 
-  ?>
-
-  <?php
     if(!$total_results) {
       ?>
         <div class="col s12 text-align-center">
@@ -80,8 +77,8 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
             <?php
               if ( $image ) {
                 ?>
-                <div class="card-image image-padding">
-                  <img class="responsive-img img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
+                <div class="card-image card-image-padding">
+                  <img class="responsive-img card-img-border" src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
                 </div>
                 <?php
               }
@@ -101,4 +98,3 @@ $slider_imgs = json_decode(get_option('main_slider_urls'));
 </div>
 
 <?php get_footer(); ?>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/assets/js/index-category.js"></script>

@@ -3,9 +3,9 @@
 <footer class="footer-style">
     <div class="container">
         <div class="padding-top text-align-center row">
-            <p class="centered-text col s12 m4"> 2016 ООО "НДА Деловая медицинская компания"</p>
-            <p class="centered-text col s12 m4">190121, Санкт-Петербург, ул. Перевозная, д. 6 (Матисов остров).</p>
-            <p class="centered-text col s12 m4">Тел/факс: +7 (812) 714-0614<br>Email: <a href="mailto:nda@nda.ru">nda@nda.ru</a>
+            <p class="centered-text-footer col s12 m4"> 2016 ООО "НДА Деловая медицинская компания"</p>
+            <p class="centered-text-footer col s12 m4">190121, Санкт-Петербург, ул. Перевозная, д. 6 (Матисов остров).</p>
+            <p class="centered-text-footer col s12 m4">Тел/факс: +7 (812) 714-0614<br>Email: <a href="mailto:nda@nda.ru">nda@nda.ru</a>
             </p>
         </div>
     </div>

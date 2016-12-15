@@ -82,8 +82,8 @@ if (isset($product_data['slider_img_urls'])) {
             <div class="col s12">
                 <div class="card product">
                     <div class="row">
-                        <div class="text-align-center devider">
-                            <h1 class="h1-for-groups-index product_title">
+                        <div class="text-align-center divider-product">
+                            <h1 class="h1-for-product product_title">
                                 <?php echo the_title(); ?>
                             </h1>
                             <span>_______________</span>
@@ -168,8 +168,8 @@ if (isset($product_data['slider_img_urls'])) {
           ?>
                 <div class="card-content">
                     <div class="row">
-                        <div class="text-align-center devider devider-product-description col s12" id="product-description">
-                            <h2 class="h1-for-groups-index">Описание продукта</h2>
+                        <div class="text-align-center divider-product-description col s12" id="product-description">
+                            <h2 class="h2-for-product-description">Описание продукта</h2>
                             <span>_______________</span>
                         </div>
 
@@ -189,7 +189,7 @@ if (isset($product_data['slider_img_urls'])) {
                                 $product_data['attached_pdf_names'] = json_decode($product_data['attached_pdf_names']);
                                 ?>
                                 <div class="col s12 m10 offset-m1 text-align-center" id="attached-pdfs">
-                                    <div class="devider-span">
+                                    <div class="divider-span">
                                         <span>_______________</span>
                                     </div>
                                     <h6>Файлы, связанные с товаром <b><?php echo the_title(); ?></b></h6>
