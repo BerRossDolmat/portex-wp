@@ -229,12 +229,14 @@ body {
     display: inline-block;
     opacity: 0.7;
     margin-left: 7px;
+    height: 24px;
 }
 
 .fb {
     display: inline-block;
     opacity: 0.7;
     margin-left: 15px;
+    height: 24px;
 }
 
 .fb:hover,
@@ -518,6 +520,18 @@ body {
 }
 
 /* 8. category.php and single-product.php */
+
+.category-descr-img-container {
+    padding: 10px 0;
+}
+
+.zero-padding {
+    padding: 0 !important;
+}
+
+.card-image-col {
+    border-right: 1px solid #eee;
+}
 
 .h1-for-categories {
     font-size: 1.46em;

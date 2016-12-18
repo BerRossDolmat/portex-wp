@@ -119,7 +119,8 @@ function compare($elm1, $elm2) {
       ?>
         <div class="minicard animate-fadein">
           <a href="<?php echo get_category_link( $term->term_id ); ?>">
-            <div class="card hoverable category-card" title="<?php echo $term->category_description;?>">
+            <!--<div class="card hoverable category-card" title="<?php echo $term->category_description;?>">-->
+              <div class="card hoverable category-card" title="<?php echo $term->name;?>">
               <?php
                 if ( $image ) {
                   ?>

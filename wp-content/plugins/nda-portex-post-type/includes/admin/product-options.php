@@ -81,22 +81,22 @@ function np_product_options_mb( $post ) {
     </div>
     <div class="col-xs-12">
       <div class="form-group">
-        <label>Meta Keywords</label>
-        <input 
+        <label>Meta Description</label>
+        <textarea
+          rows="6" 
           class="form-control" 
-          type="text" 
-          name="nda_product_meta_keywords" 
-          value="<?php echo $product_data['meta_keywords']; ?>">
+          name="nda_product_meta_description" 
+          value="<?php echo $product_data['meta_description']; ?>"></textarea>
       </div>
     </div>
     <div class="col-xs-12">
       <div class="form-group">
-        <label>Meta Description</label>
-        <input 
+        <label>Meta Keywords</label>
+        <textarea
+          rows="6" 
           class="form-control" 
-          type="text" 
-          name="nda_product_meta_description" 
-          value="<?php echo $product_data['meta_description']; ?>">
+          name="nda_product_meta_keywords" 
+          value="<?php echo $product_data['meta_keywords']; ?>"></textarea>
       </div>
     </div>
   </div>

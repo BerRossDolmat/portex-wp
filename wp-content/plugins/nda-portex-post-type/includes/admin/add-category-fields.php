@@ -11,9 +11,13 @@ function nda_category_add_new_meta_field($term) {
   }
 
   // Meta data existence check
-  if(!isset($category_data)) {
+  if(!isset($category_data['meta_title'])) {
     $category_data['meta_title'] = '';
+  }
+  if(!isset($category_data['meta_description'])) {
     $category_data['meta_description'] = '';
+  }
+  if(!isset($category_data['meta_keywords'])) {
     $category_data['meta_keywords'] = '';
   }
 
@@ -32,12 +36,16 @@ function nda_category_add_new_meta_field($term) {
     $category_data['title'] = '';
   }
 
-  ?>
+  if(!isset($category_data['description'])) {
+    $category_data['description'] = '';
+  }
 
+  
+  ?>
   <!-- Metabox template -->
   <h4>Тайтл</h4>
   <div class="form-group">
-    <label>Тайтл страницы категорий</label>
+    <label>Тайтл страницы категории</label>
     <input class="form-control" type="text" name="nda_category_title" value="<?php echo $category_data['title']; ?>">
   </div>
   
@@ -54,11 +62,11 @@ function nda_category_add_new_meta_field($term) {
   </div>
   <div class="form-group">
     <label>Meta Description</label>
-    <input class="form-control" type="text" name="nda_category_meta_description" value="<?php echo $category_data['meta_description']; ?>">
+    <textarea class="form-control" rows="10" name="nda_category_meta_description" value="<?php echo $category_data['meta_description']; ?>"></textarea>
   </div>
   <div class="form-group">
     <label>Meta Keywords</label>
-    <input class="form-control" type="text" name="nda_category_meta_keywords" value="<?php echo $category_data['meta_keywords']; ?>">
+    <textarea class="form-control" rows="10" name="nda_category_meta_keywords" value="<?php echo $category_data['meta_keywords']; ?>"></textarea>
   </div>
   <div class="form-group">
     <label>Приоритет</label>

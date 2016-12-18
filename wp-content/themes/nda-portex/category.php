@@ -75,14 +75,12 @@
     </div>
   </nav>
 
-  <div class="row">
-
     <?php
 
     // Get current category object
 
     $thisCat = get_category(get_query_var( 'cat' ));
-    
+    $thisCatImage = category_image_src( array( 'term_id'=>$thisCat->cat_ID, 'size'=>'medium' ) , false );
     // Take arguments for child categories
     
     $args = array(
@@ -141,12 +139,27 @@
     usort($terms, 'compare');
 
     ?>
-
-    <div class="text-align-center divider-category">
-      <h1 class="h1-for-categories"><?php echo $thisCat->cat_name; ?></h1>
-      <span>_______________</span>
+    
+    <div class="row">
+      <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2 card zero-padding">
+          <div class="card-image col s4 card-image-col">
+            <div class="category-descr-img-container">
+              <img class="responsive-img" src="<?php echo $thisCatImage; ?>">
+            </div>
+          </div>
+          <div class="card-content col s8">
+            <?php echo category_description(); ?>
+          </div>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="text-align-center divider-category">
+        <h1 class="h1-for-categories"><?php echo $thisCat->cat_name; ?></h1>
+        <span>_______________</span>
+      </div>
+    </div>
+    <div class="row">
     <?php
 
     foreach ($terms as $term) {
@@ -162,7 +175,7 @@
         ?>
           <div class="minicard animate-fadein">
             <a href="<?php echo get_category_link( $term->term_id ); ?>">
-              <div class="card hoverable category-card" title="<?php echo $term->category_description;?>">
+              <div class="card hoverable category-card" title="<?php echo $term->name;?>">
                 <?php
                   if ($image) {
                     ?>
@@ -213,9 +226,8 @@
     }
   }
 ?>
-
+    </div>
   </div>
-
 </div>
 
 <?php get_footer(); ?>

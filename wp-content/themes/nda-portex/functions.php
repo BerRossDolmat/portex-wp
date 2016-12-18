@@ -9,6 +9,7 @@ if ( function_exists( 'add_theme_support' ) ) {
     // additional image sizes
     // delete the next line if you do not need additional image sizes
     add_image_size( 'category-thumb', 200, 200 );
+    add_image_size( 'category-descr', 400, 400 );
  }
 
 // Includes
@@ -18,6 +19,7 @@ include ( get_template_directory() . '/includes/back/send-mail.php' );
 include ( get_template_directory() . '/includes/back/remove-menu-pages.php');
 
 // Actions & Hooks
+// remove the html filtering
 
 add_action( 'wp_enqueue_scripts', 'nda_enqueue' );
 add_action( 'admin_menu', 'nda_remove_menu_pages' );
